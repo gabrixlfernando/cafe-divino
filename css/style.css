@@ -1,0 +1,168 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F2E8DF;
+}
+
+.site{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+} 
+
+h1, h2, h3, h5 {
+    font-weight: bold;
+    color: #261420;
+}
+
+.sobre a{
+    background: #261420 !important;
+}
+
+.sobre a:hover{
+    opacity: 0.8;
+}
+header {
+    background: url(../img/banner.png);
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    height: 900px;
+}
+
+header nav div a h1{
+    background: url(../img/logo-café-divíno.svg) no-repeat;
+    width: 100px;
+    height: 100px;
+    text-indent: -5000px;
+
+}
+
+
+
+/* Seção de Informações Adicionais */
+section {
+    padding: 50px 0;
+}
+
+section h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+section p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+section .btn-outline-dark {
+    border: 2px solid #8C5042;
+    color: #555555;
+}
+
+section .btn-outline-dark:hover {
+    background-color: #592C28;
+    color: #ffffff;
+}
+
+
+.card-title {
+    color: #8C5042;
+}
+
+.action{
+    /* background: #D9A689; */
+    background: url(../img/banner.png) no-repeat;
+    background-attachment: fixed;
+}
+
+.action h2{
+    color: #D9A689;
+}
+
+.action p{
+    color: #F2E8DF;
+}
+
+
+/* Seção de Destaques */
+
+#destaques .card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+#destaques .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+#destaques .card-text {
+    color: #555555;
+}
+
+#destaques .btn-outline-dark {
+    border: 2px solid #555555;
+    color: #555555;
+    width: fit-content;
+}
+
+#destaques .btn-outline-dark:hover {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: #592C28 !important;
+    border: none !important;
+  }
+
+  #btn-back-to-top:hover{
+    opacity: 0.8;
+  }
+
+
+/* Footer */
+footer {
+    background-color: #D9A689;
+}
+
+footer h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a:hover {
+    color: #F15A24;
+}
+
+/* Redes Sociais */
+footer .fa-lg {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+
+footer .fa-lg:hover {
+    color: #F15A24;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+    footer .text-md-start,
+    footer .text-md-end {
+        text-align: center !important;
+    }
+}
+

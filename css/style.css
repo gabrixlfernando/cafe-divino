@@ -73,6 +73,11 @@ section .btn-outline-dark:hover {
     /* background: #D9A689; */
     background: url(../img/banner.png) no-repeat;
     background-attachment: fixed;
+    background-size: cover;
+    background-color: #00000063;
+    background-blend-mode: multiply;
+    padding-top: 125px;
+    padding-bottom: 125px;
 }
 
 .action h2{

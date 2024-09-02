@@ -23,3 +23,17 @@ function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+
+// remover seta banner
+document.addEventListener("DOMContentLoaded", function() {
+  const arrowDown = document.querySelector(".banner-seta");
+  window.addEventListener("scroll", function() {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 100) {
+      arrowDown.style.opacity = "0";
+    } else {
+      arrowDown.style.opacity = "1";
+    }
+  });
+});

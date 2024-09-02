@@ -22,10 +22,16 @@ h1, h2, h3, h5 {
     opacity: 0.8;
 }
 header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background: url(../img/banner.png);
     background-repeat: repeat;
     background-position: center;
     background-size: cover;
+    background-color: #00000088;
+    background-blend-mode: multiply;
     height: 100vh;
 }
 
@@ -33,9 +39,42 @@ header nav div a h1{
     background: url(../img/logo-café-divíno.svg) no-repeat;
     width: 100px;
     height: 100px;
-    text-indent: -5000px;
-
+    text-indent: -5000px; 
 }
+
+header h2{
+    font-size: 43px;
+    color: #fff;
+    text-align: center;
+    width: 600px;
+}
+
+header h3{
+    font-size: 32px;
+    color: #D9A689;
+}
+
+.banner-seta{
+    padding: 10px 0;
+}
+
+.banner-seta div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .fa.icone {
+    font-size: 46px;
+    color: #D9A689;
+    opacity: 1;
+    animation: anima 1050ms ease-in infinite alternate;
+  }
+  @keyframes anima {
+    to {
+      opacity: 0;
+      transform: scale(0.85) translateY(20px);
+    }
+  }
 
 
 

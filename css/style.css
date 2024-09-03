@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #F2E8DF;
+    background-color: #ffffff;
 }
 
 .site{
@@ -11,11 +11,11 @@ body {
 
 h1, h2, h3, h5 {
     font-weight: bold;
-    color: #261420;
+    color: #2b1b1b;
 }
 
 .sobre a{
-    background: #261420 !important;
+    background: #2b1b1b !important;
 }
 
 .sobre a:hover{
@@ -51,7 +51,7 @@ header h2{
 
 header h3{
     font-size: 32px;
-    color: #D9A689;
+    color: #c11a36;
 }
 
 .banner-seta{
@@ -65,7 +65,7 @@ header h3{
   
   .fa.icone {
     font-size: 46px;
-    color: #D9A689;
+    color: #c11a36;
     opacity: 1;
     animation: anima 1050ms ease-in infinite alternate;
   }
@@ -94,22 +94,26 @@ section p {
 }
 
 section .btn-outline-dark {
-    border: 2px solid #8C5042;
+    border: 2px solid #2b1b1b;
     color: #555555;
 }
 
 section .btn-outline-dark:hover {
-    background-color: #592C28;
+    background-color: #2b1b1b;
     color: #ffffff;
 }
 
 
 .card-title {
-    color: #8C5042;
+    color: #c11a36;
+}
+
+#destaques h3{
+    color: #c11a36;
 }
 
 .action{
-    /* background: #D9A689; */
+    /* background: #c11a36; */
     background: url(../img/banner.png) no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -120,7 +124,7 @@ section .btn-outline-dark:hover {
 }
 
 .action h2{
-    color: #D9A689;
+    color: #c11a36;
 }
 
 .action p{
@@ -160,7 +164,7 @@ section .btn-outline-dark:hover {
     bottom: 20px;
     right: 20px;
     display: none;
-    background: #592C28 !important;
+    background: #c11a36 !important;
     border: none !important;
   }
 
@@ -171,7 +175,7 @@ section .btn-outline-dark:hover {
 
 /* Footer */
 footer {
-    background-color: #D9A689;
+    background-color: #D9D1BA;
 }
 
 footer h5 {

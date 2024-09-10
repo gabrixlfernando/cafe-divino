@@ -26,17 +26,17 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: url(../img/banner.png);
+    background: url(../img/banner2.png);
     background-repeat: repeat;
     background-position: center;
     background-size: cover;
-    background-color: #00000088;
+    background-color: rgba(0, 0, 0, 0.2);
     background-blend-mode: multiply;
     height: 100vh;
 }
 
 header nav div a h1{
-    background: url(../img/logo-café-divíno.svg) no-repeat;
+    background: url(../img/logo-café-divíno2.svg) no-repeat;
     width: 100px;
     height: 100px;
     text-indent: -5000px; 
@@ -51,7 +51,7 @@ header h2{
 
 header h3{
     font-size: 32px;
-    color: #c11a36;
+    color: #ef6b37;
 }
 
 .banner-seta{
@@ -65,7 +65,7 @@ header h3{
   
   .fa.icone {
     font-size: 46px;
-    color: #c11a36;
+    color: #ef6b37;
     opacity: 1;
     animation: anima 1050ms ease-in infinite alternate;
   }
@@ -105,15 +105,15 @@ section .btn-outline-dark:hover {
 
 
 .card-title {
-    color: #c11a36;
+    color: #ef6b37;
 }
 
 #destaques h3{
-    color: #c11a36;
+    color: #ef6b37;
 }
 
 .action{
-    /* background: #c11a36; */
+    /* background: #ef6b37; */
     background: url(../img/banner.png) no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -124,7 +124,7 @@ section .btn-outline-dark:hover {
 }
 
 .action h2{
-    color: #c11a36;
+    color: #ef6b37;
 }
 
 .action p{
@@ -164,7 +164,7 @@ section .btn-outline-dark:hover {
     bottom: 20px;
     right: 20px;
     display: none;
-    background: #c11a36 !important;
+    background: #ef6b37 !important;
     border: none !important;
   }
 
@@ -175,12 +175,13 @@ section .btn-outline-dark:hover {
 
 /* Footer */
 footer {
-    background-color: #D9D1BA;
+    background-color: #2b1b1b;
 }
 
 footer h5 {
     font-weight: bold;
     margin-bottom: 15px;
+    color: #ef6b37;
 }
 
 footer ul {

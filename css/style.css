@@ -1,7 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Poppins, sans-serif;
     background-color: #ffffff;
 }
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 5px; /* Largura da barra de rolagem */
+}
+
+/* Cor da parte de fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+    background-color: #2b1b1b; /* Cor de fundo da track da barra de rolagem */
+}
+
+/* Cor da barra de rolagem em si */
+::-webkit-scrollbar-thumb {
+    background-color: #e69f00; /* Cor do thumb (parte que desliza) */
+    border-radius: 5px; /* Arredondamento */
+}
+
+/* Cor ao passar o mouse sobre a barra */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb84d; /* Um laranja mais claro ao passar o mouse */
+}
+
 
 .site{
     width: 1200px;
@@ -27,7 +51,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background: url(../img/banner2.png);
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.2);
@@ -36,7 +60,7 @@ header {
 }
 
 header nav div a h1{
-    background: url(../img/logo-café-divíno2.svg) no-repeat;
+    background: url(../img/logo-café-divíno3.svg) no-repeat;
     width: 100px;
     height: 100px;
     text-indent: -5000px; 
@@ -51,7 +75,17 @@ header h2{
 
 header h3{
     font-size: 32px;
-    color: #ef6b37;
+    color: #e69f00;
+    
+
+}
+
+header .nav-item a{
+    font-size: 20px;
+}
+
+header .nav-item a:hover{
+    color: #e69f00;
 }
 
 .banner-seta{
@@ -65,7 +99,7 @@ header h3{
   
   .fa.icone {
     font-size: 46px;
-    color: #ef6b37;
+    color: #e69f00;
     opacity: 1;
     animation: anima 1050ms ease-in infinite alternate;
   }
@@ -90,30 +124,44 @@ section h3 {
 
 section p {
     font-size: 1rem;
-    color: #555555;
+    color: #2b1b1b;
 }
 
-section .btn-outline-dark {
-    border: 2px solid #2b1b1b;
-    color: #555555;
+section .btn-dark {
+    background-color: #e69f00;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    align-self: self-start;
 }
 
-section .btn-outline-dark:hover {
-    background-color: #2b1b1b;
+section .btn-dark:hover {
+    background-color:  #2b1b1b;
     color: #ffffff;
 }
 
 
 .card-title {
-    color: #ef6b37;
+    color: #e69f00;
 }
 
 #destaques h3{
-    color: #ef6b37;
+    color: #e69f00;
+}
+
+#destaques .bg-light{
+    background: url(../img/destaques.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #FFF;
+}
+
+#destaques .btn-dark{
+    align-self: center;
 }
 
 .action{
-    /* background: #ef6b37; */
+    /* background: #e69f00; */
     background: url(../img/banner.png) no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -124,11 +172,105 @@ section .btn-outline-dark:hover {
 }
 
 .action h2{
-    color: #ef6b37;
+    color: #e69f00;
 }
 
 .action p{
-    color: #F2E8DF;
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.action .btn-light{
+    background-color: #e69f00;
+    border: none;
+    color: #ffff;
+    font-weight: bold;
+}
+
+.action .btn-light:hover{
+    background-color: #ffff;
+    color: #e69f00;
+}
+
+
+
+.sobre {
+    background-color: #2b1b1b;
+    color: #ffffff;
+    padding: 50px 0;
+    
+}
+
+.sobre .site{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.sobre-texto {
+    width: 50%;
+}
+
+.sobre-texto h2 {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.sobre-texto h3 {
+    color: #e69f00;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sobre-texto p {
+    font-size: 1.1em;
+    color: #ffffff;
+    line-height: 1.6;
+    max-width: 90%;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.sobre-botao {
+    background-color: #e69f00;
+    color: #2b1b1b;
+    padding: 10px 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.sobre-botao:hover {
+    background-color: #ffffff;
+    color: #e69f00;
+}
+
+.sobre-destaque {
+    position: absolute;
+    top: 7%;
+    left: 65%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: #2b1b1b;
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sobre-imagem {
+    width: 35%;
+    position: relative;
+    text-align: right;
+}
+
+.sobre-imagem img{
+    width: 100%;
 }
 
 
@@ -139,13 +281,21 @@ section .btn-outline-dark:hover {
     border: none;
 }
 
+#destaques .card-body{
+    background-color: #2b1b1b;
+}
+
 #destaques .card-title {
     font-size: 1.25rem;
     font-weight: bold;
 }
 
 #destaques .card-text {
-    color: #555555;
+    color: #fff;
+}
+
+#destaques p{
+    color: #fff;
 }
 
 #destaques .btn-outline-dark {
@@ -164,13 +314,18 @@ section .btn-outline-dark:hover {
     bottom: 20px;
     right: 20px;
     display: none;
-    background: #ef6b37 !important;
+    background: #e69f00 !important;
     border: none !important;
   }
 
   #btn-back-to-top:hover{
     opacity: 0.8;
   }
+
+
+
+
+  
 
 
 /* Footer */
@@ -181,7 +336,7 @@ footer {
 footer h5 {
     font-weight: bold;
     margin-bottom: 15px;
-    color: #ef6b37;
+    color: #e69f00;
 }
 
 footer ul {
@@ -194,7 +349,7 @@ footer ul li {
 }
 
 footer ul li a:hover {
-    color: #F15A24;
+    color: #e69f00;
 }
 
 /* Redes Sociais */
@@ -204,7 +359,7 @@ footer .fa-lg {
 }
 
 footer .fa-lg:hover {
-    color: #F15A24;
+    color: #e69f00;
 }
 
 /* Responsividade */

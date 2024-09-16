@@ -59,57 +59,62 @@ header {
     height: 100vh;
 }
 
-header nav div a h1{
+header nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+    min-height: 98vh;
+}
+
+header nav div a h1 {
     background: url(../img/logo-café-divíno3.svg) no-repeat;
     width: 100px;
     height: 100px;
-    text-indent: -5000px; 
+    text-indent: -5000px;
 }
 
-header h2{
+header h2 {
     font-size: 43px;
     color: #fff;
     text-align: center;
     width: 600px;
 }
 
-header h3{
+header h3 {
     font-size: 32px;
     color: #e69f00;
-    
-
 }
 
-header .nav-item a{
+header .nav-item a {
     font-size: 20px;
 }
 
-header .nav-item a:hover{
+header .nav-item a:hover {
     color: #e69f00;
 }
 
-.banner-seta{
+.banner-seta {
     padding: 10px 0;
 }
 
 .banner-seta div {
     display: flex;
     justify-content: center;
-  }
-  
-  .fa.icone {
+}
+
+.fa.icone {
     font-size: 46px;
     color: #e69f00;
     opacity: 1;
     animation: anima 1050ms ease-in infinite alternate;
-  }
-  @keyframes anima {
-    to {
-      opacity: 0;
-      transform: scale(0.85) translateY(20px);
-    }
-  }
+}
 
+@keyframes anima {
+    to {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+    }
+}
 
 
 /* Seção de Informações Adicionais */
@@ -149,15 +154,65 @@ section .btn-dark:hover {
     color: #e69f00;
 }
 
-#destaques .bg-light{
+/* #destaques .bg-light{
     background: url(../img/destaques.png) no-repeat;
     background-position: center;
     background-size: cover;
     color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #destaques .btn-dark{
     align-self: center;
+} */
+
+.destaque-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 100%; 
+}
+
+.destaque-card img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.especial-card .card-body {
+    background: url('../img/destaques.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+
+
+.btn-warning {
+    background-color: #e69f00;
+    border: none;
+    color: #FFF;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-warning:hover {
+    background-color: #d68a00;
 }
 
 .action{
@@ -194,15 +249,16 @@ section .btn-dark:hover {
 }
 
 
+/* sobre */
+
 
 .sobre {
     background-color: #2b1b1b;
     color: #ffffff;
     padding: 50px 0;
-    
 }
 
-.sobre .site{
+.sobre .site {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -269,7 +325,7 @@ section .btn-dark:hover {
     text-align: right;
 }
 
-.sobre-imagem img{
+.sobre-imagem img {
     width: 100%;
 }
 
@@ -309,6 +365,49 @@ section .btn-dark:hover {
     color: #ffffff;
 }
 
+
+/* Produtos Populares */
+
+.popular-products .section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e69f00;
+    line-height: 25px;
+    margin: 0;
+}
+
+.popular-products .section-subtitle {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #2b1b1b;
+}
+
+.popular-products .section-description {
+    font-size: 1rem;
+    color: #2b1b1b;
+    margin-bottom: 30px;
+}
+
+.popular-products .card{
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.card-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2b1b1b; /* Cor de destaque */
+    margin-top: 10px;
+}
+
+.popular-products .card img {
+    width: 255px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
 #btn-back-to-top {
     position: fixed;
     bottom: 20px;
@@ -329,44 +428,206 @@ section .btn-dark:hover {
 
 
 /* Footer */
+
+
 footer {
     background-color: #2b1b1b;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+    
 }
 
-footer h5 {
-    font-weight: bold;
-    margin-bottom: 15px;
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo img {
+    border-radius: 50%; /* Logo redonda */
+    width: 100px; /* Ajuste conforme a sua logo */
+    height: 100px; /* Ajuste conforme a sua logo */
+}
+
+.footer-logo p {
+    max-width: 250px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.footer-info, .footer-links, .footer-hours {
+    margin-top: 20px;
+}
+
+.footer-info h4, .footer-links h4, .footer-hours h4 {
     color: #e69f00;
 }
 
-footer ul {
-    padding-left: 0;
+.footer-info p, .footer-links ul li, .footer-hours p {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.footer-links ul {
     list-style: none;
+    padding: 0;
 }
 
-footer ul li {
-    margin-bottom: 10px;
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-footer ul li a:hover {
-    color: #e69f00;
+.footer-links ul li a:hover {
+    color: #ffb84d;
 }
 
-/* Redes Sociais */
-footer .fa-lg {
-    font-size: 1.5rem;
-    color: #FFFFFF;
+.rodape{
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
-footer .fa-lg:hover {
-    color: #e69f00;
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #e69f00;
+    padding-top: 20px;
+    color: #fff;
 }
 
-/* Responsividade */
-@media (max-width: 991px) {
-    footer .text-md-start,
-    footer .text-md-end {
-        text-align: center !important;
+.footer-bottom p {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    header h2 {
+        font-size: 36px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    header h3 {
+        font-size: 28px;
+    }
+
+    header .nav-item a {
+        font-size: 18px;
+    }
+
+    header nav div a h1 {
+        width: 80px;
+        height: 80px;
+    }
+
+    .sobre .site {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sobre-texto {
+        width: 90%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sobre-imagem {
+        width: 90%;
+        text-align: center;
+    }
+
+    .sobre-imagem img{
+        width: 50%;
+    }
+
+    /* .sobre-destaque {
+        position: static;
+        transform: none;
+        margin-top: 20px;
+    } */
+
+    .sobre-texto h2 {
+        font-size: 2em;
+    }
+
+    .sobre-texto h3 {
+        font-size: 1.8em;
+    }
+
+    .sobre-texto p {
+        font-size: 1em;
+    }
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+
+    .especial-card {
+        min-height: 900px; 
+    }
+
+    #destaques .bg-light {
+        min-height: 950px;
+    }
+
+    .sobre-texto h2 {
+        font-size: 1.8em;
+    }
+
+    .sobre-texto h3 {
+        font-size: 1.5em;
+    }
+
+    .sobre-texto p {
+        font-size: 0.9em;
+    }
+
+    .sobre-botao {
+        font-size: 0.9em;
+        padding: 8px 20px;
+    }
+
+    .sobre-destaque {
+        font-size: 1.2em;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-info, .footer-links, .footer-hours {
+        margin-top: 40px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    header h2 {
+        font-size: 22px;
+        padding: 0 10px;
+    }
+
+    header h3 {
+        font-size: 18px;
+    }
+
+    header .nav-item a {
+        font-size: 14px;
+    }
+
+    header nav div a h1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .fa.icone {
+        font-size: 30px;
     }
 }
 

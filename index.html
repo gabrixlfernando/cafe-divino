@@ -63,20 +63,22 @@
                     </div>
                 </div>
                 </div>
+
+                <section>
+                    <article>     
+                        <h2>Desperte Seu Dia com o Sabor Divíno</h2>
+                        <h3>Um Toque de Céu em Cada Xícara.</h3>
+                    </article>
+                </section>
+    
+                <section class="banner-seta">
+                    <div class="site">
+                    <i class="fa fa-solid fa-circle-chevron-down icone"></i>
+                    </div>
+                </section>
             </nav>
 
-            <section>
-                <article>     
-                    <h2>Desperte Seu Dia com o Sabor Divíno</h2>
-                    <h3>Um Toque de Céu em Cada Xícara.</h3>
-                </article>
-            </section>
-
-            <section class="banner-seta">
-                <div class="site">
-                <i class="fa fa-solid fa-circle-chevron-down icone"></i>
-                </div>
-            </section>
+            
 
         </header>
 
@@ -108,35 +110,26 @@
                     </div>
 
                     <!-- Texto e Botão -->
-                    <div class="col-md-4 mb-4 d-flex flex-column justify-content-center bg-light align-items-center text-center card">
+                    <!-- <div class="col-md-4 mb-4 bg-light ">
                         <h3 class="mb-3">Nossos Destaques</h3>
                         <p class="mb-3">Explore nossos produtos mais populares e descubra sabores únicos.</p>
                         <a href="#" class="btn btn-dark ">Ver Mais Produtos</a>
+                    </div> -->
+
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-dark text-white destaque-card especial-card">
+                            <div class="card-body">
+                                <h3 class="card-title">Nossos Destaques</h3>
+                                <p class="card-text">Explore nossos produtos mais populares e descubra sabores únicos.</p>
+                                <a href="#" class="btn btn-warning">Ver Mais Produtos</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
 
             <!-- Seção Sobre -->
-            <!-- <section class="container my-5 sobre">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h3>Sobre Nós</h3>
-                        <p>Bem-vindo à Cafeteria Deliciosa, onde servimos o melhor
-                            café da cidade! Nosso espaço é perfeito para relaxar,
-                            trabalhar ou se encontrar com amigos. Cada xícara de
-                            café é feita com paixão e dedicação, utilizando apenas
-                            os melhores grãos.</p>
-                        <a href="#" class="btn btn-dark">Conheça Nossa História</a>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-4 rounded text-center">
-                            <img src="img/nos.png"
-                                alt="Imagem sobre nós" class="img-fluid rounded">
-                        </div>
-                    </div>
-                </div>
-            </section> -->
 
             <section class="sobre">
                 <article class="site">
@@ -165,7 +158,7 @@
 
 
             <!-- Produtos Populares -->
-            <section class="container my-5">
+            <!-- <section class="container my-5">
                 <h3 class="text-center mb-4">Produtos Populares</h3>
                 <div class="row">
                     <div class="col-md-3">
@@ -211,7 +204,67 @@
                         </div>
                     </div>
                 </div>
+            </section> -->
+
+
+            <section class="popular-products text-center py-5">
+                <h2 class="section-title">Descubra</h2>
+                <h3 class="section-subtitle">PRODUTOS MAIS POPULARES</h3>
+                <p class="section-description">Explore nossos produtos mais vendidos e favoritos do público.</p>
+                
+                <div class="container">
+                    <div class="row">
+                        <!-- Produto 1: Café Expresso -->
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="img/cafeexpresso.png" class="card-img-top" alt="Café Expresso">
+                                <div class="card-body">
+                                    <h5 class="card-title">Café Expresso</h5>
+                                    <p class="card-text">O clássico café que todos amam.</p>
+                                    <p class="card-price">R$ 7,50</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Produto 2: Cappuccino -->
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="img/cappuccino.png" class="card-img-top" alt="Cappuccino">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cappuccino</h5>
+                                    <p class="card-text">Cremoso e delicioso.</p>
+                                    <p class="card-price">R$ 9,90</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Produto 3: Torta de Limão -->
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="img/tortadelimao.png" class="card-img-top" alt="Torta de Limão">
+                                <div class="card-body">
+                                    <h5 class="card-title">Torta de Limão</h5>
+                                    <p class="card-text">Refrescante e perfeita.</p>
+                                    <p class="card-price">R$ 12,50</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Produto 4: Brownie -->
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="img/brownie.png" class="card-img-top" alt="Brownie">
+                                <div class="card-body">
+                                    <h5 class="card-title">Brownie</h5>
+                                    <p class="card-text">Chocolate em sua melhor forma.</p>
+                                    <p class="card-price">R$ 8,90</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
+            
 
                         <!-- chamada para ação -->
                         <section class="container-fluid action">
@@ -257,37 +310,38 @@
 
 
         <!-- Rodapé -->
-        <footer class="container-fluid text-white p-4">
-            <div class="row site">
-                <!-- Logo -->
-                <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-                    <img src="img/logo-café-divíno3.svg" alt="Logo Café Divíno" class="img-fluid" style="max-width: 150px;">
-                </div>
 
-                <!-- Menu -->
-                <div class="col-md-4 text-center mb-3 mb-md-0">
-                    <h5>Menu</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Início</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Cardápio</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Sobre</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Contato</a></li>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="img/logo-café-divíno3.svg" alt="Café Divino Logo"> <!-- Substitua por sua logo -->
+                    <p>Café Divino é uma experiência divina no sabor e aroma.</p>
+                </div>
+                <div class="footer-info">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-heart"></i> Café Divino</p>
+                    <p><i class="fas fa-phone"></i> (11) 5456-789</p>
+                    <p><i class="fas fa-envelope"></i> cafedivino@smpsistema.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua das Flores, 123, São Paulo, Brasil</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Cardápio</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
                     </ul>
                 </div>
-
-                
-
-                <!-- Contato e Redes Sociais -->
-                <div class="col-md-4 text-center ">
-                    <h5>Contato</h5>
-                    <p>(11) 1234-5678</p>
-                    <p>email@cafeteria.com</p>
-                    <div class="d-flex justify-content-center ">
-                        <a href="#" class="text-white text-decoration-none mx-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white text-decoration-none mx-2"><i class="fa-brands fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white text-decoration-none mx-2"><i class="fa-brands fa-tiktok fa-lg"></i></a>
-                    </div>
+                <div class="footer-hours">
+                    <h4>Horário de Funcionamento</h4>
+                    <p>Segunda a sexta: 8h - 20h</p>
+                    <p>Sábado: 9h - 16h</p>
+                    <p>Domingo: Fechado</p>
                 </div>
+            </div>
+            <div class="footer-bottom rodape">
+                <p>&copy; 2024 Café Divino. Todos Os Direreitos Reservados. Desenvolvido por Gabriel Fernando.</p>
             </div>
         </footer>
 

@@ -1,0 +1,473 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: 'poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.site{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: url(../img/banner3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: multiply;
+    height: 80vh;
+}
+
+header nav{
+
+    flex-direction: column;
+    justify-content: space-between !important;
+    min-height: 78vh;
+}
+
+header nav div a h1 {
+    background: url(../img/logo-café-divíno3.svg) no-repeat;
+    width: 100px;
+    height: 100px;
+    text-indent: -5000px;
+}
+
+header h2 {
+    font-size: 43px;
+    color: #fff;
+    text-align: center;
+    width: 600px;
+}
+
+header h3 {
+    font-size: 22px;
+    color: #e69f00;
+    border-bottom: 3px solid #e69d0057;
+    padding-bottom: 2px;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.texto-banner article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .texto-banner article div{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    min-width: 170px;
+  }
+
+  .texto-banner article div a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    border-bottom: 3px solid #e69d0057;
+  }
+
+  .texto-banner article div a:hover{
+    color: #e08d14;
+  }
+
+header .nav-item a {
+    font-size: 20px;
+}
+
+header .nav-item a:hover {
+    color: #e69f00;
+}
+
+
+.hoverable{
+    display:inline-block;
+    backface-visibility: hidden;
+    vertical-align: middle;
+    position:relative;
+    box-shadow: 0 0 1px rgba(0,0,0,0);
+    /* tranform: translateZ(0); */
+    transition-duration: .3s;
+    transition-property:transform;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 0 20px 0 20px;
+  }
+  
+  .hoverable:before{
+    position:absolute;
+    pointer-events: none;
+    z-index:-1;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height:5px;
+    width:90%;
+    opacity:0;
+    background: -webkit-radial-gradient(center, ellipse, #e69f00 0%, rgba(255, 255, 255, 0) 80%);
+    background: radial-gradient(ellipse at center, #e69f00 0%, rgba(255, 255, 255, 0) 80%);
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+  }
+  
+  .hoverable:hover, .hoverable:active, .hoverable:focus{
+    transform: translateY(-5px);
+  }
+  .hoverable:hover:before, .hoverable:active:before, .hoverable:focus:before{
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+
+
+  header nav button{
+    background: none;
+    border: none !important;
+  }
+
+  header nav button i{
+    color: #e69f00;
+    background: none;
+    font-size: 30px;
+  }
+
+
+/* Seção de Contato Inicial */
+.contact-info {
+    position: relative; /* Adicione essa linha */
+    background-color: #ffff; /* Cor de fundo clara */
+    padding: 135px 0 50px 0;
+    text-align: center;
+}
+
+.contact-info::after {
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 100px;
+    top: 20px;
+    left: 50%;
+    margin-left: 1px;
+    background: #e69f00;
+}
+
+.contact-info h2 {
+    color: #e69f00; /* Cor laranja para o título */
+    font-weight: 600;
+    font-size: 42px;
+    margin-bottom: 5px;
+}
+
+.contact-info h3 {
+    color: #2b1b1b; /* Cor escura para o subtítulo */
+    font-size: 36px;
+    margin-bottom: 30px;
+    margin: 0px 0px 30px 0px;
+    line-height: 12px;
+}
+
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 30px;
+    color: #e08d14; /* Ícones laranja */
+    margin-bottom: 10px;
+}
+
+.contact-item h4 {
+    font-size: 18px;
+    color: #2b1b1b;
+    margin: 5px 0 5px 0;
+}
+
+.contact-item p {
+    color: #2b1b1b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Seção de Formulário */
+.contact-form {
+    background-image: url(../img/background2.jpeg);
+    background-size: cover;
+    background-color: #2b1b1ba2; 
+    background-blend-mode: multiply;
+    padding: 50px 0;
+    
+}
+
+/* .contact-form article{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.contact-form div:nth-child(1){
+    width: 600px;
+}
+
+.contact-form div:nth-child(1) img{
+    width: 100%;
+    
+} */
+
+.contact-form .containeer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #2b1b1b; */
+    color: #fff;
+}
+
+.contact-form h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #e08d14;
+}
+
+.contact-form p {
+    font-size: 16px;
+    margin-bottom: 10px 0 10px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group input::placeholder, .form-group textarea::placeholder{
+    color: #fff;
+}
+
+.form-group input, .form-group textarea {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-size: 16px;
+    background: none;
+    color: #fff;
+    resize: none;
+    outline: none;
+    transition: border-bottom 0.3s ease, background-color 0.3s ease;
+}
+
+
+.form-group input:focus, .form-group textarea:focus {
+    border-bottom: 1px solid #e69f00;
+}
+
+
+.form-group input:not(:placeholder-shown),
+.form-group textarea:not(:placeholder-shown) {
+    background: none;
+}
+
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: #fff !important; /* Garante que o texto preenchido fique branco */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
+.contact-form .containeer button {
+    background-color: #e08d14;
+    color: white;
+    padding: 20px 45px;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.contact-form .containeer button:hover {
+    opacity: 0.8;
+}
+
+
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: #e69f00 !important;
+    border: none !important;
+  }
+
+  #btn-back-to-top:hover{
+    opacity: 0.8;
+  }
+/* mapa */
+
+.mapa{
+    height: 400px;
+}
+
+/* Rodapé */
+
+footer {
+    background-color: #2b1b1b;
+    color: #fff;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo img {
+    border-radius: 50%; /* Logo redonda */
+    width: 100px; /* Ajuste conforme a sua logo */
+    height: 100px; /* Ajuste conforme a sua logo */
+}
+
+.footer-logo p {
+    max-width: 250px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.footer-info, .footer-links, .footer-hours {
+    margin-top: 20px;
+}
+
+.footer-info h4, .footer-links h4, .footer-hours h4 {
+    color: #e69f00;
+}
+
+.footer-info p, .footer-links ul li, .footer-hours p {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #ffb84d;
+}
+
+.rodape{
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #e69f00;
+    padding-top: 20px;
+    color: #fff;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    header h2 {
+        font-size: 36px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    header h3 {
+        font-size: 28px;
+    }
+
+    header .nav-item a {
+        font-size: 18px;
+    }
+
+    header nav div a h1 {
+        width: 80px;
+        height: 80px;
+    }
+
+    
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-info, .footer-links, .footer-hours {
+        margin-top: 40px;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    header h2 {
+        font-size: 22px;
+        padding: 0 10px;
+    }
+
+    header h3 {
+        font-size: 18px;
+    }
+
+    header .nav-item a {
+        font-size: 14px;
+    }
+
+    header nav div a h1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .fa.icone {
+        font-size: 30px;
+    }
+}

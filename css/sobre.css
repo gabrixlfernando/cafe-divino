@@ -143,15 +143,16 @@ header .nav-item a:hover {
   }
 
 
+
 /* Seção de Contato Inicial */
-.contact-info {
+.about-info {
     position: relative; 
     background-color: #ffff; 
     padding: 135px 0 50px 0;
     text-align: center;
 }
 
-.contact-info::after {
+.about-info::after {
     position: absolute;
     content: "";
     width: 3px;
@@ -162,14 +163,14 @@ header .nav-item a:hover {
     background: #e69f00;
 }
 
-.contact-info h2 {
+.about-info h2 {
     color: #e69f00; 
     font-weight: 600;
     font-size: 42px;
     margin-bottom: 5px;
 }
 
-.contact-info h3 {
+.about-info h3 {
     color: #2b1b1b; 
     font-size: 36px;
     margin-bottom: 30px;
@@ -177,126 +178,178 @@ header .nav-item a:hover {
     line-height: 12px;
 }
 
-.contact-icons {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+.about-text p{
+    text-align: left;
+    font-size: 17px;
 }
 
-.contact-item {
+.about-text h6{
+    text-align: left;
+    font-size: 19px;
+}
+
+.about-text i{
+    color: #e69f00;
+}
+
+.our-story {
+    color: #ffff; 
+    padding: 50px 0;
+    position: relative;
+    background: url(../img/fundosobre.jpeg) no-repeat;
+    background-size: 55%;
+    margin-top: 50px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    background-color: #e69f00;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.story-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Borda arredondada na imagem */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.story-text {
+    background-color: #2b1b1bde;
+    max-width: 65%;
+    padding: 40px;
+}
+
+.story-text h2 {
+    font-family: 'poppins', sans-serif; 
+    font-size: 27px;
+    margin-bottom: 20px;
+    color: #e69f00; 
+    position: relative;
+    margin: 0;
+}
+
+.story-text h3{
+    font-size: 30px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+
+
+.story-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+.menu-section {
+    color: #2b1b1b;
+    padding: 50px 0;
     text-align: center;
 }
 
-.contact-item i {
-    font-size: 30px;
-    color: #e08d14; 
-    margin-bottom: 10px;
-}
-
-.contact-item h4 {
-    font-size: 18px;
-    color: #2b1b1b;
-    margin: 5px 0 5px 0;
-}
-
-.contact-item p {
-    color: #2b1b1b;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* Seção de Formulário */
-.contact-form {
-    background-image: url(../img/background2.jpeg);
-    background-size: cover;
-    background-color: rgba(43, 27, 27, 0.8); 
-    background-blend-mode: multiply;
-    padding: 50px 0;
-    
-}
-
-.contact-form .containeer {
-    max-width: 900px;
+.container {
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    /* background-color: #2b1b1b; */
-    color: #fff;
 }
 
-.contact-form h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #e08d14;
-}
-
-.contact-form p {
-    font-size: 16px;
-    margin-bottom: 10px 0 10px 0;
-}
-
-form {
+.menu-content {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.form-group {
-    display: flex;
-    gap: 20px;
-}
-
-.form-group input::placeholder, .form-group textarea::placeholder{
-    color: #fff;
-}
-
-.form-group input, .form-group textarea {
+.menu-text {
     flex: 1;
-    padding: 15px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    font-size: 16px;
-    background: none;
-    color: #fff;
-    resize: none;
-    outline: none;
-    transition: border-bottom 0.3s ease, background-color 0.3s ease;
+    max-width: 45%;
+    text-align: right;
 }
 
-
-.form-group input:focus, .form-group textarea:focus {
-    border-bottom: 1px solid #e69f00;
-}
-
-
-.form-group input:not(:placeholder-shown),
-.form-group textarea:not(:placeholder-shown) {
-    background: none;
-}
-
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-    box-shadow: 0 0 0 1000px transparent inset !important;
-    -webkit-text-fill-color: #fff !important; 
-    transition: background-color 5000s ease-in-out 0s;
-}
-
-
-
-.contact-form .containeer button {
-    background-color: #e08d14;
-    color: white;
-    padding: 20px 45px;
-    border: none;
-    cursor: pointer;
-    align-self: flex-start;
-    font-size: 16px;
+.menu-text h2 {
+    font-family: 'poppins', sans-serif;
+    font-size: 30px;
+    margin-bottom: 0px;
     font-weight: 600;
+    color: #e69f00;
+    position: relative;
 }
 
-.contact-form .containeer button:hover {
-    opacity: 0.8;
+.menu-text h3{
+    font-family: 'poppins', sans-serif;
+    font-size: 35px;
+    color: #2b1b1b;
 }
+
+.menu-text h2 span {
+    font-size: 24px;
+    color: #e69f00;
+    font-style: italic;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.menu-text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.btn-menu {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #e69f00;
+    color: #2b1b1b;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-menu:hover {
+    background-color: #ffb84d;
+    color: #fff;
+}
+
+.menu-images {
+    flex: 1;
+    max-width: 45%;
+}
+
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.img-grid img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+    .menu-content {
+        flex-direction: column;
+    }
+
+    .menu-text, .menu-images {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
 
 
 
@@ -312,11 +365,9 @@ input:-webkit-autofill {
   #btn-back-to-top:hover{
     opacity: 0.8;
   }
-/* mapa */
 
-.mapa{
-    height: 400px;
-}
+
+
 
 /* Rodapé */
 
@@ -420,6 +471,18 @@ footer {
 
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
+
+    .story-content {
+        flex-direction: column;
+    }
+
+    .story-text, .story-image {
+        max-width: 100%;
+    }
+
+    .story-text h2 {
+        font-size: 28px;
+    }
     .footer-container {
         flex-direction: column;
         align-items: center;

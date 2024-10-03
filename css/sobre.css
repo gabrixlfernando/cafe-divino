@@ -192,6 +192,8 @@ header .nav-item a:hover {
     color: #e69f00;
 }
 
+/* nossa historia */
+
 .our-story {
     color: #ffff; 
     padding: 50px 0;
@@ -253,6 +255,9 @@ header .nav-item a:hover {
     line-height: 1.6;
     margin-bottom: 20px;
 }
+
+
+/* menu action */
 
 
 .menu-section {
@@ -324,34 +329,29 @@ header .nav-item a:hover {
 
 .menu-images {
     flex: 1;
-    max-width: 45%;
+    max-width: 50%;
 }
 
 .img-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 0px 30px;
 }
 
 .img-grid img {
     width: 100%;
-    height: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
 }
 
-@media screen and (max-width: 768px) {
-    .menu-content {
-        flex-direction: column;
-    }
-
-    .menu-text, .menu-images {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
+.img-grid img:nth-child(2), 
+.img-grid img:nth-child(4){
+    margin-top: 1.5rem;
 }
 
 
 
+/* voltar pro topo */
 
 #btn-back-to-top {
     position: fixed;
@@ -359,7 +359,7 @@ header .nav-item a:hover {
     right: 20px;
     display: none;
     background: #e69f00 !important;
-    border: none !important;
+    border: 1px solid #2b1b1b;
   }
 
   #btn-back-to-top:hover{
@@ -483,6 +483,16 @@ footer {
     .story-text h2 {
         font-size: 28px;
     }
+
+    .menu-content {
+        flex-direction: column;
+    }
+
+    .menu-text, .menu-images {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
     .footer-container {
         flex-direction: column;
         align-items: center;

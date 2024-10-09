@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo-café-divíno3.svg"
+      type="image/x-icon">
+    <title>Café Divino | Cardápio</title>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/cardapio.css">
+    <!-- Link para o seu CSS -->
+  </head>
+  <body>
+    <!-- Header (reutilizado do seu layout) -->
+    <!-- Header -->
+    <header class="container-fluid text-white text-center p-3">
+      <!-- Navegação -->
+      <nav class="navbar navbar-expand-lg site">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <h1 class="mb-0">Café Divino</h1>
+          </a>
+          <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <!-- <span class="navbar-toggler-icon"></span> -->
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav ms-auto">
+              <li><a id="len1" class="hoverable"
+                  href="index.html">Início</a></li>
+              <li><a id="len2" class="hoverable"
+                  href="cardapio.html">Cardápio</a></li>
+              <li><a id="len3" class="hoverable"
+                  href="sobre.html">Sobre</a></li>
+              <li><a id="len4" class="hoverable"
+                  href="contato.html">Contato</a></li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto social-icons">
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white"><i
+                    class="fa-brands fa-facebook"></i></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white"><i
+                    class="fa-brands fa-instagram"></i></a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-white"><i
+                    class="fa-brands fa-tiktok"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <section class="texto-banner">
+          <article>
+            <h2>Cardápio</h2>
+            <div>
+              <a href="index.html">Início</a>
+              <h3>Cardápio</h3>
+            </div>
+
+          </article>
+        </section>
+
+        <section class="banner-seta">
+          <div class="site">
+            <i class="fa fa-solid fa-circle-chevron-down icone"
+              style="display: none;"></i>
+          </div>
+        </section>
+      </nav>
+
+    </header>
+
+    <!-- filtro -->
+    <section class="filter">
+      <article class="site">
+        <div class="filter-container">
+          <button class="filter-button active">NOVIDADES</button>
+          <button class="filter-button">CAFÉS</button>
+          <button class="filter-button">SMOOTHIES</button>
+          <button class="filter-button">PÃES</button>
+          <button class="filter-button">DOCES</button>
+          <button class="filter-button">CHÁS</button>    
+          <button class="filter-button">SHAKES</button>
+          <button class="filter-button">BEBIDAS VEGANAS</button>         
+          <button class="filter-button">ÁGUA</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- Novidades -->
+    
+    <section class="products">
+      <article class="site">
+          <h2>NOVIDADES</h2>
+          <div class="menu-section">
+              <div class="menu-items">
+  
+                  <div class="menu-item">
+                      <img src="img/espresso.png" alt="Smoothie de Melancia">
+                      <div class="menu-info">
+                          <h3>SMOOTHIE DE MELANCIA</h3>
+                          <p>Combinação de melancia, hortelã e limão. Ideal para dias quentes. 400 ml</p>
+                      </div>
+                      <div class="price">19,00</div>
+                  </div>
+  
+                  <div class="menu-item">
+                      <img src="img/espresso.png" alt="Torta de Limão">
+                      <div class="menu-info">
+                          <h3>TORTA DE LIMÃO</h3>
+                          <p>Deliciosa torta de limão com base crocante e creme de limão. Porção individual.</p>
+                      </div>
+                      <div class="price">15,00</div>
+                  </div>
+  
+                  <div class="menu-item">
+                      <img src="img/espresso.png" alt="Pão de Queijo">
+                      <div class="menu-info">
+                          <h3>PÃO DE QUEIJO</h3>
+                          <p>Tradicional pão de queijo mineiro, quentinho e crocante. Porção com 6 unidades.</p>
+                      </div>
+                      <div class="price">12,00</div>
+                  </div>
+  
+                  <div class="menu-item">
+                      <img src="img/espresso.png" alt="Brownie">
+                      <div class="menu-info">
+                          <h3>BROWNIE</h3>
+                          <p>Brownie de chocolate com nozes, servido com sorvete de creme. Delícia irresistível!</p>
+                      </div>
+                      <div class="price">18,00</div>
+                  </div>
+  
+              </div>
+          </div>
+      </article>
+  </section>
+  
+    <!-- Cafés -->
+
+    <section class="products">
+      <article class="site">
+        <h2>CAFÉS TRADICIONAIS</h2>
+        <div class="menu-section">
+          <h2>CAFÉS &gt; QUENTES</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Chá de Pêssego">
+              <div class="menu-info">
+                <h3>CHÁ DE PÊSSEGO</h3>
+                <p>Chá Verde de Jasmin com xarope de pêssego. 450 ml</p>
+              </div>
+              <div class="price">16,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Matcha Berry">
+              <div class="menu-info">
+                <h3>MATCHA BERRY</h3>
+                <p>Bebida com leite, matcha e calda de morango. 380ml</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Jasmin Green Tea Quente">
+              <div class="menu-info">
+                <h3>JASMIN GREEN TEA QUENTE</h3>
+                <p>Chá Verde Jasmin. 500ml</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <h2>CAFÉS &gt; GELADOS</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Chá de Pêssego">
+              <div class="menu-info">
+                <h3>CHÁ DE PÊSSEGO</h3>
+                <p>Chá Verde de Jasmin com xarope de pêssego. 450 ml</p>
+              </div>
+              <div class="price">16,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Matcha Berry">
+              <div class="menu-info">
+                <h3>MATCHA BERRY</h3>
+                <p>Bebida com leite, matcha e calda de morango. 380ml</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Jasmin Green Tea Quente">
+              <div class="menu-info">
+                <h3>JASMIN GREEN TEA QUENTE</h3>
+                <p>Chá Verde Jasmin. 500ml</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Smoothies -->
+    <section class="products">
+      <article class="site">
+        <h2>SMOOTHIES</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/espresso.png"
+                alt="Smoothie de Morango e Banana">
+              <div class="menu-info">
+                <h3>SMOOTHIE DE MORANGO E BANANA</h3>
+                <p>Smoothie cremoso feito com morango, banana e leite. 400
+                  ml</p>
+              </div>
+              <div class="price">18,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Smoothie Verde Detox">
+              <div class="menu-info">
+                <h3>SMOOTHIE VERDE DETOX</h3>
+                <p>Smoothie refrescante com espinafre, maçã, gengibre e água de
+                  coco. 400 ml</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Smoothie Tropical">
+              <div class="menu-info">
+                <h3>SMOOTHIE TROPICAL</h3>
+                <p>Combinação de manga, abacaxi e leite de coco. 400 ml</p>
+              </div>
+              <div class="price">22,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png"
+                alt="Smoothie de Frutas Vermelhas">
+              <div class="menu-info">
+                <h3>SMOOTHIE DE FRUTAS VERMELHAS</h3>
+                <p>Frutas vermelhas (morango, amora, framboesa) com iogurte
+                  natural. 400 ml</p>
+              </div>
+              <div class="price">21,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="products">
+      <article class="site">
+        <h2>PÃES</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Croissant Simples">
+              <div class="menu-info">
+                <h3>CROISSANT SIMPLES</h3>
+                <p>Croissant folhado tradicional, crocante por fora e macio por
+                  dentro.</p>
+              </div>
+              <div class="price">10,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Pão de Queijo Recheado">
+              <div class="menu-info">
+                <h3>PÃO DE QUEIJO RECHEADO</h3>
+                <p>Pão de queijo recheado com catupiry.</p>
+              </div>
+              <div class="price">8,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Baguete Artesanal">
+              <div class="menu-info">
+                <h3>BAGUETE ARTESANAL</h3>
+                <p>Baguete de fermentação natural, feita diariamente.</p>
+              </div>
+              <div class="price">12,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png"
+                alt="Pão Integral com Sementes">
+              <div class="menu-info">
+                <h3>PÃO INTEGRAL COM SEMENTES</h3>
+                <p>Pão integral macio, feito com uma mistura de sementes.</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Doces -->
+
+    <section class="products">
+      <article class="site">
+        <h2>DOCES</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Cookie de Chocolate">
+              <div class="menu-info">
+                <h3>COOKIE DE CHOCOLATE</h3>
+                <p>Cookie crocante com pedaços de chocolate ao leite e meio
+                  amargo.</p>
+              </div>
+              <div class="price">7,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Brownie de Nozes">
+              <div class="menu-info">
+                <h3>BROWNIE DE NOZES</h3>
+                <p>Brownie clássico com nozes, coberto com uma camada de
+                  chocolate derretido.</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Torta de Limão">
+              <div class="menu-info">
+                <h3>TORTA DE LIMÃO</h3>
+                <p>Torta com recheio cremoso de limão e cobertura de
+                  merengue.</p>
+              </div>
+              <div class="price">10,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png"
+                alt="Bolo de Cenoura com Cobertura de Chocolate">
+              <div class="menu-info">
+                <h3>BOLO DE CENOURA COM COBERTURA DE CHOCOLATE</h3>
+                <p>Bolo de cenoura fofinho coberto com chocolate derretido.</p>
+              </div>
+              <div class="price">12,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Chás -->
+
+    <section class="products">
+      <article class="site">
+        <h2>CHÁS</h2>
+        <div class="menu-section">
+          <h2>CHÁS &gt; QUENTES</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Chá de Pêssego">
+              <div class="menu-info">
+                <h3>CHÁ DE PÊSSEGO</h3>
+                <p>Chá Verde de Jasmin com xarope de pêssego. 450 ml</p>
+              </div>
+              <div class="price">16,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Matcha Berry">
+              <div class="menu-info">
+                <h3>MATCHA BERRY</h3>
+                <p>Bebida com leite, matcha e calda de morango. 380ml</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Jasmin Green Tea Quente">
+              <div class="menu-info">
+                <h3>JASMIN GREEN TEA QUENTE</h3>
+                <p>Chá Verde Jasmin. 500ml</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <h2>CHÁS &gt; GELADOS</h2>
+          <div class="menu-items">
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Chá de Pêssego">
+              <div class="menu-info">
+                <h3>CHÁ DE PÊSSEGO</h3>
+                <p>Chá Verde de Jasmin com xarope de pêssego. 450 ml</p>
+              </div>
+              <div class="price">16,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Matcha Berry">
+              <div class="menu-info">
+                <h3>MATCHA BERRY</h3>
+                <p>Bebida com leite, matcha e calda de morango. 380ml</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Jasmin Green Tea Quente">
+              <div class="menu-info">
+                <h3>JASMIN GREEN TEA QUENTE</h3>
+                <p>Chá Verde Jasmin. 500ml</p>
+              </div>
+              <div class="price">9,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+    <!-- Shakes  -->
+    <section class="products">
+      <article class="site">
+        <h2>SHAKES</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Shake de Chocolate">
+              <div class="menu-info">
+                <h3>SHAKE DE CHOCOLATE</h3>
+                <p>Delicioso Shake cremoso de chocolate com cobertura de
+                  chantilly.</p>
+              </div>
+              <div class="price">22,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Shake de Morango">
+              <div class="menu-info">
+                <h3>SHAKE DE MORANGO</h3>
+                <p>Shake refrescante de morango, feito com morangos frescos e
+                  sorvete de baunilha.</p>
+              </div>
+              <div class="price">20,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png"
+                alt="Shake de Baunilha com Cookies">
+              <div class="menu-info">
+                <h3>SHAKE DE BAUNILHA COM COOKIES</h3>
+                <p>Shake de baunilha com pedaços de cookies e cobertura de
+                  chocolate.</p>
+              </div>
+              <div class="price">24,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Shake de Café">
+              <div class="menu-info">
+                <h3>SHAKE DE CAFÉ</h3>
+                <p>Shake gelado com sabor de café, perfeito para os amantes de
+                  café.</p>
+              </div>
+              <div class="price">25,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Bebida vegana -->
+    <section class="products">
+
+      <article class="site">
+        <h2>BEBIDAS VEGANAS</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Suco Verde Detox">
+              <div class="menu-info">
+                <h3>SUCO VERDE DETOX</h3>
+                <p>Mistura saudável de couve, maçã, limão e gengibre.</p>
+              </div>
+              <div class="price">14,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Smoothie de Abacate">
+              <div class="menu-info">
+                <h3>SMOOTHIE DE ABACATE</h3>
+                <p>Smoothie cremoso de abacate com leite de amêndoas e mel.</p>
+              </div>
+              <div class="price">18,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Chá Gelado de Hibisco">
+              <div class="menu-info">
+                <h3>CHÁ GELADO DE HIBISCO</h3>
+                <p>Refrescante chá gelado de hibisco com limão e menta.</p>
+              </div>
+              <div class="price">12,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/espresso.png" alt="Água de Coco Natural">
+              <div class="menu-info">
+                <h3>ÁGUA DE COCO NATURAL</h3>
+                <p>Água de coco fresca, perfeita para hidratação.</p>
+              </div>
+              <div class="price">10,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- água -->
+    <section class="products">
+      <article class="site">
+        <h2>ÁGUA</h2>
+        <div class="menu-section">
+          <div class="menu-items">
+
+            <div class="menu-item">
+              <img src="img/agua.png" alt="Água Mineral">
+              <div class="menu-info">
+                <h3>ÁGUA MINERAL</h3>
+                <p>Água mineral natural, refrescante e purificada.</p>
+              </div>
+              <div class="price">5,00</div>
+            </div>
+
+            <div class="menu-item">
+              <img src="img/agua-gas.png" alt="Água com Gás">
+              <div class="menu-info">
+                <h3>ÁGUA COM GÁS</h3>
+                <p>Água com gás, ideal para quem prefere uma opção
+                  efervescente.</p>
+              </div>
+              <div class="price">6,00</div>
+            </div>
+
+            <!-- Adicione mais itens conforme necessário -->
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <button type="button" class="btn btn-danger btn-floating btn-lg"
+      id="btn-back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="img/logo-café-divíno3.svg" alt="Café Divino Logo">
+          <p>Café Divino é uma experiência divina no sabor e
+            aroma.</p>
+        </div>
+        <div class="footer-info">
+          <h4>Contato</h4>
+          <p><i class="fas fa-heart"></i> Café Divino</p>
+          <p><i class="fas fa-phone"></i> (11) 5456-789</p>
+          <p><i class="fas fa-envelope"></i>
+            cafedivino@smpsistema.com</p>
+          <p><i class="fas fa-map-marker-alt"></i> Rua das Flores,
+            123, São Paulo, Brasil</p>
+        </div>
+        <div class="footer-links">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Cardápio</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-hours">
+          <h4>Horário de Funcionamento</h4>
+          <p>Segunda a sexta: 8h - 20h</p>
+          <p>Sábado: 9h - 16h</p>
+          <p>Domingo: Fechado</p>
+        </div>
+      </div>
+      <div class="footer-bottom rodape">
+        <p>&copy; 2024 Café Divino. Todos Os Direreitos Reservados.
+          Desenvolvido por Gabriel Fernando.</p>
+      </div>
+    </footer>
+
+    <script type="text/javascript"
+      src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

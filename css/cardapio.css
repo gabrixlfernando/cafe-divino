@@ -246,6 +246,28 @@ header .nav-item a:hover {
     background-color: #f7f7f7;
   }
   
+  .info-box {
+    background-color: #fff;
+    border-left: 4px solid #e69f00; /* Laranja para o destaque na lateral */
+    padding: 15px;
+    text-align: center;
+    color: #2b1b1b; /* Marrom para o texto */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 auto;
+    width: 800px;
+  }
+
+  .info-box p {
+    margin: 0;
+  }
+
+  .info-box .icon {
+    color: #e69f00; /* Ícone em laranja */
+    font-size: 20px;
+    margin-right: 10px;
+  }
 
 
 

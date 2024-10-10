@@ -257,6 +257,151 @@ header .nav-item a:hover {
     margin-bottom: 20px;
 }
 
+/* dpoimentos */
+
+.depoimentos{
+    position: relative;
+    margin-bottom: 50px;
+    background: #2b1b1b;
+    padding: 135px 0 50px 0;
+}
+
+.depoimentos .site{
+    padding: 20px;
+}
+
+.depoimentos::after {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 100px;
+    top: 35px;
+    left: 50%;
+    margin-left: 1px;
+    background: #e69f00;
+}
+
+.depoimentos h2 {
+    color: #e69f00; 
+    font-weight: 600;
+    font-size: 42px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.depoimentos h3 {
+    color: #ffff; 
+    font-size: 25px;
+    margin-bottom: 30px;
+    margin: 0px 0px 30px 0px;
+    line-height: 12px;
+    text-align: center;
+}
+
+.depoimentos .site .row{
+    display: flex;
+    justify-content: center;
+}
+
+.testimonial{
+    margin: 0 70px 20px 0;
+    text-align: center;
+    position: relative;
+}
+.testimonial:before{
+    content: "\f10e";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: #e69f00;
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: -52px;
+}
+.testimonial .description{
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e08d14;
+    font-size: 16px;
+    color: #ffff;
+    line-height: 30px;
+    position: relative;
+}
+.testimonial .description:before {
+    content: "";
+    border-top: 8px solid #e69f00; /* Triângulo laranja */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Certifique-se que o :before fique acima do :after */
+}
+
+.testimonial .description:after {
+    content: "";
+    width: 19px;
+    height: 19px; /* Ajustei o tamanho para ser quadrado, mais consistente */
+    border: 1px solid #fff;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    position: absolute;
+    bottom: -13px; /* Ajuste fino para alinhar com o :before */
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg); /* Ajuste de rotação e centralização */
+    background-color: transparent; /* Para preencher o triângulo com branco */
+    z-index: 0; /* Certifique-se de que o :after fique atrás do :before */
+}
+.testimonial .pic{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #e69f00;
+    margin-bottom: 15px;
+}
+.testimonial .pic img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.testimonial .title{
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #e69f00;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 7px 0;
+}
+.testimonial .post{
+    display: block;
+    font-size: 15px;
+    color: #736d6d;
+    text-transform: capitalize;
+}
+.owl-theme .owl-controls{ margin-top: 0; }
+.owl-theme .owl-controls .owl-page span{
+    width: 35px;
+    height: 15px;
+    background: #553e4e;
+    border-radius: 0;
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+    transition: all 0.3s ease 0s;
+}
+.owl-theme .owl-controls .owl-page.active span{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #e69f00;
+}
+
 
 /* menu action */
 
@@ -611,4 +756,8 @@ footer {
     .fa.icone {
         font-size: 30px;
     }
+}
+
+@media only screen and (max-width: 479px){
+    .testimonial .description{ padding: 10px; }
 }

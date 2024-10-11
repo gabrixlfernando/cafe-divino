@@ -217,15 +217,15 @@ section .btn-dark:hover {
 }
 
 /* efeito zoom imagem destaques */
-.card {
+#destaques .card {
     overflow: hidden; /* Esconde o que ultrapassar a div do card */
 }
 
-.card-img-top {
+#destaques .card-img-top {
     transition: transform 0.3s ease; /* Suaviza a animação */
 }
 
-.card-img-top:hover {
+#destaques .card-img-top:hover {
     transform: scale(1.1); /* Aumenta a imagem em 10% */
 }
 

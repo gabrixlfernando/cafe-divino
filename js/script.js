@@ -49,3 +49,32 @@ $(document).ready(function(){
       autoplay:true
   });
 });
+
+// contador pagina sobre 
+
+document.addEventListener("DOMContentLoaded", function() {
+  const counters = document.querySelectorAll('.counter');
+  
+  counters.forEach(counter => {
+      const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          
+          // Calcular a velocidade da contagem
+          const speed = target / 400; // Tempo total de contagem em milissegundos (200)
+
+          if (count < target) {
+              // Incrementa o número
+              counter.innerText = Math.ceil(count + speed);
+              setTimeout(updateCount, 1); // Chama a função novamente após 1ms
+          } else {
+              counter.innerText = target; // Garante que o número final é exibido
+          }
+      };
+
+      updateCount();
+  });
+});
+
+// filtro cardapio
+

@@ -38,13 +38,7 @@ h1, h2, h3, h5 {
     color: #2b1b1b;
 }
 
-.sobre a{
-    background: #2b1b1b !important;
-}
 
-.sobre a:hover{
-    opacity: 0.8;
-}
 header {
     display: flex;
     flex-direction: column;
@@ -185,7 +179,7 @@ header .nav-item a:hover {
 
 /* Seção de Informações Adicionais */
 section {
-    padding: 50px 0;
+    margin: 50px 0;
 }
 
 section h3 {
@@ -199,16 +193,18 @@ section p {
 }
 
 section .btn-dark {
-    background-color: #e69f00;
-    border: none;
-    color: #fff;
-    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid #e69f00;
+    color: #2b1b1b;
+    font-weight: 400;
     align-self: self-start;
+    border-radius: 0;
 }
 
 section .btn-dark:hover {
-    background-color:  #2b1b1b;
-    color: #ffffff;
+    background-color: #e69f00;
+    color: #fff;
+    border: none;
 }
 
 
@@ -220,21 +216,18 @@ section .btn-dark:hover {
     color: #e69f00;
 }
 
-/* #destaques .bg-light{
-    background: url(../img/destaques.png) no-repeat;
-    background-position: center;
-    background-size: cover;
-    color: #FFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+/* efeito zoom imagem destaques */
+.card {
+    overflow: hidden; /* Esconde o que ultrapassar a div do card */
 }
 
-#destaques .btn-dark{
-    align-self: center;
-} */
+.card-img-top {
+    transition: transform 0.3s ease; /* Suaviza a animação */
+}
+
+.card-img-top:hover {
+    transform: scale(1.1); /* Aumenta a imagem em 10% */
+}
 
 .destaque-card {
     display: flex;
@@ -269,16 +262,19 @@ section .btn-dark:hover {
 
 
 .btn-warning {
-    background-color: #e69f00;
-    border: none;
+    background-color: transparent;
     color: #FFF;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 0;
 }
 
 .btn-warning:hover {
-    background-color: #d68a00;
+    background-color: #e69f00;
+    color: #fff;
+    transform: scale(1.1);
 }
 
 .action{
@@ -306,7 +302,8 @@ section .btn-dark:hover {
     background-color: #e69f00;
     border: none;
     color: #ffff;
-    font-weight: bold;
+    font-weight: 400;
+    border-radius: 0;
 }
 
 .action .btn-light:hover{
@@ -358,13 +355,14 @@ section .btn-dark:hover {
 }
 
 .sobre-botao {
-    background-color: #e69f00;
+    background-color: #e69f00 ;
     color: #2b1b1b;
     padding: 10px 25px;
     border: none;
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
 .sobre-botao:hover {
@@ -405,6 +403,7 @@ section .btn-dark:hover {
 
 #destaques .card-body{
     background-color: #2b1b1b;
+    z-index: 1;
 }
 
 #destaques .card-title {
@@ -436,7 +435,7 @@ section .btn-dark:hover {
 
 .popular-products{
     position: relative;
-    padding: 135px 0 50px 0 !important;
+    padding: 130px 0 20px 0 !important;
 }
 
 .popular-products::after {
@@ -500,6 +499,7 @@ section .btn-dark:hover {
     display: none;
     background: #e69f00 !important;
     border: none !important;
+    z-index: 2;
   }
 
   #btn-back-to-top:hover{

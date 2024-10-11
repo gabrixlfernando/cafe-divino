@@ -6,6 +6,27 @@ body{
     padding: 0;
 }
 
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+  width: 5px; /* Largura da barra de rolagem */
+}
+
+/* Cor da parte de fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+  background-color: #2b1b1b; /* Cor de fundo da track da barra de rolagem */
+}
+
+/* Cor da barra de rolagem em si */
+::-webkit-scrollbar-thumb {
+  background-color: #e69f00; /* Cor do thumb (parte que desliza) */
+  border-radius: 5px; /* Arredondamento */
+}
+
+/* Cor ao passar o mouse sobre a barra */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffb84d; /* Um laranja mais claro ao passar o mouse */
+}
+
 .site{
     max-width: 1200px;
     width: 100%;
@@ -247,7 +268,7 @@ header .nav-item a:hover {
   }
   
   .info-box {
-    background-color: #fff;
+    background-color: #f7f7f7;
     border-left: 4px solid #e69f00; /* Laranja para o destaque na lateral */
     padding: 15px;
     text-align: center;
@@ -257,6 +278,7 @@ header .nav-item a:hover {
     line-height: 1.5;
     margin: 0 auto;
     width: 800px;
+    border-radius: 0 10px 10px 0;
   }
 
   .info-box p {
@@ -397,6 +419,20 @@ footer {
 
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
+
+  .filter-container {
+    flex-direction: column;
+  }
+  
+  .menu-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .menu-item {
+    text-align: center;
+  }
 
     .story-content {
         flex-direction: column;

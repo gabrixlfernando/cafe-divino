@@ -127,11 +127,6 @@ header .nav-item a:hover {
     transform: translateY(-5px);
   }
 
-  header .texto-banner{
-    /* position: absolute;
-    top: 380px; */
-  }
-
   header nav button{
     background: none;
     border: none !important;

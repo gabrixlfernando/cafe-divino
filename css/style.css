@@ -79,11 +79,11 @@ header h3 {
     color: #e69f00;
 }
 
-header .nav-item a {
-    font-size: 20px;
+header .nav-item a i {
+    font-size: 22px;
 }
 
-header .nav-item a:hover {
+header .nav-item a i:hover {
     color: #e69f00;
 }
 
@@ -481,8 +481,8 @@ section .btn-dark:hover {
 }
 
 .popular-products .card img {
-    width: 255px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     object-fit: cover;
 }
 

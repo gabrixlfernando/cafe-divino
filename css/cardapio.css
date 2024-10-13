@@ -103,11 +103,11 @@ header h3 {
     color: #e08d14;
   }
 
-header .nav-item a {
+header .nav-item a i{
     font-size: 20px;
 }
 
-header .nav-item a:hover {
+header .nav-item a i:hover {
     color: #e69f00;
 }
 
@@ -178,6 +178,7 @@ header .nav-item a:hover {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+    flex-wrap: wrap;
 }
 
 .filter-button {
@@ -185,7 +186,7 @@ header .nav-item a:hover {
     border: 2px solid #e69f00;
     color: #ffff;
     padding: 10px 20px;
-    margin: 0 5px;
+    margin: 5px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -196,7 +197,7 @@ header .nav-item a:hover {
     color: #ffffff; /* Texto branco ao passar o mouse */
 }
 
-.active {
+.filter-button.active {
     background-color: #e69f00; /* Fundo laranja para botão ativo */
     color: #ffffff; /* Texto branco para botão ativo */
 }
@@ -206,6 +207,10 @@ header .nav-item a:hover {
 
   .products{
     margin: 50px 0;
+  }
+
+  .products .site h2{
+    padding: 20px;
   }
   .menu-section {
     max-width: 1200px;
@@ -226,6 +231,7 @@ header .nav-item a:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 20px;
   }
   
   .menu-item {
@@ -249,6 +255,7 @@ header .nav-item a:hover {
   .menu-info h3 {
     font-size: 18px;
     color: #2b1b1b;
+    margin-bottom: 5px;
   }
   
   .menu-info p {
@@ -277,7 +284,7 @@ header .nav-item a:hover {
     font-size: 14px;
     line-height: 1.5;
     margin: 0 auto;
-    width: 800px;
+    width: 80%;
     border-radius: 0 10px 10px 0;
   }
 
@@ -419,20 +426,6 @@ footer {
 
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
-
-  .filter-container {
-    flex-direction: column;
-  }
-  
-  .menu-items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .menu-item {
-    text-align: center;
-  }
 
     .story-content {
         flex-direction: column;

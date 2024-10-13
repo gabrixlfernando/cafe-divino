@@ -54,27 +54,80 @@ $(document).ready(function(){
 
 document.addEventListener("DOMContentLoaded", function() {
   const counters = document.querySelectorAll('.counter');
-  
-  counters.forEach(counter => {
-      const updateCount = () => {
-          const target = +counter.getAttribute('data-target');
-          const count = +counter.innerText;
-          
-          // Calcular a velocidade da contagem
-          const speed = target / 400; // Tempo total de contagem em milissegundos (200)
+  let hasRun = false; // Variável para garantir que a contagem ocorre apenas uma vez
 
-          if (count < target) {
-              // Incrementa o número
-              counter.innerText = Math.ceil(count + speed);
-              setTimeout(updateCount, 1); // Chama a função novamente após 1ms
-          } else {
-              counter.innerText = target; // Garante que o número final é exibido
-          }
+  const startCounting = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+
+        // Calcular a velocidade da contagem
+        const speed = target / 500; // Tempo total de contagem em milissegundos (ajustável)
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + speed);
+          setTimeout(updateCount, 1); // Chama a função novamente após 1ms
+        } else {
+          counter.innerText = target; // Garante que o número final é exibido
+        }
       };
 
       updateCount();
+    });
+  };
+
+  // Configura o Intersection Observer
+  const statsSection = document.querySelector('.stats-section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasRun) {
+        startCounting(); // Inicia a contagem quando a seção é visível
+        hasRun = true;   // Evita que a contagem aconteça mais de uma vez
+        observer.disconnect(); // Para de observar após iniciar a contagem
+      }
+    });
+  }, {
+    threshold: 0.5 // Define que a animação acontece quando 50% da seção estiver visível
   });
+
+  observer.observe(statsSection); // Observa a seção
 });
+
 
 // filtro cardapio
 
+document.addEventListener('DOMContentLoaded', function () {
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const productSections = document.querySelectorAll('.products');
+  
+  // Adiciona evento de clique para cada botão de filtro
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const category = this.textContent.trim().toUpperCase();
+      
+      // Se já estiver ativo, remove o filtro
+      if (this.classList.contains('active')) {
+        // Remove a classe active de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Exibe todas as seções
+        productSections.forEach(section => section.style.display = 'block');
+      } else {
+        // Remove a classe active de todos os botões e adiciona ao botão clicado
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Esconde todas as seções
+        productSections.forEach(section => section.style.display = 'none');
+        
+        // Mostra apenas a seção correspondente ao filtro
+        productSections.forEach(section => {
+          const sectionTitle = section.querySelector('h2').textContent.toUpperCase();
+          if (sectionTitle.includes(category)) {
+            section.style.display = 'block';
+          }
+        });
+      }
+    });
+  });
+});

@@ -93,7 +93,7 @@
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <h4>Endereço</h4>
-                    <p>Rua das Flores, 123, São Paulo, Brasil</p>
+                    <p>Avenida Marechal Tito, 1500</p>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone-alt"></i>
@@ -108,33 +108,10 @@
             </div>
         </section>
 
-        <!-- Formulário de Contato -->
+        <!-- FORM PHP -->
         <section class="contact-form container-fluid">
             <div class="containeer">
-                <form action="https://formspree.io/f/mbljjdro" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Seu Nome"
-                            required>
-                        <input type="email" name="email" placeholder="Seu Email"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" placeholder="Assunto"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="5" placeholder="Mensagem"
-                            required></textarea>
-                    </div>
-                    <button type="submit">Enviar Mensagem</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- FORM PHP -->
-        <!-- <section class="contact-form container-fluid">
-            <div class="containeer">
-                <form action="enviar_email.php" method="POST">
+                <form id="contactForm" action="enviar_email.php" method="POST">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Seu Nome" required>
                         <input type="email" name="email" placeholder="Seu Email" required>
@@ -146,9 +123,14 @@
                         <textarea name="message" rows="5" placeholder="Mensagem" required></textarea>
                     </div>
                     <button type="submit">Enviar Mensagem</button>
+                     <!-- Mensagem de sucesso ou erro -->
+                    <div id="responseMessage" style="display: none;"></div>
                 </form>
+
+               
+
             </div>
-        </section> -->
+        </section>
 
         <section class="mapa">
             <iframe
@@ -166,7 +148,8 @@
         <footer>
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="img/logo/logo-café-divíno3.svg" alt="Café Divino Logo">
+                    <img src="img/logo/logo-café-divíno3.svg"
+                        alt="Café Divino Logo">
                     <!-- Substitua por sua logo -->
                     <p>Café Divino é uma experiência divina no sabor e
                         aroma.</p>
@@ -177,8 +160,8 @@
                     <p><i class="fas fa-phone"></i> (11) 5456-789</p>
                     <p><i class="fas fa-envelope"></i>
                         cafedivino@smpsistema.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Rua das Flores,
-                        123, São Paulo, Brasil</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Avenida Marechal
+                        Tito, 1500</p>
                 </div>
                 <div class="footer-links">
                     <h4>Menu</h4>
@@ -207,5 +190,38 @@
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/script.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#contactForm').on('submit', function(e) {
+                    e.preventDefault(); // Impedir o envio padrão do formulário
+            
+                    $.ajax({
+                        url: 'enviar_email.php', // Arquivo PHP para processar o envio do e-mail
+                        type: 'POST',
+                        data: $(this).serialize(), // Serializar os dados do formulário
+                        dataType: 'json', // Especifica que estamos esperando um JSON
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                // Exibir mensagem de sucesso
+                                $('#responseMessage').html('<p style="color: green;">' + response.message + '</p>');
+                                $('#contactForm')[0].reset(); // Limpar o formulário após o envio
+                            } else {
+                                // Exibir mensagem de erro
+                                $('#responseMessage').html('<p style="color: red;">' + response.message + '</p>');
+                            }
+                            $('#responseMessage').show(); // Exibir a div da mensagem
+                        },
+                        error: function() {
+                            // Mensagem de erro genérica em caso de falha
+                            $('#responseMessage').html('<p style="color: red;">Erro ao enviar a mensagem. Tente novamente.</p>');
+                            $('#responseMessage').show();
+                        }
+                    });
+                });
+            });
+            </script>
+            
+
     </body>
 </html>

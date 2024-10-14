@@ -322,6 +322,13 @@ input:-webkit-autofill {
     opacity: 0.8;
 }
 
+#responseMessage p{
+    padding: 20px;
+    background: #fff;
+    font-weight: bold;
+    width: 330px;
+}
+
 
 
 #btn-back-to-top {

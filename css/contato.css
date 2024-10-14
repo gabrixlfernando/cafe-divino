@@ -203,6 +203,7 @@ header .nav-item a i:hover {
     display: flex;
     justify-content: center;
     gap: 50px;
+    flex-wrap: wrap;
 }
 
 .contact-item {
@@ -265,6 +266,7 @@ form {
 .form-group {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .form-group input::placeholder, .form-group textarea::placeholder{
@@ -435,6 +437,10 @@ footer {
     header nav div a h1 {
         width: 80px;
         height: 80px;
+    }
+
+    .contact-info h3{
+        line-height: 30px;
     }
 
     

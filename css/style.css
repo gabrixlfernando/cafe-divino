@@ -44,7 +44,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: url(../img/banner2.png);
+    background: url(../img/banner/banner2.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -61,7 +61,7 @@ header nav{
 }
 
 header nav div a h1 {
-    background: url(../img/logo-café-divíno3.svg) no-repeat;
+    background: url(../img/logo/logo-café-divíno3.svg) no-repeat;
     width: 100px;
     height: 100px;
     text-indent: -5000px;
@@ -246,7 +246,7 @@ section .btn-dark:hover {
 
 
 .especial-card .card-body {
-    background: url('../img/destaques.png') no-repeat center center;
+    background: url('../img/banner/destaques.png') no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -274,7 +274,7 @@ section .btn-dark:hover {
 
 .action{
     /* background: #e69f00; */
-    background: url(../img/banner.png) no-repeat;
+    background: url(../img/banner/banner.png) no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-color: #00000063;

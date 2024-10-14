@@ -40,7 +40,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: url(../img/banner3.png);
+    background: url(../img/banner/banner3.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -57,7 +57,7 @@ header nav{
 }
 
 header nav div a h1 {
-    background: url(../img/logo-café-divíno3.svg) no-repeat;
+    background: url(../img/logo/logo-café-divíno3.svg) no-repeat;
     width: 100px;
     height: 100px;
     text-indent: -5000px;
@@ -222,67 +222,6 @@ header .nav-item a i:hover {
 }
 
 /* nossa historia */
- /* .our-story {
-    color: #ffff; 
-    padding: 50px 0;
-    position: relative;
-    background: url(../img/fundosobre.jpeg) no-repeat;
-    background-size: 55%;
-    margin-top: 50px;
-    height: 600px;
-    display: flex;
-    align-items: center;
-    background-color: #e69f00;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.story-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.story-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.story-text {
-    background-color: #2b1b1bde;
-    max-width: 65%;
-    padding: 40px;
-}
-
-.story-text h2 {
-    font-family: 'poppins', sans-serif; 
-    font-size: 27px;
-    margin-bottom: 20px;
-    color: #e69f00; 
-    position: relative;
-    margin: 0;
-}
-
-.story-text h3{
-    font-size: 30px;
-    line-height: 25px;
-    margin-bottom: 20px;
-}
-
-
-
-.story-text p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}  */
 
 .our-story {
     display: flex;
@@ -292,7 +231,7 @@ header .nav-item a i:hover {
 
 .image-story {
     width: 50%;
-    background: url('../img/fundosobre.jpeg') no-repeat center center;
+    background: url('../img/banner/fundosobre.jpeg') no-repeat center center;
     background-size: cover;
     padding: 300px 0;
 }
@@ -308,7 +247,7 @@ header .nav-item a i:hover {
 
 .story-text {
     background-color: #2b1b1bde;
-    width:120%;
+    width:900px;
     padding: 40px;
     margin-left: -450px;
 }
@@ -585,7 +524,7 @@ header .nav-item a i:hover {
 /* status */
 
 .stats-section {
-    background-image: url('../img/banner-graos.jpeg'); /* Insira o caminho da imagem aqui */
+    background-image: url('../img/banner/banner-graos.jpeg'); /* Insira o caminho da imagem aqui */
     background-size: cover;
     background-position: center;
     background-color: rgb(0, 0, 0, 0.5);
@@ -799,7 +738,7 @@ footer {
 
 
     .story-text{
-        width: 90%;
+        width: 100%;
         margin-left: 0px;
     }
 
@@ -872,6 +811,10 @@ footer {
 
     .fa.icone {
         font-size: 30px;
+    }
+
+    .story-text p:first-of-type {
+        display: none;
     }
 
     .img-grid{

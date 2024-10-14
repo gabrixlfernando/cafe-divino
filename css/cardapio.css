@@ -40,7 +40,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background: url(../img/banner3.png);
+    background: url(../img/banner/banner3.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -57,7 +57,7 @@ header nav{
 }
 
 header nav div a h1 {
-    background: url(../img/logo-café-divíno3.svg) no-repeat;
+    background: url(../img/logo/logo-café-divíno3.svg) no-repeat;
     width: 100px;
     height: 100px;
     text-indent: -5000px;

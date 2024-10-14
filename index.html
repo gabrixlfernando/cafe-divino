@@ -8,6 +8,7 @@
         <title>Café Divino | Início</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
             integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -63,8 +64,9 @@
                
                 <section class="texto-banner">
                     <article>     
-                        <h2>Desperte Seu Dia com o Sabor Divino</h2>
-                        <h3>Um Toque de Céu em Cada Xícara.</h3>
+                         <!-- <h2>Um Toque de Céu em Cada Xícara </h2> -->
+                          <h2>Desperte Seu Dia Com O Sabor Divino</h2>
+                          <h3>Experimente o Melhor <span id="element"></span></h3>
                     </article>
                 </section>
     
@@ -82,10 +84,10 @@
 
         <main>
               <!-- Seção de Destaques -->
-            <section class="container my-5 p-0" id="destaques">
+            <section  class="container my-5 p-0" id="destaques">
                 <div class="row">
                     <!-- Imagem de Produto 1 -->
-                    <div class="col-md-4 mb-4">
+                    <div data-aos="fade-up" class="col-md-4 mb-4">
                         <div class="card">
                             <img src="img/variedadecafe.png" class="card-img-top" alt="Imagem Produto 1">
                             <div class="card-body">
@@ -96,7 +98,7 @@
                     </div>
 
                     <!-- Imagem de Produto 2 -->
-                    <div class="col-md-4 mb-4">
+                    <div data-aos="fade-up" data-aos-delay="500" class="col-md-4 mb-4">
                         <div class="card">
                             <img src="img/rosquinhas.png" class="card-img-top" alt="Imagem Produto 2">
                             <div class="card-body">
@@ -108,7 +110,7 @@
 
                     <!-- Texto e Botão -->
 
-                    <div class="col-md-4 mb-4">
+                    <div data-aos="fade-up" data-aos-delay="900" class="col-md-4 mb-4">
                         <div class="card bg-dark text-white destaque-card especial-card">
                             <div class="card-body">
                                 <h3 class="card-title">Nossos Destaques</h3>
@@ -125,14 +127,14 @@
 
             <section class="sobre">
                 <article class="site">
-                    <div class="sobre-texto">
+                    <div data-aos="zoom-in-down" data-aos-delay="200" class="sobre-texto">
                         <h2>Sobre Nós</h2>
                         <h3>Desde 2010, alcançando a posição Nº1 ao redor do mundo.</h3>
                         <p>Nós nos esforçamos para entregar os melhores produtos com qualidade excepcional. Com mais de 15 anos de experiência, oferecemos o melhor café para nossos clientes.</p>
                         <a href="sobre.html" class="sobre-botao">Saiba Mais</a>
                     </div>
                     
-                    <div class="sobre-imagem">
+                    <div data-aos="zoom-in"   class="sobre-imagem">
                         <img src="img/sobre-nos.png" alt="Café Divino">
 
                         <div class="sobre-destaque">
@@ -158,7 +160,7 @@
                 <div class="container">
                     <div class="row">
                          <!-- Produto 1: Torta de Limão -->
-                         <div class="col-md-3">
+                         <div data-aos="fade-up" data-aos-delay="300" class="col-md-3">
                             <div class="card">
                                 <img src="img/produtos/torta-limao.png" class="card-img-top" alt="Torta de Limão">
                                 <div class="card-body">
@@ -172,7 +174,7 @@
                        
             
                         <!-- Produto 2: Cappuccino -->
-                        <div class="col-md-3">
+                        <div data-aos="fade-up" data-aos-delay="500" class="col-md-3">
                             <div class="card">
                                 <img src="img/produtos/cappuccino-produto.png" class="card-img-top" alt="Cappuccino">
                                 <div class="card-body">
@@ -184,7 +186,7 @@
                         </div>
 
                          <!-- Produto 3: Brownie -->
-                         <div class="col-md-3">
+                         <div data-aos="fade-up" data-aos-delay="800" class="col-md-3">
                             <div class="card">
                                 <img src="img/produtos/brownie-produto.png" class="card-img-top" alt="Brownie">
                                 <div class="card-body">
@@ -196,7 +198,7 @@
                         </div>
             
                         <!-- Produto 4: Café Expresso -->
-                        <div class="col-md-3">
+                        <div data-aos="fade-up" data-aos-delay="1000" class="col-md-3">
                             <div class="card">
                                 <img src="img/produtos/espresso.png" class="card-img-top" alt="Café Expresso">
                                 <div class="card-body">
@@ -293,9 +295,16 @@
         </footer>
 
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/script.js"></script>
+
+        <script>
+            // AOS
+        AOS.init();
+        </script>
     </body>
 
 </html>

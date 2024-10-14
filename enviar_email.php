@@ -21,27 +21,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Configurações do servidor
         $mail->isSMTP();                                          // Definir o uso do SMTP
-        $mail->Host       = 'smtp.gmail.com';                     // Exemplo com o Gmail
+        $mail->Host       = 'smtp.hostinger.com';                     // Defina o servidor SMTP que você vai usar (aqui usando o Gmail)
         $mail->SMTPAuth   = true;                                 // Habilitar autenticação SMTP
-        $mail->Username   = 'seuemail@gmail.com';                 // Seu endereço de e-mail (SMTP)
-        $mail->Password   = 'suasenha';                          // Sua senha de e-mail ou senha de app
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   // Criptografia TLS
-        $mail->Port       = 587;                                  // Porta para TLS
+        $mail->Username   = 'cafedivino@smpsistema.com.br';                 // Seu endereço de e-mail (SMTP)
+        $mail->Password   = 'CafeDivino@01';                          // Sua senha de e-mail (ou app password no caso do Gmail)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;   // SSL 
+        $mail->Port       = 465;                                  // Porta SMTP segura para SSL
 
         // Remetente
-        $mail->setFrom('seuemail@gmail.com', 'Nome do Remetente');
+        $mail->setFrom('cafedivino@smpsistema.com.br', 'Nome do Remetente'); // Definir quem está enviando o e-mail
 
         // Destinatário
-        $mail->addAddress('destinatario@exemplo.com', 'Nome do Destinatário');
+        $mail->addAddress('biel_nando2012@hotmail.com', 'Nome do Destinatário');  // Definir o destinatário do e-mail
 
         // Conteúdo do e-mail
         $mail->isHTML(true);                                      // Definir que o e-mail será enviado no formato HTML
-        $mail->Subject = $subject;
+        $mail->Subject = $subject;                                // Assunto do e-mail
         $mail->Body    = "<h1>Nova mensagem de contato</h1>
                           <p><strong>Nome:</strong> $name</p>
                           <p><strong>E-mail:</strong> $email</p>
+                          <p><strong>Assunto:</strong> $subject</p>
                           <p><strong>Mensagem:</strong><br>$message</p>";
-        $mail->AltBody = "Nome: $name\nE-mail: $email\nMensagem:\n$message";  // Texto alternativo para clientes que não suportam HTML
+        $mail->AltBody = "Nome: $name\nE-mail: $email\nAssunto: $subject \nMensagem:\n$message";  // Texto alternativo, para leitores de e-mail que não suportam HTML
+
+        // Enviar e-mail
 
         // Enviar e-mail
         if ($mail->send()) {

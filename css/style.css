@@ -224,6 +224,7 @@ section .btn-dark:hover {
     transform: scale(1.1); /* Aumenta a imagem em 10% */
 }
 
+
 .destaque-card {
     display: flex;
     flex-direction: column;
@@ -473,8 +474,8 @@ section .btn-dark:hover {
     align-items: center;
 }
 
-.card-price {
-    font-size: 1.25rem;
+.popular-products .card-price {
+    font-size: 1.19rem;
     font-weight: bold;
     color: #2b1b1b; /* Cor de destaque */
     margin-top: 10px;
@@ -484,6 +485,14 @@ section .btn-dark:hover {
     width: 130px;
     height: 130px;
     object-fit: cover;
+}
+
+.popular-products .card-img-top {
+    transition: transform 0.3s ease; /* Suaviza a animação */
+}
+
+.popular-products .card-img-top:hover {
+    transform: scale(1.2); /* Aumenta a imagem em 10% */
 }
 
 
@@ -708,6 +717,12 @@ footer {
 
     .fa.icone {
         font-size: 30px;
+    }
+
+    .sobre-destaque{
+        padding: 15px;
+        left: 55%;
+        font-size: 1em;
     }
 }
 

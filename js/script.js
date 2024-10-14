@@ -1,3 +1,7 @@
+
+
+
+
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
 
@@ -41,14 +45,20 @@ document.addEventListener("DOMContentLoaded", function() {
 // carrousel depoimentos
 $(document).ready(function(){
   $("#testimonial-slider").owlCarousel({
-      items:1,
+      items: 1,
       itemsDesktop:[1000,1],
       itemsDesktopSmall:[979,1],
       itemsTablet:[769,1],
-      pagination:true,
-      autoplay:true
+      pagination: true,  // Mostra as bolinhas de navegação (dots)
+      autoPlay: true,    // Ativa o autoplay
+      stopOnHover: true, // O autoplay para ao passar o mouse
+      slideSpeed: 300,   // Velocidade da transição dos slides
+      paginationSpeed: 400,  // Velocidade de transição das bolinhas
   });
 });
+
+
+
 
 // contador pagina sobre 
 
@@ -131,3 +141,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+// digitando banner
+var typed = new Typed('#element', {
+  strings: [
+    "Cappuccino.", 
+    "Smoothie.",
+    "Latte.",
+    "Expresso.",
+    "Macchiato.",
+    "Shake.",
+  ],
+  backSpeed: 50,
+  backDelay: 300,
+  typeSpeed: 120,
+  loop: true,
+});
+
+

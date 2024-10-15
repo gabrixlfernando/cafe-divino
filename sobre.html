@@ -161,7 +161,7 @@
             <div class="image-story"></div>
 
             <div class="story-content">
-                <div data-aos="fade-up" class="story-text">
+                <div data-aos="fade-up" data-aos-offset="-200" class="story-text">
                     <h2>Descubra</h2>
                     <h3> Nossa História</h3>
                     <p>
@@ -265,7 +265,7 @@
             <section class="menu-section">
                 <div class="container">
                     <div class="menu-content">
-                        <div data-aos="fade-up" class="menu-text">
+                        <div  id="menuText" data-aos="fade-up"   class="menu-text">
                             <h2>Conheça</h2>
                             <h3>Nosso Menu</h3>
                             <p>
@@ -419,8 +419,21 @@
             <script src="js/script.js"></script>
 
             <script>
-                // AOS
-AOS.init();
+                AOS.init();
+
+                function setAosOffset() {
+                    const menuText = document.getElementById('menuText');
+                    if (window.innerWidth < 768) {
+                        menuText.setAttribute('data-aos-offset', '-500');
+                    } else {
+                        menuText.removeAttribute('data-aos-offset');
+                    }
+                }
+
+                // Chamar a função ao carregar a página
+                window.onload = setAosOffset;
+                // Chamar a função ao redimensionar a janela
+                window.onresize = setAosOffset;
             </script>
         </body>
     </html>

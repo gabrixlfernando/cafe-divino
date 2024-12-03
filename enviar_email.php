@@ -156,3 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Retornar resposta JSON
 echo json_encode($response);
+
+?>
+
+

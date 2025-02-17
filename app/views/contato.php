@@ -12,7 +12,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/contato.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/contato.css">
         <!-- Link para o seu CSS -->
     </head>
     <body>
@@ -150,7 +150,7 @@
         <footer>
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="img/logo/logo-café-divíno3.svg"
+                    <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg"
                         alt="Café Divino Logo">
                     <!-- Substitua por sua logo -->
                     <p>Café Divino é uma experiência divina no sabor e
@@ -192,7 +192,7 @@
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>    
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/script.js"></script>
+        <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
 
         <script>
             $(document).ready(function() {

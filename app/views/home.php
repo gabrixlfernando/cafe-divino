@@ -4,8 +4,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="img/logo/logo-café-divíno3.svg" type="image/x-icon">
-        <title>Café Divino | Início</title>
+        <link rel="shortcut icon" href="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg" type="image/x-icon">
+        <title><?php echo $titulo;?></title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,7 +16,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/style.css">
 
         
     </head>
@@ -27,7 +27,7 @@
             <!-- Navegação -->
             <nav class="navbar navbar-expand-lg site">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<?php echo BASE_URL?>home">
                         <h1 class="mb-0">Café Divino</h1>
                     </a>
                     <button class="navbar-toggler" type="button"
@@ -39,10 +39,10 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="nav navbar-nav ms-auto">
-                            <li><a id="len1" class="hoverable" href="index.html">Início</a></li>
-                            <li><a id="len2" class="hoverable" href="cardapio.html">Cardápio</a></li>
-                            <li><a id="len3" class="hoverable" href="sobre.html">Sobre</a></li>
-                            <li><a id="len4" class="hoverable" href="contato.html">Contato</a></li>
+                            <li><a id="len1" class="hoverable" href="<?php echo BASE_URL?>home">Início</a></li>
+                            <li><a id="len2" class="hoverable" href="<?php echo BASE_URL?>cardapio">Cardápio</a></li>
+                            <li><a id="len3" class="hoverable" href="<?php echo BASE_URL?>sobre">Sobre</a></li>
+                            <li><a id="len4" class="hoverable" href="<?php echo BASE_URL?>contato">Contato</a></li>
                           </ul>
 
                         <ul class="navbar-nav ms-auto social-icons">
@@ -89,7 +89,7 @@
                     <!-- Imagem de Produto 1 -->
                     <div data-aos="fade-up" class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="img/variedadecafe.png" class="card-img-top" alt="Imagem Produto 1">
+                            <img src="<?php echo BASE_URL?>assets/img/variedadecafe.png" class="card-img-top" alt="Imagem Produto 1">
                             <div class="card-body">
                                 <h5 class="card-title">Cafés Artesanais</h5>
                                 <p class="card-text">Feitos com grãos selecionados.</p>
@@ -100,7 +100,7 @@
                     <!-- Imagem de Produto 2 -->
                     <div data-aos="fade-up" data-aos-delay="300" class="col-md-4 mb-4">
                         <div class="card">
-                            <img src="img/rosquinhas.png" class="card-img-top" alt="Imagem Produto 2">
+                            <img src="<?php echo BASE_URL?>assets/img/rosquinhas.png" class="card-img-top" alt="Imagem Produto 2">
                             <div class="card-body">
                                 <h5 class="card-title">Sobremesas Incríveis</h5>
                                 <p class="card-text">Perfeitas para acompanhar o seu café.</p>
@@ -135,7 +135,7 @@
                     </div>
                     
                     <div data-aos="zoom-in"   class="sobre-imagem">
-                        <img src="img/sobre-nos.png" alt="Café Divino">
+                        <img src="<?php echo BASE_URL?>assets/img/sobre-nos.png" alt="Café Divino">
 
                         <div class="sobre-destaque">
                             15 Anos de <br> Experiência
@@ -162,7 +162,7 @@
                          <!-- Produto 1: Torta de Limão -->
                          <div data-aos="fade-up" data-aos-delay="300" class="col-md-3">
                             <div class="card">
-                                <img src="img/produtos/torta-limao.png" class="card-img-top" alt="Torta de Limão">
+                                <img src="<?php echo BASE_URL?>assets/img/produtos/torta-limao.png" class="card-img-top" alt="Torta de Limão">
                                 <div class="card-body">
                                     <h5 class="card-title">Torta de Limão</h5>
                                     <p class="card-text">Refrescante e perfeita.</p>
@@ -176,7 +176,7 @@
                         <!-- Produto 2: Cappuccino -->
                         <div data-aos="fade-up" data-aos-delay="500" class="col-md-3">
                             <div class="card">
-                                <img src="img/produtos/cappuccino-produto.png" class="card-img-top" alt="Cappuccino">
+                                <img src="<?php echo BASE_URL?>assets/img/produtos/cappuccino-produto.png" class="card-img-top" alt="Cappuccino">
                                 <div class="card-body">
                                     <h5 class="card-title">Cappuccino</h5>
                                     <p class="card-text">Cremoso e delicioso.</p>
@@ -188,7 +188,7 @@
                          <!-- Produto 3: Brownie -->
                          <div data-aos="fade-up" data-aos-delay="800" class="col-md-3">
                             <div class="card">
-                                <img src="img/produtos/brownie-produto.png" class="card-img-top" alt="Brownie">
+                                <img src="<?php echo BASE_URL?>assets/img/produtos/brownie-produto.png" class="card-img-top" alt="Brownie">
                                 <div class="card-body">
                                     <h5 class="card-title">Brownie</h5>
                                     <p class="card-text">Chocolate em sua melhor forma.</p>
@@ -200,7 +200,7 @@
                         <!-- Produto 4: Café Expresso -->
                         <div data-aos="fade-up" data-aos-delay="1000" class="col-md-3">
                             <div class="card">
-                                <img src="img/produtos/espresso.png" class="card-img-top" alt="Café Expresso">
+                                <img src="<?php echo BASE_URL?>assets/img/produtos/espresso.png" class="card-img-top" alt="Café Expresso">
                                 <div class="card-body">
                                     <h5 class="card-title">Café Expresso</h5>
                                     <p class="card-text">O clássico café que todos amam.</p>
@@ -240,7 +240,7 @@
 
                     <!-- Imagem -->
                     <div class="col-md-6">
-                        <img src="img/graos.png" alt="Descrição da Imagem" class="img-fluid">
+                        <img src="<?php echo BASE_URL?>assets/img/graos.png" alt="Descrição da Imagem" class="img-fluid">
                     </div>
                 </div>
             </section>
@@ -263,7 +263,7 @@
         <footer>
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="img/logo/logo-café-divíno3.svg" alt="Café Divino Logo"> <!-- Substitua por sua logo -->
+                    <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg" alt="Café Divino Logo"> <!-- Substitua por sua logo -->
                     <p>Café Divino é uma experiência divina no sabor e aroma.</p>
                 </div>
                 <div class="footer-info">
@@ -276,10 +276,10 @@
                 <div class="footer-links">
                     <h4>Menu</h4>
                     <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="cardapio.html">Cardápio</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="<?php echo BASE_URL?>home">Início</a></li>
+                        <li><a href="<?php echo BASE_URL?>cardapio">Cardápio</a></li>
+                        <li><a href="<?php echo BASE_URL?>sobre">Sobre</a></li>
+                        <li><a href="<?php echo BASE_URL?>contato">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-hours">
@@ -299,7 +299,7 @@
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/script.js"></script>
+        <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
 
         <script>
             // AOS

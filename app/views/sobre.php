@@ -19,7 +19,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/sobre.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/sobre.css">
         <!-- Link para o seu CSS -->
     </head>
     <body>
@@ -125,7 +125,7 @@
                     <div data-aos="fade-up" class="col-lg-4 py-5 py-lg-0"
                         style="min-height: 500px;">
                         <div class="position-relative h-100">
-                            <img class="w-100 h-100" src="img/about.png"
+                            <img class="w-100 h-100" src="<?php echo BASE_URL?>assets/img/about.png"
                                 style="object-fit: cover;">
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                                     "O Café Divino é o meu lugar favorito para começar o dia. O ambiente é acolhedor e o café é simplesmente perfeito!"
                                 </p>
                                 <div class="pic">
-                                    <img src="img/clientes/depoimento1.png"
+                                    <img src="<?php echo BASE_URL?>assets/img/clientes/depoimento1.png"
                                         alt="Foto de Ana">
                                 </div>
                                 <h3 class="title">Ana Souza</h3>
@@ -215,7 +215,7 @@
                                     "Adoro vir aqui nas tardes de domingo. Os doces são deliciosos e o atendimento é excepcional."
                                 </p>
                                 <div class="pic">
-                                    <img src="img/clientes/depoimento2.png"
+                                    <img src="<?php echo BASE_URL?>assets/img/clientes/depoimento2.png"
                                         alt="Foto de Marcos">
                                 </div>
                                 <h3 class="title">Marina Santos</h3>
@@ -226,7 +226,7 @@
                                     "O ambiente tranquilo e a ótima seleção de chás fazem do Café Divino o lugar ideal para ler um livro e relaxar."
                                 </p>
                                 <div class="pic">
-                                    <img src="img/clientes/depoimento3.png"
+                                    <img src="<?php echo BASE_URL?>assets/img/clientes/depoimento3.png"
                                         alt="Foto de Beatriz">
                                 </div>
                                 <h3 class="title">Beatriz Ramos</h3>
@@ -237,7 +237,7 @@
                                     "Os smoothies são incríveis! Recomendo o de frutas vermelhas. Sempre que posso, passo aqui para experimentar algo novo."
                                 </p>
                                 <div class="pic">
-                                    <img src="img/clientes/depoimento4.png"
+                                    <img src="<?php echo BASE_URL?>assets/img/clientes/depoimento4.png"
                                         alt="Foto de Lucas">
                                 </div>
                                 <h3 class="title">Lucas Ferreira</h3>
@@ -248,7 +248,7 @@
                                     "Sem dúvida, o melhor cappuccino da cidade. O cuidado com os detalhes faz toda a diferença."
                                 </p>
                                 <div class="pic">
-                                    <img src="img/clientes/depoimento5.png"
+                                    <img src="<?php echo BASE_URL?>assets/img/clientes/depoimento5.png"
                                         alt="Foto de Marina">
                                 </div>
                                 <h3 class="title">Marina Santos</h3>
@@ -369,7 +369,7 @@
             <footer>
                 <div class="footer-container">
                     <div class="footer-logo">
-                        <img src="img/logo/logo-café-divíno3.svg"
+                        <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg"
                             alt="Café Divino Logo">
                         <p>Café Divino é uma experiência divina no sabor e
                             aroma.</p>
@@ -416,7 +416,7 @@
                 src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
                 <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="js/script.js"></script>
+            <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
 
             <script>
                 AOS.init();

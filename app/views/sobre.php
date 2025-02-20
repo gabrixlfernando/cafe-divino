@@ -1,99 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="img/logo/logo-café-divíno3.svg"
-            type="image/x-icon">
-        <title>Café Divino | Sobre Nós</title>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-            <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">    
-
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"> 
-        
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
-
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/sobre.css">
-        <!-- Link para o seu CSS -->
-    </head>
+<?php require_once('template/topo.php');?>
     <body>
-        <!-- Header (reutilizado do seu layout) -->
         <!-- Header -->
-        <header class="container-fluid text-white text-center p-3">
-            <!-- Navegação -->
-            <nav class="navbar navbar-expand-lg site">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <h1 class="mb-0">Café Divino</h1>
-                    </a>
-                    <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <!-- <span class="navbar-toggler-icon"></span> -->
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="nav navbar-nav ms-auto">
-                            <li><a id="len1" class="hoverable"
-                                    href="index.html">Início</a></li>
-                            <li><a id="len2" class="hoverable"
-                                    href="cardapio.html">Cardápio</a></li>
-                            <li><a id="len3" class="hoverable"
-                                    href="sobre.html">Sobre</a></li>
-                            <li><a id="len4" class="hoverable"
-                                    href="contato.html">Contato</a></li>
-                        </ul>
+        <?php require_once('template/menu.php');?>
+        <?php require_once('template/banner-sobre.php');?>
 
-                        <ul class="navbar-nav ms-auto social-icons">
-                            <li class="nav-item">
-                                <a href="https://www.facebook.com"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-facebook"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.instagram.com"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.tiktok.com/"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-tiktok"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
 
-                <section class="texto-banner">
-                    <article>
-                        <h2>SOBRE</h2>
-                        <div>
-                            <a href="index.html">Início</a>
-                            <h3>Sobre</h3>
-                        </div>
+    <main>
 
-                    </article>
-                </section>
-
-                <section class="banner-seta">
-                    <div class="site">
-                        <i class="fa fa-solid fa-circle-chevron-down icone"
-                            style="display: none;"></i>
-                    </div>
-                </section>
-            </nav>
-
-        </header>
+       
         <section class="about-info">
             <div class="site">
                 <div>
@@ -287,28 +202,28 @@
                             <div class="img-grid">
                                 <div class="col-md-6">
                                     <span
-                                        style="background-image: url(img/menu-1.png);"
+                                        style="background-image: url(<?php echo BASE_URL?>assets/img/menu-1.png);"
                                         class="img-menu"></span>
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <span
-                                        style="background-image: url(img/menu-2.png);"
+                                        style="background-image: url(<?php echo BASE_URL?>assets/img/menu-2.png);"
                                         class="img-menu"></span>
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <span
-                                        style="background-image: url(img/menu-3.png);"
+                                        style="background-image: url(<?php echo BASE_URL?>assets/img/menu-3.png);"
                                         class="img-menu"></span>
 
                                 </div>
 
                                 <div class="col-md-6">
                                     <span
-                                        style="background-image: url(img/menu-4.png);"
+                                        style="background-image: url(<?php echo BASE_URL?>assets/img/menu-4.png);"
                                         class="img-menu"></span>
 
                                 </div>
@@ -361,66 +276,12 @@
                 </div>
             </section>
 
-            <button type="button" class="btn btn-danger btn-floating btn-lg"
-                id="btn-back-to-top">
-                <i class="fas fa-arrow-up"></i>
-            </button>
+    </main>
 
-            <footer>
-                <div class="footer-container">
-                    <div class="footer-logo">
-                        <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg"
-                            alt="Café Divino Logo">
-                        <p>Café Divino é uma experiência divina no sabor e
-                            aroma.</p>
-                    </div>
-                    <div class="footer-info">
-                        <h4>Contato</h4>
-                        <p><i class="fas fa-heart"></i> Café Divino</p>
-                        <p><i class="fas fa-phone"></i> (11) 5456-789</p>
-                        <p><i class="fas fa-envelope"></i>
-                            cafedivino@smpsistema.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Avenida
-                            Marechal Tito, 1500</p>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Menu</h4>
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li><a href="cardapio.html">Cardápio</a></li>
-                            <li><a href="sobre.html">Sobre</a></li>
-                            <li><a href="contato.html">Contato</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-hours">
-                        <h4>Horário de Funcionamento</h4>
-                        <p>Segunda a sexta: 8h - 20h</p>
-                        <p>Sábado: 9h - 16h</p>
-                        <p>Domingo: Fechado</p>
-                    </div>
-                </div>
-                <div class="footer-bottom rodape">
-                    <p>&copy; 2024 Café Divino. Todos Os Direreitos Reservados.
-                        Desenvolvido por Gabriel Fernando.</p>
-                </div>
-            </footer>
-
-            <script type="text/javascript"
-                src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-            <script
-                src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202410070101/show_ads_impl_fy2021.js"></script><script
-                type="text/javascript"
-                src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-            <script type="text/javascript"
-                src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-                <script
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
+            <!--Rodapé  -->
+            <?php require_once('template/rodape.php');?>
 
             <script>
-                AOS.init();
-
                 function setAosOffset() {
                     const menuText = document.getElementById('menuText');
                     if (window.innerWidth < 768) {

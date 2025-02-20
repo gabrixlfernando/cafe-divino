@@ -1,198 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="img/logo/logo-café-divíno3.svg"
-            type="image/x-icon">
-        <title>Café Divino | Contato</title>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/contato.css">
-        <!-- Link para o seu CSS -->
-    </head>
+<?php require_once('template/topo.php');?>
+
+
     <body>
-        <!-- Header (reutilizado do seu layout) -->
         <!-- Header -->
-        <header class="container-fluid text-white text-center p-3">
-            <!-- Navegação -->
-            <nav class="navbar navbar-expand-lg site">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <h1 class="mb-0">Café Divino</h1>
-                    </a>
-                    <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <!-- <span class="navbar-toggler-icon"></span> -->
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="nav navbar-nav ms-auto">
-                            <li><a id="len1" class="hoverable"
-                                    href="index.html">Início</a></li>
-                            <li><a id="len2" class="hoverable"
-                                    href="cardapio.html">Cardápio</a></li>
-                            <li><a id="len3" class="hoverable"
-                                    href="sobre.html">Sobre</a></li>
-                            <li><a id="len4" class="hoverable"
-                                    href="contato.html">Contato</a></li>
-                        </ul>
+        <?php require_once('template/menu.php');?>
+        <?php require_once('template/banner-contato.php');?>
 
-                        <ul class="navbar-nav ms-auto social-icons">
-                            <li class="nav-item">
-                                <a href="https://www.facebook.com"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-facebook"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.instagram.com"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-instagram"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.tiktok.com/"
-                                    target="_blank"
-                                    class="nav-link text-white"><i
-                                        class="fa-brands fa-tiktok"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
+        <main>
+        <!-- formulario -->
+        <?php require_once('template/formContato.php'); ?>
 
-                <section class="texto-banner">
-                    <article>
-                        <h2>CONTATO</h2>
-                        <div>
-                            <a href="index.html">Início</a>
-                            <h3>Contato</h3>
-                        </div>
+        <!-- mapa -->
+        <?php require_once('template/mapa.php'); ?>
 
-                    </article>
-                </section>
+        </main>
 
-                <section class="banner-seta">
-                    <div class="site">
-                        <i class="fa fa-solid fa-circle-chevron-down icone"
-                            style="display: none;"></i>
-                    </div>
-                </section>
-            </nav>
-
-        </header>
-        <section  class="contact-info">
-            <h2>CONTATE-NOS</h2>
-            <h3>Sinta-se à Vontade Para Entrar Em Contato</h3>
-            <div data-aos="fade-up" class="contact-icons">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h4>Endereço</h4>
-                    <p>Avenida Marechal Tito, 1500</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <h4>Telefone</h4>
-                    <p>(11) 5456-789</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <h4>Email</h4>
-                    <p>cafedivino@smpsistema.com</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FORM PHP -->
-        <section class="contact-form container-fluid">
-            <div class="containeer">
-                <form id="contactForm" action="enviar_email.php" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Seu Nome"
-                            required>
-                        <input type="email" name="email" placeholder="Seu Email"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" placeholder="Assunto"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="5" placeholder="Mensagem"
-                            required></textarea>
-                    </div>
-                    <button type="submit">Enviar Mensagem</button>
-                    <!-- Mensagem de sucesso ou erro -->
-                    <div id="responseMessage" style="display: none;"></div>
-                </form>
-            </div>
-        </section>
-
-        <section class="mapa">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.0254664048434!2d-46.43673301307495!3d-23.495592204618838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce63dda7be6fb9%3A0xa74e7d5a53104311!2sSenac%20S%C3%A3o%20Miguel%20Paulista!5e0!3m2!1spt-BR!2sbr!4v1727180565320!5m2!1spt-BR!2sbr"
-                width="100%" height="400" style="border:0;" allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
-
-        <button type="button" class="btn btn-danger btn-floating btn-lg"
-            id="btn-back-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-
-        <footer>
-            <div class="footer-container">
-                <div class="footer-logo">
-                    <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg"
-                        alt="Café Divino Logo">
-                    <!-- Substitua por sua logo -->
-                    <p>Café Divino é uma experiência divina no sabor e
-                        aroma.</p>
-                </div>
-                <div class="footer-info">
-                    <h4>Contato</h4>
-                    <p><i class="fas fa-heart"></i> Café Divino</p>
-                    <p><i class="fas fa-phone"></i> (11) 5456-789</p>
-                    <p><i class="fas fa-envelope"></i>
-                        cafedivino@smpsistema.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Avenida Marechal
-                        Tito, 1500</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Menu</h4>
-                    <ul>
-                        <li><a href="index.html">Início</a></li>
-                        <li><a href="cardapio.html">Cardápio</a></li>
-                        <li><a href="sobre.html">Sobre</a></li>
-                        <li><a href="contato.html">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-hours">
-                    <h4>Horário de Funcionamento</h4>
-                    <p>Segunda a sexta: 8h - 20h</p>
-                    <p>Sábado: 9h - 16h</p>
-                    <p>Domingo: Fechado</p>
-                </div>
-            </div>
-            <div class="footer-bottom rodape">
-                <p>&copy; 2024 Café Divino. Todos Os Direreitos Reservados.
-                    Desenvolvido por Gabriel Fernando.</p>
-            </div>
-        </footer>
-
-        <script type="text/javascript"
-            src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>    
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
+        <!-- Rodapé -->
+        <?php require_once('template/rodape.php');?>
 
         <script>
             $(document).ready(function() {
@@ -225,12 +50,9 @@
             });
 
 
-            </script>
+        </script>
 
-<script>
-    // AOS
-AOS.init();
-</script>
+
 
     </body>
 </html>

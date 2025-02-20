@@ -1,86 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg" type="image/x-icon">
-        <title><?php echo $titulo;?></title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/style.css">
-
-        
-    </head>
+    <?php require_once('template/topo.php');?>
 
     <body>
         <!-- Header -->
-        <header class="container-fluid text-white text-center p-3">
-            <!-- Navegação -->
-            <nav class="navbar navbar-expand-lg site">
-                <div class="container">
-                    <a class="navbar-brand" href="<?php echo BASE_URL?>home">
-                        <h1 class="mb-0">Café Divino</h1>
-                    </a>
-                    <button class="navbar-toggler" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <!-- <span class="navbar-toggler-icon"></span> -->
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="nav navbar-nav ms-auto">
-                            <li><a id="len1" class="hoverable" href="<?php echo BASE_URL?>home">Início</a></li>
-                            <li><a id="len2" class="hoverable" href="<?php echo BASE_URL?>cardapio">Cardápio</a></li>
-                            <li><a id="len3" class="hoverable" href="<?php echo BASE_URL?>sobre">Sobre</a></li>
-                            <li><a id="len4" class="hoverable" href="<?php echo BASE_URL?>contato">Contato</a></li>
-                          </ul>
-
-                        <ul class="navbar-nav ms-auto social-icons">
-                            <li class="nav-item">
-                                <a href="https://www.facebook.com" target="_blank" class="nav-link text-white"><i
-                                    class="fa-brands fa-facebook"></i></a>
-                              </li>
-                              <li class="nav-item">
-                                <a href="https://www.instagram.com" target="_blank" class="nav-link text-white"><i
-                                    class="fa-brands fa-instagram"></i></a>
-                              </li>
-                              <li class="nav-item">
-                                <a href="https://www.tiktok.com/" target="_blank" class="nav-link text-white"><i
-                                    class="fa-brands fa-tiktok"></i></a>
-                              </li>
-                        </ul>
-                    </div>
-                </div>
-               
-                <section class="texto-banner">
-                    <article>     
-                         <!-- <h2>Um Toque de Céu em Cada Xícara </h2> -->
-                          <h2 data-aos="fade-down" data-aos-delay="100">Desperte Seu Dia Com O Sabor Divino</h2>
-                          <h3>Experimente o Melhor <span id="element" style="color: #ffff;"></span></h3>
-                    </article>
-                </section>
-    
-                <section class="banner-seta">
-                    <div class="site">
-                    <i class="fa fa-solid fa-circle-chevron-down icone"></i>
-                    </div>
-                </section>
-            </nav>
-
-            
-
-        </header>
-
+        
+    <?php require_once('template/menu.php');?>
+    <?php require_once('template/banner-home.php');?>
 
         <main>
               <!-- Seção de Destaques -->
@@ -151,7 +75,7 @@
 
 
     
-
+            <!-- Seção Produtos Populares -->
             <section class="popular-products text-center py-5">
                 <h2 class="section-title">Descubra</h2>
                 <h3 class="section-subtitle">PRODUTOS MAIS POPULARES</h3>
@@ -215,8 +139,8 @@
             </section>
             
 
-                        <!-- chamada para ação -->
-                        <section class="container-fluid action">
+             <!-- chamada para ação -->
+            <section class="container-fluid action">
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <div class="p-5 text-white rounded">
@@ -226,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+            </section>
 
         <!-- Seção de Informações Adicionais -->
             <section class="container exp">
@@ -253,58 +177,12 @@
         </main>
 
       
-        <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
+        
 
 
-        <!-- Rodapé -->
-
-        <footer>
-            <div class="footer-container">
-                <div class="footer-logo">
-                    <img src="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg" alt="Café Divino Logo"> <!-- Substitua por sua logo -->
-                    <p>Café Divino é uma experiência divina no sabor e aroma.</p>
-                </div>
-                <div class="footer-info">
-                    <h4>Contato</h4>
-                    <p><i class="fas fa-heart"></i> Café Divino</p>
-                    <p><i class="fas fa-phone"></i> (11) 5456-789</p>
-                    <p><i class="fas fa-envelope"></i> cafedivino@smpsistema.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Avenida Marechal Tito, 1500</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Menu</h4>
-                    <ul>
-                        <li><a href="<?php echo BASE_URL?>home">Início</a></li>
-                        <li><a href="<?php echo BASE_URL?>cardapio">Cardápio</a></li>
-                        <li><a href="<?php echo BASE_URL?>sobre">Sobre</a></li>
-                        <li><a href="<?php echo BASE_URL?>contato">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-hours">
-                    <h4>Horário de Funcionamento</h4>
-                    <p>Segunda a sexta: 8h - 20h</p>
-                    <p>Sábado: 9h - 16h</p>
-                    <p>Domingo: Fechado</p>
-                </div>
-            </div>
-            <div class="footer-bottom rodape">
-                <p>&copy; 2024 Café Divino. Todos Os Direreitos Reservados. Desenvolvido por Gabriel Fernando.</p>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-        <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="<?php echo BASE_URL?>assets/js/script.js"></script>
-
-        <script>
-            // AOS
-        AOS.init();
-        </script>
+    <!-- Rodapé -->
+    <?php require_once('template/rodape.php');?>
+        
     </body>
 
 </html>

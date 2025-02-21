@@ -2,7 +2,7 @@
                     <article>
                         <h2>CONTATO</h2>
                         <div>
-                            <a href="index.html">Início</a>
+                            <a href="<?php echo BASE_URL?>home">Início</a>
                             <h3>Contato</h3>
                         </div>
 

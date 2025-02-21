@@ -2,7 +2,7 @@
           <article>
             <h2>Cardápio</h2>
             <div>
-              <a href="index.html">Início</a>
+              <a href="<?php echo BASE_URL?>home">Início</a>
               <h3>Cardápio</h3>
             </div>
 

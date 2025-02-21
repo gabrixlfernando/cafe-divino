@@ -30,7 +30,11 @@
 
             $pagina = basename($pagina);
 
-            // var_dump($pagina);
+            if ($pagina === 'public' || empty($pagina)) {
+                $pagina = 'home';
+            }
+
+             //var_dump($pagina);
             ?>
 
             

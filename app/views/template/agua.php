@@ -4,28 +4,18 @@
         <div class="menu-section">
           <div class="menu-items">
 
+          <?php foreach ($agua as $linha): ?>
             <div class="menu-item">
               <img src="<?php echo BASE_URL?>assets/img/produtos/agua.png" alt="Água Mineral">
               <div class="menu-info">
-                <h3>ÁGUA MINERAL</h3>
-                <p>500 ml<br>
-                  Água mineral natural, refrescante e purificada.</p>
+                <h3><?php echo htmlspecialchars( $linha['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                <p><?php echo htmlspecialchars( $linha['ml_produto'], ENT_QUOTES, 'UTF-8'); ?> ml<br>
+                <?php echo htmlspecialchars( $linha['descricao_produto'], ENT_QUOTES, 'UTF-8'); ?></p>
               </div>
-              <div class="price">5,00</div>
+              <div class="price"><?php echo htmlspecialchars( $linha['valor_produto'], ENT_QUOTES, 'UTF-8'); ?></div>
             </div>
-
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/agua-gas.png" alt="Água com Gás">
-              <div class="menu-info">
-                <h3>ÁGUA COM GÁS</h3>
-                <p>500 ml<br>
-                  Água com gás, ideal para quem prefere uma opção
-                  efervescente.</p>
-              </div>
-              <div class="price">6,00</div>
-            </div>
-
-            <!-- Adicione mais itens conforme necessário -->
+          <?php endforeach; ?>  
+      
           </div>
         </div>
       </article>

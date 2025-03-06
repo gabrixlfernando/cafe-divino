@@ -6,8 +6,8 @@ define('BASE_URL', 'http://localhost/cafe-divino/public/');
 
 // Configuração da data base
 define('DB_HOST', 'smpsistema.com.br');
-define('DB_NAME', 'u283879542_cafedivino ');
-define('DB_USER', 'u283879542_cafedivino ');
+define('DB_NAME', 'u283879542_cafedivino');
+define('DB_USER', 'u283879542_cafedivino');
 define('DB_PASS', '@CafeTi26');
 
 

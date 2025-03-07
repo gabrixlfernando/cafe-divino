@@ -6,7 +6,19 @@
 
           <?php foreach ($agua as $linha): ?>
             <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/agua.png" alt="Água Mineral">
+              <img src="<?php                           
+                            $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/'. $linha['foto_produto'];
+                            if($linha['foto_produto'] != ""){
+                                if(file_exists($caminhoImg)){
+                                    echo "uploads/". $linha['foto_produto'];
+                                }else{
+                                    echo 'uploads/semfoto.png';
+                                }
+                            }else{
+                                echo 'uploads/semfoto.png';
+                            }             
+                            ?>"
+              alt="<?php echo htmlspecialchars( $linha['alt_produto'], ENT_QUOTES, 'UTF-8'); ?>">
               <div class="menu-info">
                 <h3><?php echo htmlspecialchars( $linha['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h3>
                 <p><?php echo htmlspecialchars( $linha['ml_produto'], ENT_QUOTES, 'UTF-8'); ?> ml<br>

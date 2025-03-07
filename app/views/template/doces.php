@@ -4,49 +4,30 @@
         <div class="menu-section">
           <div class="menu-items">
 
+          <?php foreach ($doces as $linha): ?>
             <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/cookies.png" alt="Cookie de Chocolate">
+              <img src="<?php                           
+                            $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/'. $linha['foto_produto'];
+                            if($linha['foto_produto'] != ""){
+                                if(file_exists($caminhoImg)){
+                                    echo "uploads/". $linha['foto_produto'];
+                                }else{
+                                    echo 'uploads/semfoto.png';
+                                }
+                            }else{
+                                echo 'uploads/semfoto.png';
+                            }             
+                            ?>"
+              alt="<?php echo htmlspecialchars( $linha['alt_produto'], ENT_QUOTES, 'UTF-8'); ?>">
               <div class="menu-info">
-                <h3>COOKIE DE CHOCOLATE</h3>
-                <p>Cookie crocante com pedaços de chocolate ao leite e meio
-                  amargo.</p>
+              <h3><?php echo htmlspecialchars( $linha['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                <p><?php echo htmlspecialchars( $linha['descricao_produto'], ENT_QUOTES, 'UTF-8'); ?></p>
               </div>
-              <div class="price">7,00</div>
+              <div class="price"><?php echo htmlspecialchars( $linha['valor_produto'], ENT_QUOTES, 'UTF-8'); ?></div>
             </div>
+            <?php endforeach; ?>   
 
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/donut-chocolate.png" alt="Torta de Limão">
-              <div class="menu-info">
-                <h3>DONUT DE CHOCOLATE</h3>
-                <p>Donut macio coberto com ganache de chocolate belga e
-                  granulados crocantes.</p>
-              </div>
-              <div class="price">10,00</div>
-            </div>
-
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/tiramisu.png" alt="Brownie de Nozes">
-              <div class="menu-info">
-                <h3>TIRAMISU</h3>
-                <p>Camadas de biscoito embebido em café, intercaladas
-                  com um creme leve à base de mascarpone e finalizado com cacau
-                  em pó.</p>
-              </div>
-              <div class="price">9,00</div>
-            </div>
-
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/donut-rosa.png"
-                alt="Bolo de Cenoura com Cobertura de Chocolate">
-              <div class="menu-info">
-                <h3>DONUT DE FRAMBOESA</h3>
-                <p>Donut macio com cobertura de glacê rosa de framboesa.
-                  Perfeito para
-                  quem adora sabores frutados!</p>
-
-              </div>
-              <div class="price">12,00</div>
-            </div>
+            
 
           </div>
         </div>

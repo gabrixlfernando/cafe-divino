@@ -11,7 +11,7 @@ class Produto extends Model{
 
      // Método para listar os últimos 4 produtos cadastrados (novidades)
     public function getNovidades() {
-        $sql = "SELECT * FROM produto WHERE status_produto = 'ATIVO' ORDER BY data_cadastro DESC LIMIT 4";
+        $sql = "SELECT * FROM produto WHERE status_produto = 'ATIVO' ORDER BY id_produto DESC LIMIT 4";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

@@ -4,51 +4,30 @@
         <div class="menu-section">
           <div class="menu-items">
 
+          <?php foreach ($smoothies as $linha): ?>
             <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/smooth-morangobanana.png"
-                alt="Smoothie de Morango e Banana">
+              <img src="<?php                           
+                            $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/'. $linha['foto_produto'];
+                            if($linha['foto_produto'] != ""){
+                                if(file_exists($caminhoImg)){
+                                    echo "uploads/". $linha['foto_produto'];
+                                }else{
+                                    echo 'uploads/semfoto.png';
+                                }
+                            }else{
+                                echo 'uploads/semfoto.png';
+                            }             
+                            ?>"
+              alt="<?php echo htmlspecialchars( $linha['alt_produto'], ENT_QUOTES, 'UTF-8'); ?>">
               <div class="menu-info">
-                <h3>SMOOTHIE DE MORANGO E BANANA</h3>
-                <p>400 ml<br>
-                  Smoothie cremoso feito com morango, banana e leite.</p>
+                <h3><?php echo htmlspecialchars( $linha['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></h3>
+                <p><?php echo htmlspecialchars( $linha['ml_produto'], ENT_QUOTES, 'UTF-8'); ?> ml<br>
+                <?php echo htmlspecialchars( $linha['descricao_produto'], ENT_QUOTES, 'UTF-8'); ?></p>
               </div>
-              <div class="price">18,00</div>
+              <div class="price"><?php echo htmlspecialchars( $linha['valor_produto'], ENT_QUOTES, 'UTF-8'); ?></div>
             </div>
+          <?php endforeach; ?>  
 
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/smoothie-verde.png" alt="Smoothie Verde Detox">
-              <div class="menu-info">
-                <h3>SMOOTHIE VERDE DETOX</h3>
-                <p>400 ml<br>
-                  Smoothie refrescante com espinafre, maçã, gengibre e água de
-                  coco.</p>
-              </div>
-              <div class="price">20,00</div>
-            </div>
-
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/smoothie-tropical.png" alt="Smoothie Tropical">
-              <div class="menu-info">
-                <h3>SMOOTHIE TROPICAL</h3>
-                <p>400 ml<br>
-                  Combinação de manga, abacaxi e leite de coco.</p>
-              </div>
-              <div class="price">22,00</div>
-            </div>
-
-            <div class="menu-item">
-              <img src="<?php echo BASE_URL?>assets/img/produtos/smmothie-frutasvermelhas.png"
-                alt="Smoothie de Frutas Vermelhas">
-              <div class="menu-info">
-                <h3>SMOOTHIE DE FRUTAS VERMELHAS</h3>
-                <p>400 ml<br>
-                  Frutas vermelhas (morango, amora, framboesa) com iogurte
-                  natural.</p>
-              </div>
-              <div class="price">21,00</div>
-            </div>
-
-            <!-- Adicione mais itens conforme necessário -->
           </div>
         </div>
       </article>

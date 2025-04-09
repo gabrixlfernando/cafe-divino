@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // inicio da sessão antes de qualquer saida
+
 // carregue as configurações iniciais da aplicação
 require_once('../config/config.php');
 

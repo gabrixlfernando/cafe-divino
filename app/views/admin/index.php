@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Café Divino | Dashboard</title>
   <!--begin::Primary Meta Tags-->
+  <link rel="shortcut icon" href="<?php echo BASE_URL?>assets/img/logo/logo-café-divíno3.svg" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="title" content="Dashboard Metre dos Motores" />
   <meta name="author" content="Alessandro Palmeira" />
@@ -89,15 +90,15 @@
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <img src="<?php echo BASE_URL ?>dash/assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image" />
-              <span class="d-none d-md-inline">Alexander Pierce</span>
+              <span class="d-none d-md-inline">Gabriel Souza</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
               <li class="user-header text-bg-primary">
                 <img src="<?php echo BASE_URL ?>dash/assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image" />
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2023</small>
+                  Gabriel Souza - ADM
+                  <small>Membro Desde Nov. 2023</small>
                 </p>
               </li>
               <!--end::User Image-->
@@ -161,18 +162,8 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link" style="color: #fff;">
-                    <p>📰 Notícias</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link" style="color: #fff;">
-                    <p>🖼️ Galeria de Imagens</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link" style="color: #fff;">
-                    <p>🎥 Vídeos </p>
+                  <a href="<?php echo BASE_URL?>depoimento/listar" class="nav-link" style="color: #fff;">
+                    <p>📰 Depoimentos</p>
                   </a>
                 </li>
               </ul>
@@ -180,14 +171,14 @@
 
             <li class="nav-header" style="color: #fff;">Contatos</li>
             <li class="nav-item">
-              <a href="dashboard" class="nav-link" style="color: #fff;">
+              <a href="<?php echo BASE_URL?>contato/listar" class="nav-link" style="color: #fff;">
                 <p>📞 Contatos</p>
               </a>
             </li>
 
             <li class="nav-header" style="color: #fff;">Equipe e Parceiros</li>
             <li class="nav-item">
-              <a href="dashboard" class="nav-link" style="color: #fff;">
+              <a href="<?php echo BASE_URL?>funcionario/listar" class="nav-link" style="color: #fff;">
                 <p>👨‍🔧 Funcionários</p>
               </a>
             </li>

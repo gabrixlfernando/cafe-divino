@@ -5,7 +5,7 @@ class Produto extends Model
 
     public function getAllProdutos()
     {
-        $sql = "SELECT * FROM produto WHERE status_produto = 'ATIVO'";
+        $sql = "SELECT * FROM produto WHERE status_produto = 'ATIVO' ORDER BY id_produto DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

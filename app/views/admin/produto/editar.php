@@ -1,14 +1,14 @@
-<h2 class="mb-4">Cadastro de Produto</h2>
+<h2 class="mb-4">Edição de Produto</h2>
 
 <div class="container mt-5">
-    <form action="<?php echo BASE_URL ?>produtos/editar/<?php echo $dadosProduto['id_produto'] ?>" method="POST" enctype="multipart/form-data">
+    <form action="<?php echo BASE_URL ?>produtos/editar/<?php echo $dadosProduto['id_produto']?>" method="POST" enctype="multipart/form-data">
 
         <div class="row d-flex align-items-center">
             <!-- Seção da Imagem (4 colunas) -->
             <div class="col-md-3 d-flex flex-column align-items-center">
                 <label for="foto_produto" class="form-label">Foto do Produto</label>
                 <img id="previewImg" src="<?php echo BASE_URL ?>uploads/<?php echo $dadosProduto['foto_produto'] ?>" class="img-thumbnail mb-3" style="cursor: pointer;" width="300" alt="Pré-visualização">
-                <input type="file" class="form-control" id="foto_produto" name="foto_produto" accept="image/*" style="display: none;" required>
+                <input type="file" class="form-control" id="foto_produto" name="foto_produto" accept="image/*" style="display: none;">
             </div>
 
             <!-- Seção dos Campos (8 colunas) -->
@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="nome_produto" class="form-label">Nome do Produto</label>
-                        <input type="text" class="form-control" id="nome_produto" name="nome_produto" required>
+                        <input type="text" class="form-control" id="nome_produto" name="nome_produto" required value="<?php echo $dadosProduto['nome_produto']; ?>" >
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="categoria_produto" class="form-label">Categoria</label>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="valor_produto" class="form-label">Valor (R$)</label>
-                        <input type="number" class="form-control" id="valor_produto" name="valor_produto" step="0.01" required <?php echo $dadosProduto['valor_produto']; ?>>
+                        <input type="number" class="form-control" id="valor_produto" name="valor_produto" step="0.01" required value="<?php echo $dadosProduto['valor_produto']; ?>" >
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="status_produto" class="form-label">Status</label>

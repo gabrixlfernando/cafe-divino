@@ -13,6 +13,7 @@
   <meta name="description" content="Dashboard Metre dos Motores" />
   <meta name="keywords" content="Dashboard, Metre dos Motores, Motores, serviços, veiculo" />
   <!--end::Primary Meta Tags-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!--begin::Fonts-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"

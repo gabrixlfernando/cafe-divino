@@ -37,9 +37,41 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <?php unset($_SESSION['mensagem']); unset($_SESSION['tipo-msg']); ?>
 <?php endif; ?>
 
+<style>
+    .tabela-personalizada {
+    background-color: #2b1b1b;
+    color: #ffffff;
+    border-collapse: collapse;
+}
+
+.tabela-personalizada th,
+.tabela-personalizada td {
+    background-color: transparent;
+    border-color: #444; /* pode ajustar para um tom mais próximo também se quiser */
+    padding: 12px;
+}
+
+.tabela-personalizada thead {
+    background-color: #241a1a; /* um cabeçalho um pouco mais escuro, combinando */
+}
+
+.tabela-personalizada tbody tr:nth-child(even) {
+    background-color:rgb(37, 24, 24); /* levemente mais claro */
+}
+
+.tabela-personalizada tbody tr:nth-child(odd) {
+    background-color: #2b1b1b; /* seu fundo principal */
+}
+
+.tabela-personalizada tbody tr:hover {
+    background-color: #3a2e2e; /* destaque no hover, ainda dentro da paleta */
+}
+
+</style>
 
 
-<table class="table table-dark table-striped">
+
+<table class="tabela-personalizada">
     <thead>
         <tr>
             <th scope="col">Foto</th>

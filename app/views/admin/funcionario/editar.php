@@ -70,8 +70,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success me-2">Salvar Alterações</button>
-                    <a href="<?php echo BASE_URL ?>funcionario/listar" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn me-2" style="background-color: #e69f00; color: #fff;">Salvar Alterações</button>
+                    <a href="<?php echo BASE_URL ?>funcionario/listar" class="btn" style="background-color: #2b1b1b; color: #fff;">Cancelar</a>
                 </div>
             </div>
         </div>

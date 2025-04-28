@@ -8,11 +8,18 @@ use PHPMailer\PHPMailer\Exception;
 class ContatoController extends Controller{
    
    private $contatoModel;
+   private $funcionarioModel;
+    private $produtoModel;
+    private $depoimentoModel;
+    
 
-   public function __construct(){
-    $this->contatoModel = new Contato();
-
-}
+    public function __construct()
+    {
+        $this->funcionarioModel = new Funcionario();
+        $this->produtoModel = new produto();
+        $this->depoimentoModel = new Depoimento();
+        $this->contatoModel = new Contato();
+    }
     public function index(){
         $dados = array();
         $dados['titulo'] = 'Café Divino | Contato';
@@ -33,6 +40,13 @@ class ContatoController extends Controller{
 
         $dados['contatos'] = $this->contatoModel->getTodosContato();
         // var_dump($dados);
+
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+        
         $this->carregarViews('admin/index', $dados);
 
     }

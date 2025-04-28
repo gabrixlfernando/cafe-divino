@@ -186,4 +186,11 @@ class Produto extends Model
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+    public function getTotalProdutos() {
+        $sql = "SELECT COUNT(*) as total FROM produto";
+        $sql = $this->db->query($sql);
+        $row = $sql->fetch();
+        return $row['total'];
+    }
 }

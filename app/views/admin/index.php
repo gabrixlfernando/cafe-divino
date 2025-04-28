@@ -226,7 +226,7 @@
               <!--begin::Small Box Widget 1-->
               <div class="small-box text-bg-primary">
                 <div class="inner" style="background-color: #2b1b1b;">
-                  <h3>150</h3>
+                  <h3><?php echo $totalProdutos; ?></h3>
                   <p>Produtos</p>
                 </div>
                 <svg class="small-box-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="color: rgba(0, 0, 0, 0.50);">
@@ -246,7 +246,7 @@
               <!--begin::Small Box Widget 2-->
               <div class="small-box text-bg-success">
                 <div class="inner" style="background-color: #e69f00;">
-                  <h3>53</h3>
+                  <h3><?php echo $totalDepoimentos; ?></h3>
                   <p>Depoimentos</p>
                 </div>
                 <svg class="small-box-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -265,7 +265,7 @@
               <!--begin::Small Box Widget 3-->
               <div class="small-box text-bg-warning">
                 <div class="inner" style="background-color: #2b1b1b; color: #fff;">
-                  <h3>44</h3>
+                  <h3><?php echo $totalFuncionarios; ?></h3>
                   <p>Funcionários</p>
                 </div>
                 <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -286,7 +286,7 @@
               <!--begin::Small Box Widget 4-->
               <div class="small-box text-bg-danger">
                 <div class="inner" style="background-color: #e69f00;">
-                  <h3>65</h3>
+                  <h3><?php echo $totalContatos; ?></h3>
                   <p>Contatos</p>
                 </div>
                 <svg class="small-box-icon" fill="currentColor"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

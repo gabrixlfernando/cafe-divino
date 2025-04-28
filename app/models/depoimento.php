@@ -41,4 +41,11 @@ class Depoimento extends Model{
         return $stmt->execute();
     }
 
+    public function getTotalDepoimentos() {
+        $sql = "SELECT COUNT(*) as total FROM depoimento";
+        $sql = $this->db->query($sql);
+        $row = $sql->fetch();
+        return $row['total'];
+    }
+
 }

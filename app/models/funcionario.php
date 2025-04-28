@@ -95,4 +95,10 @@ class Funcionario extends Model
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+    public function getTotalFuncionarios() {
+        $sql = "SELECT COUNT(*) as total FROM funcionario";
+        $sql = $this->db->query($sql);
+        $row = $sql->fetch();
+        return $row['total'];
+    }
 }

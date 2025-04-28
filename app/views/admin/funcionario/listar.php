@@ -37,10 +37,42 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <?php unset($_SESSION['mensagem']); unset($_SESSION['tipo-msg']); ?>
 <?php endif; ?>
 
+<style>
+    .tabela-personalizada {
+    background-color: #2b1b1b;
+    color: #ffffff;
+    border-collapse: collapse;
+}
 
-<a href="<?php echo BASE_URL ?>funcionario/adicionar" class="btn btn-primary">Cadastrar Funcionário</a>
+.tabela-personalizada th,
+.tabela-personalizada td {
+    background-color: transparent;
+    border-color: #444; /* pode ajustar para um tom mais próximo também se quiser */
+    padding: 12px;
+}
 
-<table class="table table-dark table-striped">
+.tabela-personalizada thead {
+    background-color: #241a1a; /* um cabeçalho um pouco mais escuro, combinando */
+}
+
+.tabela-personalizada tbody tr:nth-child(even) {
+    background-color:rgb(37, 24, 24); /* levemente mais claro */
+}
+
+.tabela-personalizada tbody tr:nth-child(odd) {
+    background-color: #2b1b1b; /* seu fundo principal */
+}
+
+.tabela-personalizada tbody tr:hover {
+    background-color: #3a2e2e; /* destaque no hover, ainda dentro da paleta */
+}
+
+</style>
+
+
+<a href="<?php echo BASE_URL ?>funcionario/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">Cadastrar Funcionário</a>
+
+<table class="tabela-personalizada">
     <thead>
         <tr>
             <th scope="col">Nome</th>
@@ -68,7 +100,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <td scope="col"><?php echo htmlspecialchars($linha['status_funcionario'], ENT_QUOTES, 'UTF-8'); ?></td>
                 <td>
                     <a href="<?php echo BASE_URL ?>funcionario/editar/<?php echo $linha['id_funcionario']; ?>"
-                        type="button" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></a>
+                        type="button" class="btn" style="background-color: #e69f00; color: #fff;"><i class="bi bi-pencil-fill"></i></a>
                 </td>
                 <td>
                     <a href="#"

@@ -61,8 +61,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success me-2">Salvar Produto</button>
-                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                <button type="submit" class="btn me-2" style="background-color: #e69f00; color: #fff;">Salvar Produto</button>
+                <a href="<?php echo BASE_URL ?>produtos/listar" class="btn" style="background-color: #2b1b1b; color: #fff;">Cancelar</a>
                 </div>
             </div>
         </div>

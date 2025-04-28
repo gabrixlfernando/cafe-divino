@@ -52,10 +52,10 @@
                     <div class="col-md-6 mb-3">
                         <label for="senha_funcionario" class="form-label">Senha</label>
                         <div class="input-group">
-                        <input type="password" class="form-control" id="senha_funcionario" name="senha_funcionario" required>
-                        <button class="btn btn-outline-secondary" type="button" id="toggleSenha">
+                            <input type="password" class="form-control" id="senha_funcionario" name="senha_funcionario" required>
+                            <button class="btn btn-outline-secondary" type="button" id="toggleSenha">
                                 <i class="fas fa-eye" id="iconeOlho"></i>
-                        </button>
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -69,8 +69,8 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success me-2">Salvar Funcionário</button>
-                    <a href="<?php echo BASE_URL ?>funcionario/listar" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn me-2" style="background-color: #e69f00; color: #fff;">Salvar Alterações</button>
+                    <a href="<?php echo BASE_URL ?>funcionario/listar" class="btn" style="background-color: #2b1b1b; color: #fff;">Cancelar</a>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
 </div>
 
 <script>
-    document.getElementById('toggleSenha').addEventListener('click', function () {
+    document.getElementById('toggleSenha').addEventListener('click', function() {
         const campoSenha = document.getElementById('senha_funcionario');
         const icone = document.getElementById('iconeOlho');
 
@@ -94,4 +94,3 @@
         }
     });
 </script>
-

@@ -3,10 +3,16 @@
 class ProdutosController extends Controller
 {
     private $produtoModel;
+    private $funcionarioModel;
+    private $depoimentoModel;
+    private $contatoModel;
 
     public function __construct()
     {
+        $this->funcionarioModel = new Funcionario();
         $this->produtoModel = new produto();
+        $this->depoimentoModel = new Depoimento();
+        $this->contatoModel = new Contato();
     }
 
     //##############################################################
@@ -21,6 +27,11 @@ class ProdutosController extends Controller
         $dados['conteudo'] = 'admin/produto/listar';
 
         $dados['produtos'] = $this->produtoModel->getAllProdutos();
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
         // var_dump($dados);
         $this->carregarViews('admin/index', $dados);
     }

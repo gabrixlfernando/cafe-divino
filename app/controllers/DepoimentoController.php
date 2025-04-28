@@ -3,10 +3,17 @@
 class DepoimentoController extends Controller
 {
     private $depoimentoModel;
+    private $contatoModel;
+   private $funcionarioModel;
+    private $produtoModel;
+    
 
     public function __construct()
     {
+        $this->funcionarioModel = new Funcionario();
+        $this->produtoModel = new produto();
         $this->depoimentoModel = new Depoimento();
+        $this->contatoModel = new Contato();
     }
 
 
@@ -15,6 +22,11 @@ class DepoimentoController extends Controller
         $dados['conteudo'] = 'admin/depoimento/listar';
 
         $dados['depoimentos'] = $this->depoimentoModel->getAllDepoimentos();
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
         
         $this->carregarViews('admin/index', $dados);
 

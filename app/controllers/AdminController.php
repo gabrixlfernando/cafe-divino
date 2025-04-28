@@ -8,7 +8,18 @@ class AdminController extends Controller{
         //     exit;
         // }
         $dados = array();
-        $dados['titulo'] = 'Café Divino | Dashboard';     
+        $dados['titulo'] = 'Café Divino | Dashboard';    
+        
+        
+        $produto = new Produto();
+        $depoimento = new Depoimento();
+        $funcionario = new Funcionario();
+        $contato = new Contato();
+
+        $dados['totalProdutos'] = $produto->getTotalProdutos();
+        $dados['totalDepoimentos'] = $depoimento->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $funcionario->getTotalFuncionarios();
+        $dados['totalContatos'] = $contato->getTotalContatos();
 
         $this->carregarViews('admin/index', $dados);
         

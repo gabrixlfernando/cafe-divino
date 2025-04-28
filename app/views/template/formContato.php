@@ -23,7 +23,7 @@
         <!-- FORM PHP -->
         <section class="contact-form container-fluid">
             <div class="containeer">
-                <form id="contactForm" action="enviar_email.php" method="POST">
+                <form id="contactForm" action="<?php echo BASE_URL?>contato/enviar" method="POST">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Seu Nome"
                             required>

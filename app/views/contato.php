@@ -25,7 +25,7 @@
                     e.preventDefault(); // Impedir o envio padrão do formulário
             
                     $.ajax({
-                        url: 'enviar_email.php', // Arquivo PHP para processar o envio do e-mail
+                        url: '<?php echo BASE_URL?>contato/enviar', // Arquivo PHP para processar o envio do e-mail
                         type: 'POST',
                         data: $(this).serialize(), // Serializar os dados do formulário
                         dataType: 'json', // Especifica que estamos esperando um JSON

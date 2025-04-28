@@ -8,16 +8,34 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     $mens = $_SESSION['mensagem'];
     $tipo = $_SESSION['tipo-msg'];
 
+    // Definindo a classe da mensagem de acordo com o tipo
     if ($tipo == 'sucesso') {
-        echo '<div class="alert alert-success" role="alert">' . $mens . '</div>';
+        echo '<div class="alert alert-success" id="mensagem-alert" role="alert">' . $mens . '</div>';
     } else if ($tipo == 'erro') {
-        echo '<div class="alert alert-danger" role="alert">' . $mens . '</div>';
+        echo '<div class="alert alert-danger" id="mensagem-alert" role="alert">' . $mens . '</div>';
     }
 
+    // Limpando a sessão
     unset($_SESSION['mensagem']);
     unset($_SESSION['tipo-msg']);
 }
 ?>
+
+
+<?php if (isset($_SESSION['mensagem'])): ?>
+    <div class="alert alert-<?php echo $_SESSION['tipo-msg']; ?>" id="mensagem-alert">
+        <?php echo $_SESSION['mensagem']; ?>
+    </div>
+    <script>
+        setTimeout(function() {
+            var mensagemAlert = document.getElementById('mensagem-alert');
+            if (mensagemAlert) {
+                mensagemAlert.style.display = 'none';
+            }
+        }, 5000); // Tempo em milissegundos (5000ms = 5 segundos)
+    </script>
+    <?php unset($_SESSION['mensagem']); unset($_SESSION['tipo-msg']); ?>
+<?php endif; ?>
 
 
 
@@ -29,7 +47,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <th scope="col">Mensagem</th>
             <th scope="col">Profissão</th>
             <th scope="col">Status</th>
-            <th scope="col">Editar</th>
+            <th scope="col">Ativar</th>
             <th scope="col">Desativar</th>
         </tr>
     </thead>
@@ -60,8 +78,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <td scope="col"><?php echo htmlspecialchars($linha['profissao_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
                 <td scope="col"><?php echo htmlspecialchars($linha['status_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
                 <td>
-                    <a href="<?php echo BASE_URL ?>depoimento/editar/<?php echo $linha['id_depoimento']; ?>"
-                        type="button" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></a>
+                    <a href="#" title="Ativar"
+                        type="button" class="btn btn-success" onclick="abrirModalAtivar(<?php echo $linha['id_depoimento']; ?>); return false;">
+                        <i class="fa-solid fa-check"></i></a>
                 </td>
                 <td>
                     <a href="#"
@@ -74,6 +93,25 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<div class="modal fade" id="ativarModal" tabindex="-1" aria-labelledby="ativarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ativarModalLabel">Ativar Depoimento</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h2>Deseja realmente ativar o Depoimento?</h2>
+                <input type="hidden" id="idParaAtivar" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnAtivar">Ativar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="desativarModal" tabindex="-1" aria-labelledby="desativarModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -88,7 +126,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDesativar">Desativar</button>
+                <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
             </div>
         </div>
     </div>
@@ -96,6 +134,17 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <script>
+    // Verifica se a mensagem existe na tela
+    window.onload = function() {
+        var mensagemAlert = document.getElementById('mensagem-alert');
+        if (mensagemAlert) {
+            // Timeout para esconder a mensagem após 5 segundos (5000ms)
+            setTimeout(function() {
+                mensagemAlert.style.display = 'none';
+            }, 5000); // 5 segundos
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         function abrirModal(id_depoimento) {
 
@@ -139,5 +188,51 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
         window.abrirModal = abrirModal;
+    })
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        function abrirModalAtivar(id_depoimento) {
+
+            if ($('#ativarModal').hasClass('show')) {
+                return
+            }
+            document.getElementById('idParaAtivar').value = id_depoimento;
+            $('#ativarModal').modal('show');
+        }
+
+        document.getElementById('btnAtivar').addEventListener('click', function() {
+            const idDepoimento = document.getElementById('idParaAtivar').value;
+            if (idDepoimento) {
+                // console.log("id recuperado: " + idDepoimento);
+                ativarDepoimento(idDepoimento);
+            }
+        })
+
+        function ativarDepoimento(idDepoimento) {
+            fetch(`<?php echo BASE_URL ?>depoimento/ativar/${idDepoimento}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    $('#ativarModal').modal('hide');
+                    location.reload();
+                })
+
+                .catch(error => {
+                    alert("Erro na requisição. Verifique a conexão com o servidor.");
+                })
+        }
+
+
+        window.abrirModalAtivar = abrirModalAtivar;
     })
 </script>

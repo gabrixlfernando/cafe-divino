@@ -8,16 +8,20 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     $mens = $_SESSION['mensagem'];
     $tipo = $_SESSION['tipo-msg'];
 
+    // Definindo a classe da mensagem de acordo com o tipo
     if ($tipo == 'sucesso') {
-        echo '<div class="alert alert-success" role="alert">' . $mens . '</div>';
+        echo '<div class="alert alert-success" id="mensagem-alert" role="alert">' . $mens . '</div>';
     } else if ($tipo == 'erro') {
-        echo '<div class="alert alert-danger" role="alert">' . $mens . '</div>';
+        echo '<div class="alert alert-danger" id="mensagem-alert" role="alert">' . $mens . '</div>';
     }
 
+    // Limpando a sessão
     unset($_SESSION['mensagem']);
     unset($_SESSION['tipo-msg']);
 }
 ?>
+
+
 
 
 
@@ -28,8 +32,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <th scope="col">Assunto</th>
             <th scope="col">Mensagem</th>
             <th scope="col">Status</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Desativar</th>
+            <th scope="col">Responder</th>
+            <th scope="col">Deletar</th>
         </tr>
     </thead>
     <tbody>
@@ -76,6 +80,19 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <script>
+
+    // Verifica se a mensagem existe na tela
+    window.onload = function() {
+        var mensagemAlert = document.getElementById('mensagem-alert');
+        if (mensagemAlert) {
+            // Timeout para esconder a mensagem após 5 segundos (5000ms)
+            setTimeout(function() {
+                mensagemAlert.style.display = 'none';
+            }, 5000); // 5 segundos
+        }
+    }
+
+    
     document.addEventListener('DOMContentLoaded', function() {
         function abrirModal(id_contato) {
 

@@ -1,3 +1,11 @@
+
+  <!-- Botão Voltar -->
+  <div class="mb-4">
+    <a href="<?php echo BASE_URL ?>contato/listar" class="btn text-white" style="background-color: #e69f00;">
+    <i class="fa-solid fa-circle-left"></i> Voltar para Contatos
+    </a>
+  </div>
+
 <div class="container py-4">
   <?php if (isset($_GET['erro'])): ?>
     <div class="alert alert-danger" role="alert">

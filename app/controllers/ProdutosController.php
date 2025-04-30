@@ -26,6 +26,9 @@ class ProdutosController extends Controller
         $dados = array();
         $dados['conteudo'] = 'admin/produto/listar';
 
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
+
         $dados['produtos'] = $this->produtoModel->getAllProdutos();
 
         $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
@@ -52,6 +55,8 @@ class ProdutosController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
 
         //Se o carregamento da pagina esta vindo do form 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -118,6 +123,9 @@ class ProdutosController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
     
         $dadosProduto = $this->produtoModel->getDadosProduto($id);
     

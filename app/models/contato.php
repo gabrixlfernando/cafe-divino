@@ -4,11 +4,20 @@ class Contato extends Model
 {
     public function getTodosContato()
     {
-        $sql = "SELECT * FROM contato WHERE NOT status_contato = 'DESATIVADO' ORDER BY id_contato DESC";
+        $sql = "SELECT * FROM contato WHERE status_contato = 'AGUARDANDO' ORDER BY id_contato DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getContatosPorStatus($status)
+{
+    $sql = "SELECT * FROM contato WHERE status_contato = :status";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':status', $status);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function salvarContato($dados)
     {

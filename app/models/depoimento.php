@@ -17,6 +17,16 @@ class Depoimento extends Model
         return $stmt->fetchAll();
     }
 
+    public function getDepoimentosPorStatus($status)
+    {
+        $sql = "SELECT * FROM depoimento WHERE status_depoimento = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function getDadosDepoimento($id)
     {
 

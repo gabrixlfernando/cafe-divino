@@ -35,6 +35,36 @@
   <!--end::Required Plugin(AdminLTE)-->
 
   <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: 'poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 5px; /* Largura da barra de rolagem */
+}
+
+/* Cor da parte de fundo da barra de rolagem */
+::-webkit-scrollbar-track {
+    background-color: #2b1b1b; /* Cor de fundo da track da barra de rolagem */
+}
+
+/* Cor da barra de rolagem em si */
+::-webkit-scrollbar-thumb {
+    background-color: #e69f00; /* Cor do thumb (parte que desliza) */
+    border-radius: 5px; /* Arredondamento */
+}
+
+/* Cor ao passar o mouse sobre a barra */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ffb84d; /* Um laranja mais claro ao passar o mouse */
+}
+
     .img-tabela {
       width: 80px;
       height: 80px;
@@ -72,7 +102,7 @@
               <i class="bi bi-list"></i>
             </a>
           </li>
-          <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Site</a></li>
+          <li class="nav-item d-none d-md-block"><a href="<?php echo BASE_URL ?>home" class="nav-link">Site</a></li>
         </ul>
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->
@@ -91,14 +121,14 @@
           <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
               <img src="<?php echo BASE_URL ?>dash/assets/img/usuario.png" class="user-image rounded-circle shadow" alt="User Image" />
-              <span class="d-none d-md-inline">Gabriel Souza</span>
+              <span class="d-none d-md-inline"><?php echo $usuario['nome_funcionario'] ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
               <li class="user-header text-white" style="background-color: #2b1b1b;">
                 <img src="<?php echo BASE_URL ?>dash/assets/img/usuario.png" class="rounded-circle shadow" alt="User Image" />
                 <p>
-                  Gabriel Souza - ADM
+                <?php echo $usuario['nome_funcionario'] ?> - ADM
                   <small>Membro Desde Nov. 2023</small>
                 </p>
               </li>
@@ -107,7 +137,7 @@
               <!--begin::Menu Footer-->
               <li class="user-footer">
                 <!-- <a href="#" class="btn btn-default btn-flat">Perfil</a> -->
-                <a href="#" class="btn btn-danger btn-flat float-end">Sair</a>
+                <a href="<?php echo BASE_URL?>login/sair" class="btn btn-danger btn-flat float-end">Sair</a>
               </li>
               <!--end::Menu Footer-->
             </ul>
@@ -199,7 +229,7 @@
           <!--begin::Row-->
           <div class="row">
             <div class="col-sm-6">
-              <h3 class="mb-0">Dashboard</h3>
+              <h3 class="mb-0"></h3>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-end">
@@ -304,18 +334,49 @@
           <!--end::Row-->
 
           <!--begin::Row-->
-          <div class="row">
+          <div class="container-fluid">
 
-            <?php
-            if (isset($conteudo)) {
-              $this->carregarViews($conteudo, $dados);
-            } else {
-              echo '<h2> Bem-vindo ao Dashboard Café Divino.</h2>';
-            }
-
-            ?>
-
-          </div>
+          <?php
+if (isset($conteudo)) {
+    $this->carregarViews($conteudo, $dados);
+} else {
+    // Configura o fuso horário para Brasília
+    date_default_timezone_set('America/Sao_Paulo');
+    
+    $horaAtual = (int)date('H');
+    $saudacao = ($horaAtual < 12) ? 'Bom dia' : (($horaAtual < 18) ? 'Boa tarde' : 'Boa noite');
+    $dataCompleta = date('d/m/Y');
+    $horaBrasilia = date('H:i');
+    
+    echo '<div class="card border-0 shadow-sm mb-4 welcome-card" style="background-color: #f8f9fa; border-left: 4px solid #e69f00 !important;">';
+    echo '  <div class="card-body p-4">';
+    echo '    <div class="d-flex align-items-center">';
+    echo '      <div class="flex-shrink-0">';
+    echo '        <i class="bi bi-cup-hot-fill fs-1" style="color: #e69f00;"></i>';
+    echo '      </div>';
+    echo '      <div class="flex-grow-1 ms-4">';
+    echo '        <div class="d-flex justify-content-between align-items-center mb-2">';
+    echo '          <h2 class="card-title mb-0" style="color: #2b1b1b;">'.htmlspecialchars($saudacao).', <span style="color: #e69f00;">'.htmlspecialchars($usuario['nome_funcionario']).'</span>!</h2>';
+    echo '          <div class="badge rounded-pill px-3 py-2 time-badge" style="background-color: #e69f00; color: white;">';
+    echo '            <i class="bi bi-clock me-2"></i>'.$horaBrasilia;
+    echo '          </div>';
+    echo '        </div>';
+    echo '        <hr style="border-color: rgba(230, 159, 0, 0.2);">';
+    echo '        <div class="d-flex justify-content-between align-items-center">';
+    echo '          <p class="card-text mb-0" style="color: #6c757d;">';
+    echo '            <i class="bi bi-quote" style="color: #e69f00;"></i> ';
+    echo '            Bem-vindo ao Painel Administrativo do Café Divino.';
+    echo '          </p>';
+    echo '          <small class="text-muted">';
+    echo '            <i class="bi bi-calendar-check me-1"></i>'.$dataCompleta;
+    echo '          </small>';
+    echo '        </div>';
+    echo '      </div>';
+    echo '    </div>';
+    echo '  </div>';
+    echo '</div>';
+}
+?>
           <!-- /.row (main row) -->
 
         </div>
@@ -332,7 +393,7 @@
       <!--begin::Copyright-->
       <strong>
         Copyright &copy; 2025&nbsp;
-        <a href="#" class="text-decoration-none">TI26</a>.
+        <a href="#" class="text-decoration-none" style = "color: #e69f00;" >TI26</a>.
       </strong>
       Todos os direitos reservados.
       <!--end::Copyright-->

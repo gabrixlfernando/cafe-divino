@@ -44,6 +44,9 @@ class ContatoController extends Controller
         $dados['contatos'] = $this->contatoModel->getTodosContato();
         // var_dump($dados);
 
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
+
 
         $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
@@ -52,6 +55,15 @@ class ContatoController extends Controller
 
         $this->carregarViews('admin/index', $dados);
     }
+
+    public function filtrarContatos()
+{
+    $status = $_POST['status'] ?? 'AGUARDANDO'; 
+    
+    $contatos = $this->contatoModel->getContatosPorStatus($status);
+
+    echo json_encode($contatos);
+}
 
     public function enviar()
     {
@@ -170,6 +182,9 @@ class ContatoController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
 
         $dadosContato = $this->contatoModel->getDadosContato($id);
 

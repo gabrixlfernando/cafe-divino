@@ -76,15 +76,28 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
 </style>
 
-<label for="filtro-status">Filtrar por status:</label>
-<select id="filtro-status" class="form-select" style="width: 200px; display: inline-block; margin-bottom: 10px;">
-    <option value="ATIVO" selected>Ativos</option>
-    <option value="DESATIVADO">Desativados</option>
-</select>
-
-
-<a href="<?php echo BASE_URL ?>produtos/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">Cadastrar Produto</a>
-
+<div class="container-fluid mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- Título da página -->
+        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0">Produtos</h1>
+        
+        <div class="d-flex align-items-center gap-3">
+            <!-- Filtro de status -->
+            <div class="d-flex align-items-center">
+                <label for="filtro-status" class="me-2 mb-0">Filtrar por status:</label>
+                <select id="filtro-status" class="form-select" style="width: 200px;">
+                    <option value="ATIVO" selected>Ativos</option>
+                    <option value="DESATIVADO">Desativados</option>
+                </select>
+            </div>
+            
+            <!-- Botão Cadastrar -->
+            <a href="<?php echo BASE_URL ?>produtos/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">
+                Cadastrar Produto
+            </a>
+        </div>
+    </div>
+</div>
 <table class="tabela-personalizada">
     <thead>
         <tr>

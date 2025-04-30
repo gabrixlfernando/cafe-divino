@@ -69,6 +69,25 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 </style>
 
+<div class="container-fluid mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- Título da página -->
+        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0">Depoimentos</h1>
+        
+        <div class="d-flex align-items-center gap-3">
+            <!-- Filtro de status -->
+            <div class="d-flex align-items-center">
+                <label for="filtro-status" class="me-2 mb-0">Filtrar por:</label>
+                <select id="filtro-status" class="form-select" style="width: 200px;">
+                    <option value="TODOS" selected>Todos</option>
+                    <option value="ATIVO">Ativos</option>
+                    <option value="DESATIVADO">Desativados</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <table class="tabela-personalizada">
@@ -79,50 +98,43 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <th scope="col">Mensagem</th>
             <th scope="col">Profissão</th>
             <th scope="col">Status</th>
-            <th scope="col">Ativar</th>
-            <th scope="col">Desativar</th>
+            <th scope="col">Ação</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($depoimentos as $linha): ?>
-            <tr>
-                <td scope="col">
-
-                    <img src="<?php echo BASE_URL ?><?php
-
-                                                    $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_depoimento'];
-
-                                                    if ($linha['foto_depoimento'] != "") {
-                                                        if (file_exists($caminhoImg)) {
-                                                            echo "uploads/" . $linha['foto_depoimento'];
-                                                        } else {
-                                                            echo 'uploads/semfoto.png';
-                                                        }
-                                                    } else {
-                                                        echo 'uploads/semfoto.png';
-                                                    }
-
-                                                    ?>" class="img-thumbnail img-tabela"
-                        alt="<?php echo htmlspecialchars($linha['alt_depoimento'], ENT_QUOTES, 'UTF-8'); ?>" />
-                </td>
-                <td scope="col"><?php echo htmlspecialchars($linha['nome_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td scope="col"><?php echo htmlspecialchars($linha['mens_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td scope="col"><?php echo htmlspecialchars($linha['profissao_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td scope="col"><?php echo htmlspecialchars($linha['status_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td>
-                    <a href="#" title="Ativar"
-                        type="button" class="btn btn-success" onclick="abrirModalAtivar(<?php echo $linha['id_depoimento']; ?>); return false;">
-                        <i class="fa-solid fa-check"></i></a>
-                </td>
-                <td>
-                    <a href="#"
-                        type="button" class="btn btn-danger" title="Desativar"
-                        onclick="abrirModal(<?php echo $linha['id_depoimento']; ?>); return false;">
-                        <i class="bi bi-trash-fill"></i>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+    <?php foreach ($depoimentos as $linha): ?>
+    <tr>
+        <td scope="col">
+            <img src="<?php echo BASE_URL ?><?php
+                $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_depoimento'];
+                if ($linha['foto_depoimento'] != "") {
+                    if (file_exists($caminhoImg)) {
+                        echo "uploads/" . $linha['foto_depoimento'];
+                    } else {
+                        echo 'uploads/semfoto.png';
+                    }
+                } else {
+                    echo 'uploads/semfoto.png';
+                }
+            ?>" class="img-thumbnail img-tabela" alt="<?php echo htmlspecialchars($linha['alt_depoimento'], ENT_QUOTES, 'UTF-8'); ?>" />
+        </td>
+        <td scope="col"><?php echo htmlspecialchars($linha['nome_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td scope="col"><?php echo htmlspecialchars($linha['mens_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td scope="col"><?php echo htmlspecialchars($linha['profissao_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td scope="col"><?php echo htmlspecialchars($linha['status_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td>
+            <?php if ($linha['status_depoimento'] === 'ATIVO'): ?>
+                <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(<?php echo $linha['id_depoimento']; ?>); return false;">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+            <?php else: ?>
+                <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(<?php echo $linha['id_depoimento']; ?>); return false;">
+                    <i class="fa-solid fa-check"></i>
+                </a>
+            <?php endif; ?>
+        </td>
+    </tr>
+<?php endforeach; ?>
     </tbody>
 </table>
 
@@ -267,4 +279,52 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
         window.abrirModalAtivar = abrirModalAtivar;
     })
+
+    document.getElementById('filtro-status').addEventListener('change', function() {
+    const statusSelecionado = this.value;
+
+    fetch('<?php echo BASE_URL; ?>depoimento/filtrarDepoimentos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'status=' + encodeURIComponent(statusSelecionado),
+        })
+        .then(response => response.json())
+        .then(depoimentos => {
+            const tbody = document.querySelector('.tabela-personalizada tbody');
+            tbody.innerHTML = ''; // Limpa o corpo da tabela
+
+            depoimentos.forEach(depoimento => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <img src="<?php echo BASE_URL; ?>uploads/${depoimento.foto_depoimento || 'semfoto.png'}" class="img-thumbnail img-tabela" alt="${depoimento.alt_depoimento}" />
+                    </td>
+                    <td>${depoimento.nome_depoimento}</td>
+                    <td>${depoimento.mens_depoimento}</td>
+                    <td>${depoimento.profissao_depoimento}</td>
+                    <td>${depoimento.status_depoimento}</td>
+                    <td>
+                        ${depoimento.status_depoimento === 'ATIVO' ? `
+                            <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(${depoimento.id_depoimento}); return false;">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        ` : `
+                            <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(${depoimento.id_depoimento}); return false;">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+                        `}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar depoimentos:', error);
+            alert('Erro ao carregar os depoimentos. Tente novamente.');
+        });
+});
+
+
 </script>

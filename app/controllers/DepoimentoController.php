@@ -37,8 +37,26 @@ class DepoimentoController extends Controller
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
 
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
+
         $this->carregarViews('admin/index', $dados);
     }
+
+    public function filtrarDepoimentos()
+{
+    $status = $_POST['status'] ?? 'TODOS';
+    
+    if ($status === 'TODOS') {
+        $depoimentos = $this->depoimentoModel->getAllDepoimentos(); // Método que busca todos, independente do status
+    } else {
+        $depoimentos = $this->depoimentoModel->getDepoimentosPorStatus($status);
+    }
+
+    echo json_encode($depoimentos);
+}
+
+
 
     public function salvar()
     {

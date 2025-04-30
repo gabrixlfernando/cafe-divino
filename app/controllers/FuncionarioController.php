@@ -30,6 +30,9 @@ class FuncionarioController extends Controller
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
 
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
+
         $this->carregarViews('admin/index', $dados);
     }
 
@@ -41,6 +44,9 @@ class FuncionarioController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Sanitização dos dados recebidos via POST
@@ -107,6 +113,9 @@ class FuncionarioController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+
+        // Passa os dados do usuário logado para a view
+        $dados['usuario'] = $_SESSION['usuario'];
 
         $dadosFuncionario = $this->funcionarioModel->getDadosFuncionario($id);
 

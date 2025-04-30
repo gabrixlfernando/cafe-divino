@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <h3 class="card-title">Nossos Destaques</h3>
                                 <p class="card-text">Explore nossos produtos mais populares e descubra sabores únicos.</p>
-                                <a href="cardapio.html" class="btn btn-warning">Ver Mais Produtos</a>
+                                <a href="<?php echo BASE_URL?>cardapio" class="btn btn-warning">Ver Mais Produtos</a>
                             </div>
                         </div>
                     </div>

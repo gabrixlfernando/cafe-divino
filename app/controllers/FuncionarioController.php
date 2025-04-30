@@ -37,6 +37,11 @@ class FuncionarioController extends Controller
     {
         $dados = array();
 
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Sanitização dos dados recebidos via POST
             $nome_funcionario      = filter_input(INPUT_POST, 'nome_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -56,7 +61,7 @@ class FuncionarioController extends Controller
                 $senha_funcionario && $status_funcionario
             ) {
                 $data_cad_funcionario = date('Y-m-d H:i:s');
-                
+
 
                 $dadosFuncionario = array(
                     'nome_funcionario'      => $nome_funcionario,
@@ -97,6 +102,11 @@ class FuncionarioController extends Controller
     public function editar($id = null)
     {
         $dados = array();
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
 
         $dadosFuncionario = $this->funcionarioModel->getDadosFuncionario($id);
 
@@ -175,6 +185,38 @@ class FuncionarioController extends Controller
             echo json_encode(['sucesso' => true]);
         } else {
             echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o Funcionário']);
+        }
+    }
+
+    public function filtrarFuncionarios()
+    {
+        $status = $_POST['status'] ?? 'ATIVO';
+        $funcionarios = $this->funcionarioModel->getFuncionariosPorStatus($status);
+
+        echo json_encode($funcionarios);
+    }
+
+    public function ativar()
+    {
+        header('Content-Type: application/json');
+
+        $id = $_POST['id_funcionario'] ?? null;
+
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(['sucesso' => false, 'mensagem' => 'ID inválido']);
+            exit;
+        }
+
+        $ativar = $this->funcionarioModel->ativarFuncionario($id);
+
+        if ($ativar) {
+            $_SESSION['mensagem'] = 'Funcionário ativado com sucesso';
+            $_SESSION['tipo-msg'] = 'sucesso';
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao ativar o funcionário']);
         }
     }
 }

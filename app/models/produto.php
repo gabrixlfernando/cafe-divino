@@ -11,6 +11,15 @@ class Produto extends Model
         return $stmt->fetchAll();
     }
 
+    public function getProdutosPorStatus($status)
+{
+    $sql = "SELECT * FROM produto WHERE status_produto = :status ORDER BY id_produto DESC";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':status', $status);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
     // Método para listar os últimos 4 produtos cadastrados (novidades)
     public function getNovidades()
     {
@@ -187,8 +196,15 @@ class Produto extends Model
         return $stmt->execute();
     }
 
+    public function ativarProduto($id) {
+        $sql = "UPDATE produto SET status_produto = 'ATIVO' WHERE id_produto = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
     public function getTotalProdutos() {
-        $sql = "SELECT COUNT(*) as total FROM produto";
+        $sql = "SELECT COUNT(*) as total FROM produto WHERE status_produto = 'ATIVO'";
         $sql = $this->db->query($sql);
         $row = $sql->fetch();
         return $row['total'];

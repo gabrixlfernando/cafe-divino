@@ -18,7 +18,7 @@
                     <p>cafedivino@smpsistema.com</p>
                 </div>
             </div>
-        </section>
+</section>
 
         <!-- FORM PHP -->
         <section class="contact-form container-fluid">

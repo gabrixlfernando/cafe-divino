@@ -38,37 +38,50 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     unset($_SESSION['tipo-msg']); ?>
 <?php endif; ?>
 
+
+
 <style>
     .tabela-personalizada {
-    background-color: #2b1b1b;
-    color: #ffffff;
-    border-collapse: collapse;
-}
+        background-color: #2b1b1b;
+        color: #ffffff;
+        border-collapse: collapse;
+    }
 
-.tabela-personalizada th,
-.tabela-personalizada td {
-    background-color: transparent;
-    border-color: #444; /* pode ajustar para um tom mais próximo também se quiser */
-    padding: 12px;
-}
+    .tabela-personalizada th,
+    .tabela-personalizada td {
+        background-color: transparent;
+        border-color: #444;
+        /* pode ajustar para um tom mais próximo também se quiser */
+        padding: 12px;
+    }
 
-.tabela-personalizada thead {
-    background-color: #241a1a; /* um cabeçalho um pouco mais escuro, combinando */
-}
+    .tabela-personalizada thead {
+        background-color: #241a1a;
+        /* um cabeçalho um pouco mais escuro, combinando */
+    }
 
-.tabela-personalizada tbody tr:nth-child(even) {
-    background-color:rgb(37, 24, 24); /* levemente mais claro */
-}
+    .tabela-personalizada tbody tr:nth-child(even) {
+        background-color: rgb(37, 24, 24);
+        /* levemente mais claro */
+    }
 
-.tabela-personalizada tbody tr:nth-child(odd) {
-    background-color: #2b1b1b; /* seu fundo principal */
-}
+    .tabela-personalizada tbody tr:nth-child(odd) {
+        background-color: #2b1b1b;
+        /* seu fundo principal */
+    }
 
-.tabela-personalizada tbody tr:hover {
-    background-color: #3a2e2e; /* destaque no hover, ainda dentro da paleta */
-}
-
+    .tabela-personalizada tbody tr:hover {
+        background-color: #3a2e2e;
+        /* destaque no hover, ainda dentro da paleta */
+    }
 </style>
+
+<label for="filtro-status">Filtrar por status:</label>
+<select id="filtro-status" class="form-select" style="width: 200px; display: inline-block; margin-bottom: 10px;">
+    <option value="ATIVO" selected>Ativos</option>
+    <option value="DESATIVADO">Desativados</option>
+</select>
+
 
 <a href="<?php echo BASE_URL ?>produtos/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">Cadastrar Produto</a>
 
@@ -160,10 +173,32 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnDesativar">Desativar</button>
+                <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal de Ativar Produto -->
+<div class="modal fade" id="modalAtivarProduto" tabindex="-1" aria-labelledby="modalAtivarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <form id="formAtivarProduto">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalAtivarLabel">Ativar Produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja ativar este produto?
+          <input type="hidden" name="id_produto" id="id_produto_ativar">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="btnConfirmarAtivacao">Ativar</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 
@@ -178,6 +213,40 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             }, 5000); // 5 segundos
         }
     }
+
+    function abrirModalAtivar(id) {
+        document.getElementById('id_produto_ativar').value = id;
+        var modal = new bootstrap.Modal(document.getElementById('modalAtivarProduto'));
+        modal.show();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btnConfirmarAtivacao').addEventListener('click', function () {
+        const idProduto = document.getElementById('id_produto_ativar').value;
+
+        fetch('<?php echo BASE_URL; ?>produtos/ativar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'id_produto=' + encodeURIComponent(idProduto)
+        })
+        .then(response => response.json())
+        .then(data => {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('modalAtivarProduto'));
+            modal.hide();
+
+            if (data.sucesso) {
+                location.reload(); // recarrega a página na mesma URL
+            } else {
+                alert('Erro ao ativar: ' + data.mensagem);
+            }
+        })
+        .catch(error => {
+            alert('Erro na requisição: ' + error);
+        });
+    });
+});
 
     document.addEventListener('DOMContentLoaded', function() {
         function abrirModal(id_produto) {
@@ -223,4 +292,80 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
         window.abrirModal = abrirModal;
     })
+
+
+
+    document.getElementById('filtro-status').addEventListener('change', function() {
+    const statusSelecionado = this.value;
+
+    fetch('<?php echo BASE_URL; ?>produtos/filtrarProdutos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'status=' + encodeURIComponent(statusSelecionado),
+        })
+        .then(response => response.json())
+        .then(produtos => {
+            const tabela = document.querySelector('.tabela-personalizada');
+            
+            // Definindo a estrutura do cabeçalho da tabela
+            tabela.innerHTML = `
+                <thead>
+                    <tr>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">ML</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Ativar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As linhas serão inseridas aqui dinamicamente -->
+                </tbody>
+            `;
+
+            const tbody = tabela.querySelector('tbody');
+            tbody.innerHTML = ''; // Limpa o corpo da tabela antes de inserir as novas linhas
+
+            produtos.forEach(produto => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="<?php echo BASE_URL; ?>uploads/${produto.foto_produto || 'semfoto.png'}" class="img-thumbnail img-tabela" /></td>
+                    <td>${produto.nome_produto}</td>
+                    <td>${produto.descricao_produto}</td>
+                    <td>${produto.categoria_produto}</td>
+                    <td>${produto.ml_produto}</td>
+                    <td>${produto.valor_produto}</td>
+                    <td>${produto.status_produto}</td>
+                    <td>
+                        <a href="<?php echo BASE_URL; ?>produtos/editar/${produto.id_produto}" class="btn" style="background-color: #e69f00; color: #fff;">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </td>
+                    <td>
+                        ${produto.status_produto === 'ATIVO' ? `
+                            <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(${produto.id_produto}); return false;">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        ` : `
+                            <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(${produto.id_produto}); return false;">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+                        `}
+                    </td>
+                `;
+                tbody.appendChild(tr); // Adiciona a linha criada à tabela
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar produtos:', error);
+            alert('Erro ao carregar os produtos. Tente novamente.');
+        });
+});
+
 </script>

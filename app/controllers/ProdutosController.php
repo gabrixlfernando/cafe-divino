@@ -36,9 +36,22 @@ class ProdutosController extends Controller
         $this->carregarViews('admin/index', $dados);
     }
 
+    public function filtrarProdutos()
+{
+    $status = $_POST['status'] ?? 'ATIVO';
+    $produtos = $this->produtoModel->getProdutosPorStatus($status);
+
+    echo json_encode($produtos);
+}
+
     public function adicionar()
     {
         $dados = array();
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
 
         //Se o carregamento da pagina esta vindo do form 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -100,6 +113,11 @@ class ProdutosController extends Controller
     }
     public function editar($id = null){
         $dados = array();
+
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
     
         $dadosProduto = $this->produtoModel->getDadosProduto($id);
     
@@ -159,6 +177,30 @@ class ProdutosController extends Controller
     
         $this->carregarViews('admin/index', $dados);
     }
+
+    public function ativar() {
+        header('Content-Type: application/json');
+    
+        $id = $_POST['id_produto'] ?? null;
+    
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(['sucesso' => false, 'mensagem' => 'ID inválido']);
+            exit;
+        }
+    
+        $ativar = $this->produtoModel->ativarProduto($id);
+    
+        if ($ativar) {
+            $_SESSION['mensagem'] = 'Produto ativado com sucesso';
+            $_SESSION['tipo-msg'] = 'sucesso';
+    
+            echo json_encode(['sucesso' => true]);
+        } else {
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao ativar o produto']);
+        }
+    }
+    
     
 
     public function desativar($id = null)
@@ -197,7 +239,7 @@ class ProdutosController extends Controller
         $nome_foto = uniqid() . $novoNome . '.' . $ext;
 
         if (move_uploaded_file($file['tmp_name'], $dir . $nome_foto)) {
-            return 'produto/' . $nome_foto;
+            return 'produtos/' . $nome_foto;
         }
 
         return false;

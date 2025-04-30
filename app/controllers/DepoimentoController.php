@@ -4,9 +4,9 @@ class DepoimentoController extends Controller
 {
     private $depoimentoModel;
     private $contatoModel;
-   private $funcionarioModel;
+    private $funcionarioModel;
     private $produtoModel;
-    
+
 
     public function __construct()
     {
@@ -16,8 +16,17 @@ class DepoimentoController extends Controller
         $this->contatoModel = new Contato();
     }
 
+    public function index()
+    {
+        $dados = array();
+        $dados['titulo'] = 'Café Divino | Depoimento';
 
-    public function listar(){
+        $this->carregarViews('depoimento', $dados);
+    }
+
+
+    public function listar()
+    {
         $dados = array();
         $dados['conteudo'] = 'admin/depoimento/listar';
 
@@ -27,10 +36,65 @@ class DepoimentoController extends Controller
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
-        
-        $this->carregarViews('admin/index', $dados);
 
+        $this->carregarViews('admin/index', $dados);
     }
+
+    public function salvar()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Apenas trim para limpar espaços e manter os acentos
+            $nome = trim($_POST['nome_depoimento'] ?? '');
+            $profissao = trim($_POST['profissao_depoimento'] ?? '');$profissao = trim($_POST['profissao_depoimento'] ?? '');
+            // Coloca a primeira letra de cada palavra em maiúsculo
+            $profissao = ucwords(strtolower($profissao));
+            $mensagem = trim($_POST['mens_depoimento'] ?? '');
+    
+            // Nome todo em maiúsculo com suporte a UTF-8
+            $nome = mb_strtoupper($nome, 'UTF-8');
+    
+            $alt = $nome;
+            $status = 'DESATIVADO';
+            $dataHora = date('Y-m-d H:i:s');
+    
+            $arquivo = null;
+            if (isset($_FILES['foto_depoimento']) && $_FILES['foto_depoimento']['error'] === 0) {
+                $arquivo = $this->uploadFotoCliente($_FILES['foto_depoimento'], $nome);
+            }
+    
+            if (!$arquivo) {
+                echo json_encode(['status' => 'error', 'message' => 'Erro ao fazer upload da imagem.'], JSON_UNESCAPED_UNICODE);
+                exit;
+            }
+    
+            $dadosDepoimento = [
+                'nome_depoimento'      => $nome,
+                'profissao_depoimento' => $profissao,
+                'mens_depoimento'      => $mensagem,
+                'foto_depoimento'      => $arquivo,
+                'alt_depoimento'       => $alt,
+                'status_depoimento'    => $status,
+                'datahora_depoimento'  => $dataHora
+            ];
+    
+            $inserido = $this->depoimentoModel->inserir($dadosDepoimento);
+    
+            if ($inserido) {
+                echo json_encode(['status' => 'success', 'message' => 'Depoimento enviado com sucesso!'], JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Erro ao salvar no banco.'], JSON_UNESCAPED_UNICODE);
+            }
+    
+            exit;
+        }
+    
+        echo json_encode(['status' => 'error', 'message' => 'Requisição inválida.'], JSON_UNESCAPED_UNICODE);
+    }
+    
+    
+    
 
     public function ativar($id = null)
     {
@@ -74,5 +138,25 @@ class DepoimentoController extends Controller
         } else {
             echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o Depoimento']);
         }
+    }
+
+    public function uploadFotoCliente($file, $nome)
+    {
+        $dir = '../public/uploads/clientes/';
+
+        if (!file_exists($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+        $novoNome = strtolower(trim(preg_replace('/[^a-zA-Z0-9]/', '-', $nome)));
+        $nome_foto = uniqid() . '-' . $novoNome . '.' . $ext;
+
+        if (move_uploaded_file($file['tmp_name'], $dir . $nome_foto)) {
+            return 'clientes/' . $nome_foto;
+        }
+
+        return null;
     }
 }

@@ -10,6 +10,15 @@ class Funcionario extends Model
         return $stmt->fetchAll();
     }
 
+    public function getFuncionariosPorStatus($status)
+{
+    $sql = "SELECT * FROM funcionario WHERE status_funcionario = :status ORDER BY id_funcionario DESC";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':status', $status);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
     public function getDadosFuncionario($id)
     {
 
@@ -95,8 +104,15 @@ class Funcionario extends Model
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+    public function ativarFuncionario($id)
+    {
+        $sql = "UPDATE funcionario SET status_funcionario = 'ATIVO' WHERE id_funcionario = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
     public function getTotalFuncionarios() {
-        $sql = "SELECT COUNT(*) as total FROM funcionario";
+        $sql = "SELECT COUNT(*) as total FROM funcionario WHERE status_funcionario = 'ATIVO'";
         $sql = $this->db->query($sql);
         $row = $sql->fetch();
         return $row['total'];

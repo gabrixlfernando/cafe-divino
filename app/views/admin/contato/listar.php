@@ -104,7 +104,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-primary" id="btnDesativar">Desativar</button>
+      <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
       </div>
     </div>
   </div>

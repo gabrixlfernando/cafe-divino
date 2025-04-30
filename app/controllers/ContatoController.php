@@ -1,17 +1,19 @@
-<?php 
+<?php
 require_once __DIR__ . '/../../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
 
-class ContatoController extends Controller{
-   
-   private $contatoModel;
-   private $funcionarioModel;
+class ContatoController extends Controller
+{
+
+    private $contatoModel;
+    private $funcionarioModel;
     private $produtoModel;
     private $depoimentoModel;
-    
+
 
     public function __construct()
     {
@@ -20,21 +22,22 @@ class ContatoController extends Controller{
         $this->depoimentoModel = new Depoimento();
         $this->contatoModel = new Contato();
     }
-    public function index(){
+    public function index()
+    {
         $dados = array();
         $dados['titulo'] = 'Café Divino | Contato';
 
         $this->carregarViews('contato', $dados);
-        
     }
 
     //##############################################################
     // BACK-END DASHBOARD CONTATO
     //##############################################################
 
-   
 
-    public function listar(){
+
+    public function listar()
+    {
         $dados = array();
         $dados['conteudo'] = 'admin/contato/listar';
 
@@ -46,9 +49,8 @@ class ContatoController extends Controller{
         $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
         $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
         $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
-        
-        $this->carregarViews('admin/index', $dados);
 
+        $this->carregarViews('admin/index', $dados);
     }
 
     public function enviar()
@@ -161,89 +163,92 @@ class ContatoController extends Controller{
 
 
     public function editar($id = null)
-{
-    $dados = array();
+    {
+        $dados = array();
 
-    $dadosContato = $this->contatoModel->getDadosContato($id);
+        $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
+        $dados['totalDepoimentos'] = $this->depoimentoModel->getTotalDepoimentos();
+        $dados['totalFuncionarios'] = $this->funcionarioModel->getTotalFuncionarios();
+        $dados['totalContatos'] = $this->contatoModel->getTotalContatos();
 
-    if (!$dadosContato) {
-        // Se o contato não existir, redireciona para a lista de contatos
-        header('Location: ' . BASE_URL . 'contato/listar');
-        exit;
-    }
+        $dadosContato = $this->contatoModel->getDadosContato($id);
 
-    // Verifica se foi enviada uma resposta (POST)
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $resposta = htmlspecialchars(trim($_POST['resposta']), ENT_QUOTES, 'UTF-8');
+        if (!$dadosContato) {
+            // Se o contato não existir, redireciona para a lista de contatos
+            header('Location: ' . BASE_URL . 'contato/listar');
+            exit;
+        }
 
-        // Verifica se a resposta não está vazia
-        if (!empty($resposta)) {
-            $emailDestinatario = $dadosContato['email_contato'];
-            $nomeDestinatario = $dadosContato['nome_contato'];
-            $assuntoResposta = "Resposta ao seu contato - Café Divino";
+        // Verifica se foi enviada uma resposta (POST)
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $resposta = htmlspecialchars(trim($_POST['resposta']), ENT_QUOTES, 'UTF-8');
 
-            // Cria um novo objeto PHPMailer para enviar a resposta
-            $mail = new PHPMailer(true);
+            // Verifica se a resposta não está vazia
+            if (!empty($resposta)) {
+                $emailDestinatario = $dadosContato['email_contato'];
+                $nomeDestinatario = $dadosContato['nome_contato'];
+                $assuntoResposta = "Resposta ao seu contato - Café Divino";
 
-            try {
-                $mail->isSMTP();
-                $mail->Host = 'smtp.hostinger.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'cafedivino@smpsistema.com.br';
-                $mail->Password = 'CafeDivino@01';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port = 465;
-                $mail->CharSet = 'UTF-8';
+                // Cria um novo objeto PHPMailer para enviar a resposta
+                $mail = new PHPMailer(true);
 
-                $mail->setFrom('cafedivino@smpsistema.com.br', 'Café Divino');
-                $mail->addAddress($emailDestinatario, $nomeDestinatario);
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.hostinger.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'cafedivino@smpsistema.com.br';
+                    $mail->Password = 'CafeDivino@01';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                    $mail->Port = 465;
+                    $mail->CharSet = 'UTF-8';
 
-                $mail->isHTML(true);
-                $mail->Subject = $assuntoResposta;
-                $mail->Body = nl2br($resposta);
-                $mail->AltBody = strip_tags($resposta);
+                    $mail->setFrom('cafedivino@smpsistema.com.br', 'Café Divino');
+                    $mail->addAddress($emailDestinatario, $nomeDestinatario);
 
-                // Envia o e-mail
-                $mail->send();
+                    $mail->isHTML(true);
+                    $mail->Subject = $assuntoResposta;
+                    $mail->Body = nl2br($resposta);
+                    $mail->AltBody = strip_tags($resposta);
 
-                // Se o e-mail foi enviado com sucesso, atualiza o status do contato no banco de dados
-                $this->contatoModel->atualizarStatusRespondido($id);
+                    // Envia o e-mail
+                    $mail->send();
 
-                // Armazena uma mensagem de sucesso na sessão e redireciona
-                $_SESSION['mensagem'] = 'Resposta enviada com sucesso!';
-                $_SESSION['tipo-msg'] = 'sucesso';
-                header('Location: ' . BASE_URL . 'contato/listar');
-                exit;
+                    // Se o e-mail foi enviado com sucesso, atualiza o status do contato no banco de dados
+                    $this->contatoModel->atualizarStatusRespondido($id);
 
-            } catch (Exception $e) {
-                // Se ocorrer um erro ao enviar o e-mail, armazena a mensagem de erro na sessão
-                $_SESSION['mensagem'] = 'Erro ao enviar resposta: ' . $mail->ErrorInfo;
+                    // Armazena uma mensagem de sucesso na sessão e redireciona
+                    $_SESSION['mensagem'] = 'Resposta enviada com sucesso!';
+                    $_SESSION['tipo-msg'] = 'sucesso';
+                    header('Location: ' . BASE_URL . 'contato/listar');
+                    exit;
+                } catch (Exception $e) {
+                    // Se ocorrer um erro ao enviar o e-mail, armazena a mensagem de erro na sessão
+                    $_SESSION['mensagem'] = 'Erro ao enviar resposta: ' . $mail->ErrorInfo;
+                    $_SESSION['tipo-msg'] = 'erro';
+
+                    // Redireciona para a página de edição com a mensagem de erro
+                    header('Location: ' . BASE_URL . 'contato/editar/' . $id);
+                    exit;
+                }
+            } else {
+                // Caso a resposta esteja vazia, define uma mensagem de erro
+                $_SESSION['mensagem'] = 'Preencha a resposta antes de enviar.';
                 $_SESSION['tipo-msg'] = 'erro';
-
-                // Redireciona para a página de edição com a mensagem de erro
                 header('Location: ' . BASE_URL . 'contato/editar/' . $id);
                 exit;
             }
-
-        } else {
-            // Caso a resposta esteja vazia, define uma mensagem de erro
-            $_SESSION['mensagem'] = 'Preencha a resposta antes de enviar.';
-            $_SESSION['tipo-msg'] = 'erro';
-            header('Location: ' . BASE_URL . 'contato/editar/' . $id);
-            exit;
         }
+
+        // Se não for um POST, carrega os dados do contato para exibição no formulário
+        $dados['dadosContato'] = $dadosContato;
+        $dados['conteudo'] = 'admin/contato/editar';
+
+        // Carrega a view com os dados
+        $this->carregarViews('admin/index', $dados);
     }
 
-    // Se não for um POST, carrega os dados do contato para exibição no formulário
-    $dados['dadosContato'] = $dadosContato;
-    $dados['conteudo'] = 'admin/contato/editar';
 
-    // Carrega a view com os dados
-    $this->carregarViews('admin/index', $dados);
-}
-
-
-public function desativar($id = null)
+    public function desativar($id = null)
     {
         header('Content-Type: application/json');
 
@@ -264,7 +269,4 @@ public function desativar($id = null)
             echo json_encode(['sucesso' => false, 'mensagem' => 'Falha ao desativar o Contato']);
         }
     }
-
-
-
 }

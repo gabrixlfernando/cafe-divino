@@ -16,7 +16,7 @@
                                 surpreenda com as combinações que vão além do
                                 comum.
                             </p>
-                            <a href="cardapio.html" class="btn-menu">Veja Todo o
+                            <a href="<?php echo BASE_URL?>cardapio" class="btn-menu">Veja Todo o
                                 Menu</a>
                         </div>
                         <div class="menu-images">

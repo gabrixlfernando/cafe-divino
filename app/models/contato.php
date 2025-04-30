@@ -4,7 +4,7 @@ class Contato extends Model
 {
     public function getTodosContato()
     {
-        $sql = "SELECT * FROM contato ORDER BY id_contato DESC";
+        $sql = "SELECT * FROM contato WHERE NOT status_contato = 'DESATIVADO' ORDER BY id_contato DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -67,7 +67,7 @@ class Contato extends Model
 
     public function getTotalContatos()
     {
-        $sql = "SELECT COUNT(*) as total FROM contato";
+        $sql = "SELECT COUNT(*) as total FROM contato WHERE status_contato = 'AGUARDANDO'";
         $sql = $this->db->query($sql);
         $row = $sql->fetch();
         return $row['total'];

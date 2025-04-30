@@ -69,6 +69,11 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 </style>
 
+<label for="filtro-status">Filtrar por status:</label>
+<select id="filtro-status" class="form-select" style="width: 200px; display: inline-block; margin-bottom: 10px;">
+    <option value="ATIVO" selected>Ativos</option>
+    <option value="DESATIVADO">Desativados</option>
+</select>
 
 <a href="<?php echo BASE_URL ?>funcionario/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">Cadastrar Funcionário</a>
 
@@ -127,7 +132,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button type="button" class="btn btn-primary" id="btnDesativar">Desativar</button>
+      <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
       </div>
     </div>
   </div>
@@ -145,6 +150,41 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             }, 5000); // 5 segundos
         }
     }
+
+    function abrirModalAtivar(id) {
+    document.getElementById('id_funcionario_ativar').value = id;
+    var modal = new bootstrap.Modal(document.getElementById('modalAtivarFuncionario'));
+    modal.show();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btnConfirmarAtivacao').addEventListener('click', function () {
+        const idFuncionario = document.getElementById('id_funcionario_ativar').value;
+
+        fetch('<?php echo BASE_URL; ?>funcionario/ativar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'id_funcionario=' + encodeURIComponent(idFuncionario)
+        })
+        .then(response => response.json())
+        .then(data => {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('modalAtivarFuncionario'));
+            modal.hide();
+
+            if (data.sucesso) {
+                location.reload(); // recarrega a página na mesma URL
+            } else {
+                alert('Erro ao ativar: ' + data.mensagem);
+            }
+        })
+        .catch(error => {
+            alert('Erro na requisição: ' + error);
+        });
+    });
+});
+
     
     document.addEventListener('DOMContentLoaded', function() {
         function abrirModal(id_funcionario) {
@@ -190,4 +230,81 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
         window.abrirModal = abrirModal;
     })
+
+
+    document.getElementById('filtro-status').addEventListener('change', function() {
+    const statusSelecionado = this.value;
+
+    fetch('<?php echo BASE_URL; ?>funcionario/filtrarFuncionarios', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'status=' + encodeURIComponent(statusSelecionado),
+    })
+    .then(response => response.json())
+    .then(funcionarios => {
+        const tabela = document.querySelector('.tabela-personalizada');
+        
+        // Definindo a estrutura do cabeçalho da tabela
+        tabela.innerHTML = `
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">UF</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Ativar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas serão inseridas aqui dinamicamente -->
+            </tbody>
+        `;
+
+        const tbody = tabela.querySelector('tbody');
+        tbody.innerHTML = ''; // Limpa o corpo da tabela antes de inserir as novas linhas
+
+        funcionarios.forEach(funcionario => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${funcionario.nome_funcionario}</td>
+                <td>${funcionario.endereco_funcionario}</td>
+                <td>${funcionario.bairro_funcionario}</td>
+                <td>${funcionario.cidade_funcionario}</td>
+                <td>${funcionario.estado_funcionario}</td>
+                <td>${funcionario.telefone_funcionario}</td>
+                <td>${funcionario.email_funcionario}</td>
+                <td>${funcionario.status_funcionario}</td>
+                <td>
+                    <a href="<?php echo BASE_URL; ?>funcionario/editar/${funcionario.id_funcionario}" class="btn" style="background-color: #e69f00; color: #fff;">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                </td>
+                <td>
+                    ${funcionario.status_funcionario === 'ATIVO' ? `
+                        <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(${funcionario.id_funcionario}); return false;">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    ` : `
+                        <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(${funcionario.id_funcionario}); return false;">
+                            <i class="fa-solid fa-check"></i>
+                        </a>
+                    `}
+                </td>
+            `;
+            tbody.appendChild(tr); // Adiciona a linha criada à tabela
+        });
+    })
+    .catch(error => {
+        console.error('Erro ao carregar funcionários:', error);
+        alert('Erro ao carregar os funcionários. Tente novamente.');
+    });
+});
+
 </script>

@@ -2,9 +2,16 @@
 
 class Depoimento extends Model
 {
-    public function getAllDepoimentos()
+    public function getDepoimentos()
     {
         $sql = "SELECT * FROM depoimento WHERE status_depoimento = 'ATIVO'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function getAllDepoimentos()
+    {
+        $sql = "SELECT * FROM depoimento ORDER BY id_depoimento DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

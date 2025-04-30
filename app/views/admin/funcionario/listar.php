@@ -119,10 +119,33 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </tbody>
 </table>
 
+<!-- Modal de Ativar Funcionário -->
+<div class="modal fade" id="modalAtivarFuncionario" tabindex="-1" aria-labelledby="modalAtivarFuncionarioLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form id="formAtivarFuncionario">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="modalAtivarFuncionarioLabel">Ativar Funcionário</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja ativar este funcionário?
+          <input type="hidden" name="id_funcionario" id="id_funcionario_ativar">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="btnConfirmarAtivacao">Ativar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <div class="modal fade" id="desativarModal" tabindex="-1" aria-labelledby="desativarModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-danger text-white">
         <h1 class="modal-title fs-5" id="desativarModalLabel">Desativar Funcionário</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

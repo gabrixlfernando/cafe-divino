@@ -11,7 +11,7 @@ class SobreController extends Controller{
         $dados = array();
         $dados['titulo'] = 'Café Divino | Sobre';
 
-        $depoimento = $this->depoimentoModel->getAllDepoimentos();
+        $depoimento = $this->depoimentoModel->getDepoimentos();
         $dados['depoimento'] = $depoimento;
 
         $this->carregarViews('sobre', $dados);

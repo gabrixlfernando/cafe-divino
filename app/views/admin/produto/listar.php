@@ -79,16 +79,44 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 <div class="container-fluid mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <!-- Título da página -->
-        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0">Produtos</h1>
+        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0"><i class="fa-solid fa-mug-hot" style="color: #2b1b1b;"></i> Produtos</h1>
         
         <div class="d-flex align-items-center gap-3">
             <!-- Filtro de status -->
             <div class="d-flex align-items-center">
-                <label for="filtro-status" class="me-2 mb-0">Filtrar por status:</label>
-                <select id="filtro-status" class="form-select" style="width: 200px;">
+                <label for="filtro-status" class="me-2 mb-0">Status:</label>
+                <select id="filtro-status" class="form-select" style="width: 150px;">
                     <option value="ATIVO" selected>Ativos</option>
                     <option value="DESATIVADO">Desativados</option>
                 </select>
+            </div>
+            
+            <!-- Filtro de categoria -->
+            <div class="d-flex align-items-center">
+                <label for="filtro-categoria" class="me-2 mb-0">Categoria:</label>
+                <select id="filtro-categoria" class="form-select" style="width: 180px;">
+                    <option value="TODAS" selected>Todas</option>
+                    <option value="CAFÉ">Café</option>
+                    <option value="CAFÉ GELADO">Café Gelado</option>
+                    <option value="SMOOTHIES">Smoothies</option>
+                    <option value="PÃES">Pães</option>
+                    <option value="DOCES">Doces</option>
+                    <option value="CHÁ">Chá</option>
+                    <option value="CHÁ GELADO">Chá Gelado</option>
+                    <option value="SHAKES">Shakes</option>
+                    <option value="BEBIDAS VEGANAS">Bebidas Veganas</option>
+                    <option value="ÁGUA">Água</option>
+                </select>
+            </div>
+            
+            <!-- Barra de pesquisa -->
+            <div class="d-flex align-items-center">
+                <div class="input-group" style="width: 250px;">
+                    <input type="text" id="pesquisa-nome" class="form-control" placeholder="Pesquisar produto...">
+                    <button class="btn btn-outline-secondary" type="button" id="btn-pesquisar">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
             </div>
             
             <!-- Botão Cadastrar -->
@@ -98,7 +126,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         </div>
     </div>
 </div>
-<table class="tabela-personalizada">
+<table class="tabela-personalizada container-fluid">
     <thead>
         <tr>
             <th scope="col">Foto</th>
@@ -308,20 +336,47 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-    document.getElementById('filtro-status').addEventListener('change', function() {
-    const statusSelecionado = this.value;
+    // Variável para controlar o timeout da pesquisa
+let timeoutPesquisa = null;
 
-    fetch('<?php echo BASE_URL; ?>produtos/filtrarProdutos', {
+function carregarProdutos() {
+    // Cancela o timeout anterior se existir
+    if (timeoutPesquisa) {
+        clearTimeout(timeoutPesquisa);
+    }
+    
+    // Configura um novo timeout para executar a busca após 500ms da última digitação
+    timeoutPesquisa = setTimeout(() => {
+        const statusSelecionado = document.getElementById('filtro-status').value;
+        const categoriaSelecionada = document.getElementById('filtro-categoria').value;
+        const termoPesquisa = document.getElementById('pesquisa-nome').value.trim();
+
+        // Mostra loading durante a requisição
+        const tabela = document.querySelector('.tabela-personalizada');
+        tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
+
+        fetch('<?php echo BASE_URL; ?>produtos/filtrarProdutos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: 'status=' + encodeURIComponent(statusSelecionado),
+            body: 'status=' + encodeURIComponent(statusSelecionado) + 
+                  '&categoria=' + encodeURIComponent(categoriaSelecionada) +
+                  '&pesquisa=' + encodeURIComponent(termoPesquisa),
         })
         .then(response => response.json())
         .then(produtos => {
             const tabela = document.querySelector('.tabela-personalizada');
             
+            if (produtos.length === 0) {
+                tabela.innerHTML = `
+                    <div class="alert alert-warning mt-3">
+                        Nenhum produto encontrado com os filtros selecionados.
+                    </div>
+                `;
+                return;
+            }
+
             // Definindo a estrutura do cabeçalho da tabela
             tabela.innerHTML = `
                 <thead>
@@ -343,7 +398,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             `;
 
             const tbody = tabela.querySelector('tbody');
-            tbody.innerHTML = ''; // Limpa o corpo da tabela antes de inserir as novas linhas
+            tbody.innerHTML = '';
 
             produtos.forEach(produto => {
                 const tr = document.createElement('tr');
@@ -372,13 +427,40 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         `}
                     </td>
                 `;
-                tbody.appendChild(tr); // Adiciona a linha criada à tabela
+                tbody.appendChild(tr);
             });
         })
         .catch(error => {
             console.error('Erro ao carregar produtos:', error);
-            alert('Erro ao carregar os produtos. Tente novamente.');
+            const tabela = document.querySelector('.tabela-personalizada');
+            tabela.innerHTML = `
+                <div class="alert alert-danger mt-3">
+                    Erro ao carregar os produtos. Por favor, tente novamente.
+                </div>
+            `;
         });
+    }, 500); // 500ms de delay após a última digitação
+}
+
+// Adiciona os event listeners
+document.getElementById('filtro-status').addEventListener('change', carregarProdutos);
+document.getElementById('filtro-categoria').addEventListener('change', carregarProdutos);
+
+// Eventos para o campo de pesquisa
+const campoPesquisa = document.getElementById('pesquisa-nome');
+campoPesquisa.addEventListener('input', carregarProdutos); // Dispara ao digitar
+campoPesquisa.addEventListener('keyup', function(e) {
+    if (e.key === 'Escape') {
+        this.value = '';
+        carregarProdutos();
+    }
 });
 
+// Botão de pesquisa ainda funciona
+document.getElementById('btn-pesquisar').addEventListener('click', carregarProdutos);
+
+
+
+// Carrega os produtos inicialmente
+carregarProdutos();
 </script>

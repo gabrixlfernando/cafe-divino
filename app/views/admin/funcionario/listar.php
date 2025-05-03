@@ -72,26 +72,38 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 <div class="container-fluid mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <!-- Título da página -->
-        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0">Funcionários</h1>
+        <h1 style="color: #e69f00; font-weight: bold;" class="mb-0"><i class="fa-solid fa-users-line" style="color: #2b1b1b;"></i> Funcionários</h1>
         
         <div class="d-flex align-items-center gap-3">
             <!-- Filtro de status -->
             <div class="d-flex align-items-center">
-                <label for="filtro-status" class="me-2 mb-0">Filtrar por status:</label>
-                <select id="filtro-status" class="form-select" style="width: 200px;">
+                <label for="filtro-status" class="me-2 mb-0">Status:</label>
+                <select id="filtro-status" class="form-select" style="width: 150px;">
                     <option value="ATIVO" selected>Ativos</option>
                     <option value="DESATIVADO">Desativados</option>
                 </select>
             </div>
             
+            <!-- Barra de pesquisa -->
+            <div class="d-flex align-items-center">
+                <div class="input-group" style="width: 250px;">
+                    <input type="text" id="pesquisa-nome" class="form-control" placeholder="Digite para buscar...">
+                    <button class="btn btn-outline-secondary" type="button" id="btn-pesquisar">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+            
             <!-- Botão Cadastrar -->
             <a href="<?php echo BASE_URL ?>funcionario/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">
-    <i class="bi bi-person-plus"></i> Cadastrar Funcionário
-</a>
+                <i class="bi bi-person-plus"></i> Cadastrar Funcionário
+            </a>
         </div>
     </div>
 </div>
-<table class="tabela-personalizada">
+
+
+<table class="tabela-personalizada container-fluid">
     <thead>
         <tr>
             <th scope="col">Nome</th>
@@ -269,79 +281,130 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
-    document.getElementById('filtro-status').addEventListener('change', function() {
-    const statusSelecionado = this.value;
+   // Variável para controlar o timeout da pesquisa
+let timeoutPesquisa = null;
 
-    fetch('<?php echo BASE_URL; ?>funcionario/filtrarFuncionarios', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'status=' + encodeURIComponent(statusSelecionado),
-    })
-    .then(response => response.json())
-    .then(funcionarios => {
+function carregarFuncionarios() {
+    // Cancela o timeout anterior se existir
+    if (timeoutPesquisa) {
+        clearTimeout(timeoutPesquisa);
+    }
+    
+    // Configura um novo timeout para executar a busca após 500ms da última digitação
+    timeoutPesquisa = setTimeout(() => {
+        const statusSelecionado = document.getElementById('filtro-status').value;
+        const termoPesquisa = document.getElementById('pesquisa-nome').value.trim();
+
+        // Mostra loading durante a requisição
         const tabela = document.querySelector('.tabela-personalizada');
-        
-        // Definindo a estrutura do cabeçalho da tabela
-        tabela.innerHTML = `
-            <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Bairro</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">UF</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Ativar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- As linhas serão inseridas aqui dinamicamente -->
-            </tbody>
-        `;
+        tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
 
-        const tbody = tabela.querySelector('tbody');
-        tbody.innerHTML = ''; // Limpa o corpo da tabela antes de inserir as novas linhas
+        fetch('<?php echo BASE_URL; ?>funcionario/filtrarFuncionarios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'status=' + encodeURIComponent(statusSelecionado) +
+                  '&pesquisa=' + encodeURIComponent(termoPesquisa),
+        })
+        .then(response => response.json())
+        .then(funcionarios => {
+            const tabela = document.querySelector('.tabela-personalizada');
+            
+            if (funcionarios.length === 0) {
+                tabela.innerHTML = `
+                    <div class="alert alert-warning mt-3">
+                        Nenhum funcionário encontrado com os filtros selecionados.
+                    </div>
+                `;
+                return;
+            }
 
-        funcionarios.forEach(funcionario => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${funcionario.nome_funcionario}</td>
-                <td>${funcionario.endereco_funcionario}</td>
-                <td>${funcionario.bairro_funcionario}</td>
-                <td>${funcionario.cidade_funcionario}</td>
-                <td>${funcionario.estado_funcionario}</td>
-                <td>${funcionario.telefone_funcionario}</td>
-                <td>${funcionario.email_funcionario}</td>
-                <td>${funcionario.status_funcionario}</td>
-                <td>
-                    <a href="<?php echo BASE_URL; ?>funcionario/editar/${funcionario.id_funcionario}" class="btn" style="background-color: #e69f00; color: #fff;">
-                        <i class="bi bi-pencil-fill"></i>
-                    </a>
-                </td>
-                <td>
-                    ${funcionario.status_funcionario === 'ATIVO' ? `
-                        <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(${funcionario.id_funcionario}); return false;">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
-                    ` : `
-                        <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(${funcionario.id_funcionario}); return false;">
-                            <i class="fa-solid fa-check"></i>
-                        </a>
-                    `}
-                </td>
+            // Definindo a estrutura do cabeçalho da tabela
+            tabela.innerHTML = `
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">UF</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Ativar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- As linhas serão inseridas aqui dinamicamente -->
+                </tbody>
             `;
-            tbody.appendChild(tr); // Adiciona a linha criada à tabela
+
+            const tbody = tabela.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            funcionarios.forEach(funcionario => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${funcionario.nome_funcionario}</td>
+                    <td>${funcionario.endereco_funcionario}</td>
+                    <td>${funcionario.bairro_funcionario}</td>
+                    <td>${funcionario.cidade_funcionario}</td>
+                    <td>${funcionario.estado_funcionario}</td>
+                    <td>${funcionario.telefone_funcionario}</td>
+                    <td>${funcionario.email_funcionario}</td>
+                    <td>${funcionario.status_funcionario}</td>
+                    <td>
+                        <a href="<?php echo BASE_URL; ?>funcionario/editar/${funcionario.id_funcionario}" class="btn" style="background-color: #e69f00; color: #fff;">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </td>
+                    <td>
+                        ${funcionario.status_funcionario === 'ATIVO' ? `
+                            <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(${funcionario.id_funcionario}); return false;">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        ` : `
+                            <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(${funcionario.id_funcionario}); return false;">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+                        `}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar funcionários:', error);
+            const tabela = document.querySelector('.tabela-personalizada');
+            tabela.innerHTML = `
+                <div class="alert alert-danger mt-3">
+                    Erro ao carregar os funcionários. Por favor, tente novamente.
+                </div>
+            `;
         });
-    })
-    .catch(error => {
-        console.error('Erro ao carregar funcionários:', error);
-        alert('Erro ao carregar os funcionários. Tente novamente.');
-    });
+    }, 500); // 500ms de delay após a última digitação
+}
+
+// Adiciona os event listeners
+document.getElementById('filtro-status').addEventListener('change', carregarFuncionarios);
+
+// Eventos para o campo de pesquisa
+const campoPesquisa = document.getElementById('pesquisa-nome');
+campoPesquisa.addEventListener('input', carregarFuncionarios); // Dispara ao digitar
+campoPesquisa.addEventListener('keyup', function(e) {
+    if (e.key === 'Escape') {
+        this.value = '';
+        carregarFuncionarios();
+    }
 });
 
+// Botão de pesquisa ainda funciona
+document.getElementById('btn-pesquisar').addEventListener('click', carregarFuncionarios);
+
+
+
+// Carrega os funcionários inicialmente
+carregarFuncionarios();
 </script>

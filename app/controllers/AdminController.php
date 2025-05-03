@@ -23,6 +23,9 @@ class AdminController extends Controller {
         $dados['totalFuncionarios'] = $funcionario->getTotalFuncionarios();
         $dados['totalContatos'] = $contato->getTotalContatos();
 
+        $dados['ultimosContatos'] = $contato ->getUltimosContatos(5);
+        $dados['ultimosDepoimentos'] = $depoimento->getUltimosDepoimentos(5);
+
         $this->carregarViews('admin/index', $dados);
     }
 }

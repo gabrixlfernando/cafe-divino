@@ -10,14 +10,29 @@ class Contato extends Model
         return $stmt->fetchAll();
     }
 
-    public function getContatosPorStatus($status)
-{
-    $sql = "SELECT * FROM contato WHERE status_contato = :status";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindParam(':status', $status);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    public function getContatosFiltrados($status, $pesquisa)
+    {
+        $sql = "SELECT * FROM contato WHERE status_contato = :status";
+        
+        // Adiciona condição para pesquisa se não estiver vazia
+        if (!empty($pesquisa)) {
+            $sql .= " AND (nome_contato LIKE :pesquisa 
+                      OR assunto_contato LIKE :pesquisa 
+                      OR mens_contato LIKE :pesquisa)";
+        }
+        
+        $sql .= " ORDER BY id_contato DESC";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status);
+        
+        if (!empty($pesquisa)) {
+            $stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
+        }
+        
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function salvarContato($dados)
     {
@@ -81,4 +96,33 @@ class Contato extends Model
         $row = $sql->fetch();
         return $row['total'];
     }
+
+    public function getUltimosContatos($limite = 5)
+{
+    $sql = "SELECT id_contato, nome_contato, assunto_contato, status_contato, 
+                   DATE_FORMAT(datahora_contato, '%d/%m/%Y %H:%i') as data_formatada
+            FROM contato
+            ORDER BY datahora_contato DESC
+            LIMIT :limite";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':limite', (int)$limite, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getContatosPorMes($mesAno)
+{
+    $sql = "SELECT COUNT(*) as total
+            FROM contato
+            WHERE DATE_FORMAT(datahora_contato, '%Y-%m') = :mesAno";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':mesAno', $mesAno);
+    $stmt->execute();
+    
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $resultado['total'] ?? 0;
+}
 }

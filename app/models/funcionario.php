@@ -10,14 +10,29 @@ class Funcionario extends Model
         return $stmt->fetchAll();
     }
 
-    public function getFuncionariosPorStatus($status)
-{
-    $sql = "SELECT * FROM funcionario WHERE status_funcionario = :status ORDER BY id_funcionario DESC";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':status', $status);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    public function getFuncionariosFiltrados($status, $pesquisa)
+    {
+        $sql = "SELECT * FROM funcionario WHERE status_funcionario = :status";
+        
+        // Adiciona condição para pesquisa se não estiver vazia
+        if (!empty($pesquisa)) {
+            $sql .= " AND (nome_funcionario LIKE :pesquisa 
+                      OR email_funcionario LIKE :pesquisa 
+                      OR telefone_funcionario LIKE :pesquisa)";
+        }
+        
+        $sql .= " ORDER BY id_funcionario DESC";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status);
+        
+        if (!empty($pesquisa)) {
+            $stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
+        }
+        
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getDadosFuncionario($id)
     {

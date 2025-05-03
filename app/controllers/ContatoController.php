@@ -24,6 +24,7 @@ class ContatoController extends Controller
     }
     public function index()
     {
+        
         $dados = array();
         $dados['titulo'] = 'Café Divino | Contato';
 
@@ -38,6 +39,11 @@ class ContatoController extends Controller
 
     public function listar()
     {
+         // Verifica se está logado como funcionário
+         if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
         $dados = array();
         $dados['conteudo'] = 'admin/contato/listar';
 
@@ -57,13 +63,14 @@ class ContatoController extends Controller
     }
 
     public function filtrarContatos()
-{
-    $status = $_POST['status'] ?? 'AGUARDANDO'; 
+    {
+        $status = $_POST['status'] ?? 'AGUARDANDO';
+        $pesquisa = $_POST['pesquisa'] ?? '';
+        
+        $contatos = $this->contatoModel->getContatosFiltrados($status, $pesquisa);
     
-    $contatos = $this->contatoModel->getContatosPorStatus($status);
-
-    echo json_encode($contatos);
-}
+        echo json_encode($contatos);
+    }
 
     public function enviar()
     {

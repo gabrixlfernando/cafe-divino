@@ -27,6 +27,11 @@ class DepoimentoController extends Controller
 
     public function listar()
     {
+         // Verifica se está logado como funcionário
+         if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
         $dados = array();
         $dados['conteudo'] = 'admin/depoimento/listar';
 
@@ -44,17 +49,18 @@ class DepoimentoController extends Controller
     }
 
     public function filtrarDepoimentos()
-{
-    $status = $_POST['status'] ?? 'TODOS';
+    {
+        $status = $_POST['status'] ?? 'TODOS';
+        $pesquisa = $_POST['pesquisa'] ?? '';
+        
+        if ($status === 'TODOS') {
+            $depoimentos = $this->depoimentoModel->getDepoimentosFiltrados(null, $pesquisa);
+        } else {
+            $depoimentos = $this->depoimentoModel->getDepoimentosFiltrados($status, $pesquisa);
+        }
     
-    if ($status === 'TODOS') {
-        $depoimentos = $this->depoimentoModel->getAllDepoimentos(); // Método que busca todos, independente do status
-    } else {
-        $depoimentos = $this->depoimentoModel->getDepoimentosPorStatus($status);
+        echo json_encode($depoimentos);
     }
-
-    echo json_encode($depoimentos);
-}
 
 
 

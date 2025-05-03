@@ -11,14 +11,38 @@ class Produto extends Model
         return $stmt->fetchAll();
     }
 
-    public function getProdutosPorStatus($status)
-{
-    $sql = "SELECT * FROM produto WHERE status_produto = :status ORDER BY id_produto DESC";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':status', $status);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    public function getProdutosFiltrados($status, $categoria, $pesquisa)
+    {
+        $sql = "SELECT * FROM produto WHERE status_produto = :status";
+        
+        // Adiciona condição para categoria se não for "TODAS"
+        if ($categoria !== 'TODAS') {
+            $sql .= " AND categoria_produto = :categoria";
+        }
+        
+        // Adiciona condição para pesquisa se não estiver vazia
+        if (!empty($pesquisa)) {
+            $sql .= " AND (nome_produto LIKE :pesquisa
+                      OR categoria_produto LIKE :pesquisa 
+                      OR descricao_produto LIKE :pesquisa)";
+        }
+        
+        $sql .= " ORDER BY id_produto DESC";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status);
+        
+        if ($categoria !== 'TODAS') {
+            $stmt->bindValue(':categoria', $categoria);
+        }
+        
+        if (!empty($pesquisa)) {
+            $stmt->bindValue(':pesquisa', '%' . $pesquisa . '%');
+        }
+        
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // Método para listar os últimos 4 produtos cadastrados (novidades)
     public function getNovidades()

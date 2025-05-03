@@ -23,6 +23,12 @@ class ProdutosController extends Controller
 
     public function listar()
     {
+        // Verifica se está logado como funcionário
+        if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
+       
         $dados = array();
         $dados['conteudo'] = 'admin/produto/listar';
 
@@ -42,13 +48,22 @@ class ProdutosController extends Controller
     public function filtrarProdutos()
 {
     $status = $_POST['status'] ?? 'ATIVO';
-    $produtos = $this->produtoModel->getProdutosPorStatus($status);
+    $categoria = $_POST['categoria'] ?? 'TODAS';
+    $pesquisa = $_POST['pesquisa'] ?? '';
+    
+    $produtos = $this->produtoModel->getProdutosFiltrados($status, $categoria, $pesquisa);
 
     echo json_encode($produtos);
 }
 
     public function adicionar()
     {
+         // Verifica se está logado como funcionário
+         if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
+        
         $dados = array();
 
         $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();

@@ -18,6 +18,12 @@ class FuncionarioController extends Controller
 
     public function listar()
     {
+        // Verifica se está logado como funcionário
+        if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
+       
         $dados = array();
 
         $dados['conteudo'] = 'admin/funcionario/listar';
@@ -38,6 +44,12 @@ class FuncionarioController extends Controller
 
     public function adicionar()
     {
+         // Verifica se está logado como funcionário
+         if(!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'funcionario') {
+            header("Location:" . BASE_URL . "login");
+            exit;
+        }
+        
         $dados = array();
 
         $dados['totalProdutos'] = $this->produtoModel->getTotalProdutos();
@@ -200,8 +212,10 @@ class FuncionarioController extends Controller
     public function filtrarFuncionarios()
     {
         $status = $_POST['status'] ?? 'ATIVO';
-        $funcionarios = $this->funcionarioModel->getFuncionariosPorStatus($status);
-
+        $pesquisa = $_POST['pesquisa'] ?? '';
+        
+        $funcionarios = $this->funcionarioModel->getFuncionariosFiltrados($status, $pesquisa);
+    
         echo json_encode($funcionarios);
     }
 

@@ -34,46 +34,51 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             }
         }, 5000); // Tempo em milissegundos (5000ms = 5 segundos)
     </script>
-    <?php unset($_SESSION['mensagem']); unset($_SESSION['tipo-msg']); ?>
+    <?php unset($_SESSION['mensagem']);
+    unset($_SESSION['tipo-msg']); ?>
 <?php endif; ?>
 
 <style>
     .tabela-personalizada {
-    background-color: #2b1b1b;
-    color: #ffffff;
-    border-collapse: collapse;
-}
+        background-color: #2b1b1b;
+        color: #ffffff;
+        border-collapse: collapse;
+    }
 
-.tabela-personalizada th,
-.tabela-personalizada td {
-    background-color: transparent;
-    border-color: #444; /* pode ajustar para um tom mais próximo também se quiser */
-    padding: 12px;
-}
+    .tabela-personalizada th,
+    .tabela-personalizada td {
+        background-color: transparent;
+        border-color: #444;
+        /* pode ajustar para um tom mais próximo também se quiser */
+        padding: 12px;
+    }
 
-.tabela-personalizada thead {
-    background-color: #241a1a; /* um cabeçalho um pouco mais escuro, combinando */
-}
+    .tabela-personalizada thead {
+        background-color: #241a1a;
+        /* um cabeçalho um pouco mais escuro, combinando */
+    }
 
-.tabela-personalizada tbody tr:nth-child(even) {
-    background-color:rgb(37, 24, 24); /* levemente mais claro */
-}
+    .tabela-personalizada tbody tr:nth-child(even) {
+        background-color: rgb(37, 24, 24);
+        /* levemente mais claro */
+    }
 
-.tabela-personalizada tbody tr:nth-child(odd) {
-    background-color: #2b1b1b; /* seu fundo principal */
-}
+    .tabela-personalizada tbody tr:nth-child(odd) {
+        background-color: #2b1b1b;
+        /* seu fundo principal */
+    }
 
-.tabela-personalizada tbody tr:hover {
-    background-color: #3a2e2e; /* destaque no hover, ainda dentro da paleta */
-}
-
+    .tabela-personalizada tbody tr:hover {
+        background-color: #3a2e2e;
+        /* destaque no hover, ainda dentro da paleta */
+    }
 </style>
 
 <div class="container-fluid mb-4">
     <div class="d-flex justify-content-between align-items-center">
         <!-- Título da página -->
         <h1 style="color: #e69f00; font-weight: bold;" class="mb-0"><i class="fa-solid fa-comments" style="color: #2b1b1b;"></i> Depoimentos</h1>
-        
+
         <div class="d-flex align-items-center gap-3">
             <!-- Filtro de status -->
             <div class="d-flex align-items-center">
@@ -84,7 +89,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <option value="DESATIVADO">Desativados</option>
                 </select>
             </div>
-            
+
             <!-- Barra de pesquisa -->
             <div class="d-flex align-items-center">
                 <div class="input-group" style="width: 250px;">
@@ -111,39 +116,45 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($depoimentos as $linha): ?>
-    <tr>
-        <td scope="col">
-            <img src="<?php echo BASE_URL ?><?php
-                $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_depoimento'];
-                if ($linha['foto_depoimento'] != "") {
-                    if (file_exists($caminhoImg)) {
-                        echo "uploads/" . $linha['foto_depoimento'];
-                    } else {
-                        echo 'uploads/semfoto.png';
-                    }
-                } else {
-                    echo 'uploads/semfoto.png';
-                }
-            ?>" class="img-thumbnail img-tabela" alt="<?php echo htmlspecialchars($linha['alt_depoimento'], ENT_QUOTES, 'UTF-8'); ?>" />
-        </td>
-        <td scope="col"><?php echo htmlspecialchars($linha['nome_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td scope="col"><?php echo htmlspecialchars($linha['mens_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td scope="col"><?php echo htmlspecialchars($linha['profissao_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td scope="col"><?php echo htmlspecialchars($linha['status_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td>
-            <?php if ($linha['status_depoimento'] === 'ATIVO'): ?>
-                <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(<?php echo $linha['id_depoimento']; ?>); return false;">
-                    <i class="bi bi-trash-fill"></i>
-                </a>
-            <?php else: ?>
-                <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(<?php echo $linha['id_depoimento']; ?>); return false;">
-                    <i class="fa-solid fa-check"></i>
-                </a>
-            <?php endif; ?>
-        </td>
-    </tr>
-<?php endforeach; ?>
+        <?php foreach ($depoimentos as $linha): ?>
+            <tr>
+                <td scope="col">
+                    <img src="<?php echo BASE_URL ?><?php
+                                                    $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_depoimento'];
+                                                    if ($linha['foto_depoimento'] != "") {
+                                                        if (file_exists($caminhoImg)) {
+                                                            echo "uploads/" . $linha['foto_depoimento'];
+                                                        } else {
+                                                            echo 'uploads/semfoto.png';
+                                                        }
+                                                    } else {
+                                                        echo 'uploads/semfoto.png';
+                                                    }
+                                                    ?>" class="img-thumbnail img-tabela" alt="<?php echo htmlspecialchars($linha['alt_depoimento'], ENT_QUOTES, 'UTF-8'); ?>" />
+                </td>
+                <td scope="col"><?php echo htmlspecialchars($linha['nome_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td scope="col" title="<?php echo htmlspecialchars($linha['mens_depoimento'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <?php
+                    $mensagem = htmlspecialchars($linha['mens_depoimento'], ENT_QUOTES, 'UTF-8');
+                    echo mb_strlen($mensagem, 'UTF-8') > 50 ? mb_substr($mensagem, 0, 50, 'UTF-8') . '...' : $mensagem;
+                    ?>
+                </td>
+
+                <td scope="col"><?php echo htmlspecialchars($linha['profissao_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td scope="col"><?php echo htmlspecialchars($linha['status_depoimento'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td>
+                    <?php if ($linha['status_depoimento'] === 'ATIVO'): ?>
+                        <a href="#" class="btn btn-danger" title="Desativar" onclick="abrirModal(<?php echo $linha['id_depoimento']; ?>); return false;">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+                    <?php else: ?>
+                        <a href="#" class="btn btn-success" title="Ativar" onclick="abrirModalAtivar(<?php echo $linha['id_depoimento']; ?>); return false;">
+                            <i class="fa-solid fa-check"></i>
+                        </a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
@@ -159,7 +170,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <input type="hidden" id="idParaAtivar" value="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success" id="btnAtivar">Ativar</button>
             </div>
         </div>
@@ -178,7 +189,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <input type="hidden" id="idParaDesativar" value="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
             </div>
         </div>
@@ -290,46 +301,46 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     })
 
     // Variável para controlar o timeout da pesquisa
-let timeoutPesquisa = null;
+    let timeoutPesquisa = null;
 
-function carregarDepoimentos() {
-    // Cancela o timeout anterior se existir
-    if (timeoutPesquisa) {
-        clearTimeout(timeoutPesquisa);
-    }
-    
-    // Configura um novo timeout para executar a busca após 500ms da última digitação
-    timeoutPesquisa = setTimeout(() => {
-        const statusSelecionado = document.getElementById('filtro-status').value;
-        const termoPesquisa = document.getElementById('pesquisa-depoimento').value.trim();
+    function carregarDepoimentos() {
+        // Cancela o timeout anterior se existir
+        if (timeoutPesquisa) {
+            clearTimeout(timeoutPesquisa);
+        }
 
-        // Mostra loading durante a requisição
-        const tabela = document.querySelector('.tabela-personalizada');
-        tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
+        // Configura um novo timeout para executar a busca após 500ms da última digitação
+        timeoutPesquisa = setTimeout(() => {
+            const statusSelecionado = document.getElementById('filtro-status').value;
+            const termoPesquisa = document.getElementById('pesquisa-depoimento').value.trim();
 
-        fetch('<?php echo BASE_URL; ?>depoimento/filtrarDepoimentos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'status=' + encodeURIComponent(statusSelecionado) +
-                  '&pesquisa=' + encodeURIComponent(termoPesquisa),
-        })
-        .then(response => response.json())
-        .then(depoimentos => {
+            // Mostra loading durante a requisição
             const tabela = document.querySelector('.tabela-personalizada');
-            
-            if (depoimentos.length === 0) {
-                tabela.innerHTML = `
+            tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
+
+            fetch('<?php echo BASE_URL; ?>depoimento/filtrarDepoimentos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'status=' + encodeURIComponent(statusSelecionado) +
+                        '&pesquisa=' + encodeURIComponent(termoPesquisa),
+                })
+                .then(response => response.json())
+                .then(depoimentos => {
+                    const tabela = document.querySelector('.tabela-personalizada');
+
+                    if (depoimentos.length === 0) {
+                        tabela.innerHTML = `
                     <div class="alert alert-warning mt-3">
                         Nenhum depoimento encontrado com os filtros selecionados.
                     </div>
                 `;
-                return;
-            }
+                        return;
+                    }
 
-            // Definindo a estrutura da tabela
-            tabela.innerHTML = `
+                    // Definindo a estrutura da tabela
+                    tabela.innerHTML = `
                 <thead>
                     <tr>
                         <th scope="col">Foto</th>
@@ -345,17 +356,19 @@ function carregarDepoimentos() {
                 </tbody>
             `;
 
-            const tbody = tabela.querySelector('tbody');
-            tbody.innerHTML = '';
+                    const tbody = tabela.querySelector('tbody');
+                    tbody.innerHTML = '';
 
-            depoimentos.forEach(depoimento => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+                    depoimentos.forEach(depoimento => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
                     <td>
                         <img src="<?php echo BASE_URL; ?>uploads/${depoimento.foto_depoimento || 'semfoto.png'}" class="img-thumbnail img-tabela" alt="${depoimento.alt_depoimento}" />
                     </td>
                     <td>${depoimento.nome_depoimento}</td>
-                    <td>${depoimento.mens_depoimento}</td>
+                    <td title="${depoimento.mens_depoimento}">
+                    ${depoimento.mens_depoimento.length > 50 ? depoimento.mens_depoimento.substring(0, 50) + '...' : depoimento.mens_depoimento}
+                    </td>
                     <td>${depoimento.profissao_depoimento}</td>
                     <td>${depoimento.status_depoimento}</td>
                     <td>
@@ -370,40 +383,39 @@ function carregarDepoimentos() {
                         `}
                     </td>
                 `;
-                tbody.appendChild(tr);
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao carregar depoimentos:', error);
-            const tabela = document.querySelector('.tabela-personalizada');
-            tabela.innerHTML = `
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar depoimentos:', error);
+                    const tabela = document.querySelector('.tabela-personalizada');
+                    tabela.innerHTML = `
                 <div class="alert alert-danger mt-3">
                     Erro ao carregar os depoimentos. Por favor, tente novamente.
                 </div>
             `;
-        });
-    }, 500); // 500ms de delay após a última digitação
-}
-
-// Adiciona os event listeners
-document.getElementById('filtro-status').addEventListener('change', carregarDepoimentos);
-
-// Eventos para o campo de pesquisa
-const campoPesquisa = document.getElementById('pesquisa-depoimento');
-campoPesquisa.addEventListener('input', carregarDepoimentos); // Dispara ao digitar
-campoPesquisa.addEventListener('keyup', function(e) {
-    if (e.key === 'Escape') {
-        this.value = '';
-        carregarDepoimentos();
+                });
+        }, 500); // 500ms de delay após a última digitação
     }
-});
 
-// Botão de pesquisa ainda funciona
-document.getElementById('btn-pesquisar').addEventListener('click', carregarDepoimentos);
+    // Adiciona os event listeners
+    document.getElementById('filtro-status').addEventListener('change', carregarDepoimentos);
+
+    // Eventos para o campo de pesquisa
+    const campoPesquisa = document.getElementById('pesquisa-depoimento');
+    campoPesquisa.addEventListener('input', carregarDepoimentos); // Dispara ao digitar
+    campoPesquisa.addEventListener('keyup', function(e) {
+        if (e.key === 'Escape') {
+            this.value = '';
+            carregarDepoimentos();
+        }
+    });
+
+    // Botão de pesquisa ainda funciona
+    document.getElementById('btn-pesquisar').addEventListener('click', carregarDepoimentos);
 
 
 
-// Carrega os depoimentos inicialmente
-carregarDepoimentos();
-
+    // Carrega os depoimentos inicialmente
+    carregarDepoimentos();
 </script>

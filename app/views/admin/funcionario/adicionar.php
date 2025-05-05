@@ -1,3 +1,9 @@
+<div class="mb-4">
+    <a href="<?php echo BASE_URL ?>funcionario/listar" class="btn text-white" style="background-color: #e69f00;">
+    <i class="fa-solid fa-circle-left"></i> Voltar para Funcionários
+    </a>
+  </div>
+
 <h2 class="mb-4">Cadastro de Funcionário</h2>
 
 <div class="container mt-5">

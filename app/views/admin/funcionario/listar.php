@@ -159,7 +159,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
           <input type="hidden" name="id_funcionario" id="id_funcionario_ativar">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-success" id="btnConfirmarAtivacao">Ativar</button>
         </div>
       </div>
@@ -180,7 +180,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
       <input type="hidden" id="idParaDesativar" value="">
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
       </div>
     </div>

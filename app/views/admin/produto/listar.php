@@ -80,7 +80,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <div class="d-flex justify-content-between align-items-center">
         <!-- Título da página -->
         <h1 style="color: #e69f00; font-weight: bold;" class="mb-0"><i class="fa-solid fa-mug-hot" style="color: #2b1b1b;"></i> Produtos</h1>
-        
+
         <div class="d-flex align-items-center gap-3">
             <!-- Filtro de status -->
             <div class="d-flex align-items-center">
@@ -90,7 +90,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <option value="DESATIVADO">Desativados</option>
                 </select>
             </div>
-            
+
             <!-- Filtro de categoria -->
             <div class="d-flex align-items-center">
                 <label for="filtro-categoria" class="me-2 mb-0">Categoria:</label>
@@ -108,7 +108,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <option value="ÁGUA">Água</option>
                 </select>
             </div>
-            
+
             <!-- Barra de pesquisa -->
             <div class="d-flex align-items-center">
                 <div class="input-group" style="width: 250px;">
@@ -118,7 +118,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     </button>
                 </div>
             </div>
-            
+
             <!-- Botão Cadastrar -->
             <a href="<?php echo BASE_URL ?>produtos/adicionar" class="btn" style="background-color: #e69f00; color: #fff;">
                 Cadastrar Produto
@@ -180,7 +180,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         alt="<?php echo htmlspecialchars($linha['alt_produto'], ENT_QUOTES, 'UTF-8'); ?>" />
                 </td>
                 <td scope="col"><?php echo htmlspecialchars($linha['nome_produto'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td scope="col"><?php echo htmlspecialchars($linha['descricao_produto'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td scope="col" title="<?php echo htmlspecialchars($linha['descricao_produto'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <?php
+                    $descricao = htmlspecialchars($linha['descricao_produto'], ENT_QUOTES, 'UTF-8');
+                    echo mb_strlen($descricao, 'UTF-8') > 50 ? mb_substr($descricao, 0, 50, 'UTF-8') . '...' : $descricao;
+                    ?>
+                </td>
+
                 <td scope="col"><?php echo htmlspecialchars($linha['categoria_produto'], ENT_QUOTES, 'UTF-8'); ?></td>
                 <td scope="col"><?php echo htmlspecialchars($linha['ml_produto'], ENT_QUOTES, 'UTF-8'); ?></td>
                 <td scope="col"><?php echo htmlspecialchars($linha['valor_produto'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -213,7 +219,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <input type="hidden" id="idParaDesativar" value="">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-danger" id="btnDesativar">Desativar</button>
             </div>
         </div>
@@ -222,24 +228,24 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <!-- Modal de Ativar Produto -->
 <div class="modal fade" id="modalAtivarProduto" tabindex="-1" aria-labelledby="modalAtivarLabel" aria-hidden="true">
-  <div class="modal-dialog">
-  <form id="formAtivarProduto">
-      <div class="modal-content">
-        <div class="modal-header bg-success text-white">
-          <h5 class="modal-title" id="modalAtivarLabel">Ativar Produto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          Tem certeza que deseja ativar este produto?
-          <input type="hidden" name="id_produto" id="id_produto_ativar">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-success" id="btnConfirmarAtivacao">Ativar</button>
-        </div>
-      </div>
-    </form>
-  </div>
+    <div class="modal-dialog">
+        <form id="formAtivarProduto">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalAtivarLabel">Ativar Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja ativar este produto?
+                    <input type="hidden" name="id_produto" id="id_produto_ativar">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnConfirmarAtivacao">Ativar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 
@@ -261,33 +267,33 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         modal.show();
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('btnConfirmarAtivacao').addEventListener('click', function () {
-        const idProduto = document.getElementById('id_produto_ativar').value;
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('btnConfirmarAtivacao').addEventListener('click', function() {
+            const idProduto = document.getElementById('id_produto_ativar').value;
 
-        fetch('<?php echo BASE_URL; ?>produtos/ativar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'id_produto=' + encodeURIComponent(idProduto)
-        })
-        .then(response => response.json())
-        .then(data => {
-            var modal = bootstrap.Modal.getInstance(document.getElementById('modalAtivarProduto'));
-            modal.hide();
+            fetch('<?php echo BASE_URL; ?>produtos/ativar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'id_produto=' + encodeURIComponent(idProduto)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('modalAtivarProduto'));
+                    modal.hide();
 
-            if (data.sucesso) {
-                location.reload(); // recarrega a página na mesma URL
-            } else {
-                alert('Erro ao ativar: ' + data.mensagem);
-            }
-        })
-        .catch(error => {
-            alert('Erro na requisição: ' + error);
+                    if (data.sucesso) {
+                        location.reload(); // recarrega a página na mesma URL
+                    } else {
+                        alert('Erro ao ativar: ' + data.mensagem);
+                    }
+                })
+                .catch(error => {
+                    alert('Erro na requisição: ' + error);
+                });
         });
     });
-});
 
     document.addEventListener('DOMContentLoaded', function() {
         function abrirModal(id_produto) {
@@ -337,48 +343,48 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
     // Variável para controlar o timeout da pesquisa
-let timeoutPesquisa = null;
+    let timeoutPesquisa = null;
 
-function carregarProdutos() {
-    // Cancela o timeout anterior se existir
-    if (timeoutPesquisa) {
-        clearTimeout(timeoutPesquisa);
-    }
-    
-    // Configura um novo timeout para executar a busca após 500ms da última digitação
-    timeoutPesquisa = setTimeout(() => {
-        const statusSelecionado = document.getElementById('filtro-status').value;
-        const categoriaSelecionada = document.getElementById('filtro-categoria').value;
-        const termoPesquisa = document.getElementById('pesquisa-nome').value.trim();
+    function carregarProdutos() {
+        // Cancela o timeout anterior se existir
+        if (timeoutPesquisa) {
+            clearTimeout(timeoutPesquisa);
+        }
 
-        // Mostra loading durante a requisição
-        const tabela = document.querySelector('.tabela-personalizada');
-        tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
+        // Configura um novo timeout para executar a busca após 500ms da última digitação
+        timeoutPesquisa = setTimeout(() => {
+            const statusSelecionado = document.getElementById('filtro-status').value;
+            const categoriaSelecionada = document.getElementById('filtro-categoria').value;
+            const termoPesquisa = document.getElementById('pesquisa-nome').value.trim();
 
-        fetch('<?php echo BASE_URL; ?>produtos/filtrarProdutos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'status=' + encodeURIComponent(statusSelecionado) + 
-                  '&categoria=' + encodeURIComponent(categoriaSelecionada) +
-                  '&pesquisa=' + encodeURIComponent(termoPesquisa),
-        })
-        .then(response => response.json())
-        .then(produtos => {
+            // Mostra loading durante a requisição
             const tabela = document.querySelector('.tabela-personalizada');
-            
-            if (produtos.length === 0) {
-                tabela.innerHTML = `
+            tabela.innerHTML = '<div class="text-center my-5"><div class="spinner-border text-warning" role="status"><span class="visually-hidden">Carregando...</span></div></div>';
+
+            fetch('<?php echo BASE_URL; ?>produtos/filtrarProdutos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'status=' + encodeURIComponent(statusSelecionado) +
+                        '&categoria=' + encodeURIComponent(categoriaSelecionada) +
+                        '&pesquisa=' + encodeURIComponent(termoPesquisa),
+                })
+                .then(response => response.json())
+                .then(produtos => {
+                    const tabela = document.querySelector('.tabela-personalizada');
+
+                    if (produtos.length === 0) {
+                        tabela.innerHTML = `
                     <div class="alert alert-warning mt-3">
                         Nenhum produto encontrado com os filtros selecionados.
                     </div>
                 `;
-                return;
-            }
+                        return;
+                    }
 
-            // Definindo a estrutura do cabeçalho da tabela
-            tabela.innerHTML = `
+                    // Definindo a estrutura do cabeçalho da tabela
+                    tabela.innerHTML = `
                 <thead>
                     <tr>
                         <th scope="col">Foto</th>
@@ -397,15 +403,17 @@ function carregarProdutos() {
                 </tbody>
             `;
 
-            const tbody = tabela.querySelector('tbody');
-            tbody.innerHTML = '';
+                    const tbody = tabela.querySelector('tbody');
+                    tbody.innerHTML = '';
 
-            produtos.forEach(produto => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+                    produtos.forEach(produto => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
                     <td><img src="<?php echo BASE_URL; ?>uploads/${produto.foto_produto || 'semfoto.png'}" class="img-thumbnail img-tabela" /></td>
                     <td>${produto.nome_produto}</td>
-                    <td>${produto.descricao_produto}</td>
+                    <td title="${produto.descricao_produto}">
+                    ${produto.descricao_produto.length > 50 ? produto.descricao_produto.substring(0, 50) + '...' : produto.descricao_produto}
+                    </td>
                     <td>${produto.categoria_produto}</td>
                     <td>${produto.ml_produto}</td>
                     <td>${produto.valor_produto}</td>
@@ -427,40 +435,40 @@ function carregarProdutos() {
                         `}
                     </td>
                 `;
-                tbody.appendChild(tr);
-            });
-        })
-        .catch(error => {
-            console.error('Erro ao carregar produtos:', error);
-            const tabela = document.querySelector('.tabela-personalizada');
-            tabela.innerHTML = `
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar produtos:', error);
+                    const tabela = document.querySelector('.tabela-personalizada');
+                    tabela.innerHTML = `
                 <div class="alert alert-danger mt-3">
                     Erro ao carregar os produtos. Por favor, tente novamente.
                 </div>
             `;
-        });
-    }, 500); // 500ms de delay após a última digitação
-}
-
-// Adiciona os event listeners
-document.getElementById('filtro-status').addEventListener('change', carregarProdutos);
-document.getElementById('filtro-categoria').addEventListener('change', carregarProdutos);
-
-// Eventos para o campo de pesquisa
-const campoPesquisa = document.getElementById('pesquisa-nome');
-campoPesquisa.addEventListener('input', carregarProdutos); // Dispara ao digitar
-campoPesquisa.addEventListener('keyup', function(e) {
-    if (e.key === 'Escape') {
-        this.value = '';
-        carregarProdutos();
+                });
+        }, 500); // 500ms de delay após a última digitação
     }
-});
 
-// Botão de pesquisa ainda funciona
-document.getElementById('btn-pesquisar').addEventListener('click', carregarProdutos);
+    // Adiciona os event listeners
+    document.getElementById('filtro-status').addEventListener('change', carregarProdutos);
+    document.getElementById('filtro-categoria').addEventListener('change', carregarProdutos);
+
+    // Eventos para o campo de pesquisa
+    const campoPesquisa = document.getElementById('pesquisa-nome');
+    campoPesquisa.addEventListener('input', carregarProdutos); // Dispara ao digitar
+    campoPesquisa.addEventListener('keyup', function(e) {
+        if (e.key === 'Escape') {
+            this.value = '';
+            carregarProdutos();
+        }
+    });
+
+    // Botão de pesquisa ainda funciona
+    document.getElementById('btn-pesquisar').addEventListener('click', carregarProdutos);
 
 
 
-// Carrega os produtos inicialmente
-carregarProdutos();
+    // Carrega os produtos inicialmente
+    carregarProdutos();
 </script>

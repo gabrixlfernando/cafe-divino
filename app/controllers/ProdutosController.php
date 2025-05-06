@@ -80,8 +80,8 @@ class ProdutosController extends Controller
             $nome_produto = filter_input(INPUT_POST, 'nome_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $alt_produto = $nome_produto;
-            $categoria_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
-            $ml_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $categoria_produto = filter_input(INPUT_POST, 'categoria_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $ml_produto = filter_input(INPUT_POST, 'ml_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $valor_produto = filter_input(INPUT_POST, 'valor_produto', FILTER_SANITIZE_NUMBER_FLOAT);
             $status_produto = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
 

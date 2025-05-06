@@ -23,6 +23,7 @@
             $(document).ready(function() {
                 $('#contactForm').on('submit', function(e) {
                     e.preventDefault(); // Impedir o envio padrão do formulário
+                    
             
                     $.ajax({
                         url: '<?php echo BASE_URL?>contato/enviar', // Arquivo PHP para processar o envio do e-mail

@@ -37,8 +37,8 @@ class Contato extends Model
     public function salvarContato($dados)
     {
         try {
-            $sql = "INSERT INTO contato (nome_contato, email_contato, assunto_contato, mens_contato, lido_contato, status_contato, datahora_contato)
-                VALUES (:nome, :email, :assunto, :mensagem, 0, 'AGUARDANDO', NOW())";
+            $sql = "INSERT INTO contato (nome_contato, email_contato, assunto_contato, mens_contato, status_contato, datahora_contato)
+                VALUES (:nome, :email, :assunto, :mensagem, 'AGUARDANDO', NOW())";
 
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':nome', $dados['nome']);

@@ -10,6 +10,14 @@ define('DB_NAME', 'u283879542_cafedivino');
 define('DB_USER', 'u283879542_cafedivino');
 define('DB_PASS', '@CafeTi26');
 
+//banco local 
+
+// Configuração da base de dados local (XAMPP)
+// define('DB_HOST', 'localhost');
+// define('DB_NAME', 'cafedivino'); 
+// define('DB_USER', 'root');
+// define('DB_PASS', ''); 
+
 
 // Configuração do email
 

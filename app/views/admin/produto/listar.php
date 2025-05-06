@@ -392,7 +392,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     produtos.forEach(produto => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                    <td><img src="<?php echo BASE_URL; ?>uploads/${produto.foto_produto || 'semfoto.png'}" class="img-thumbnail img-tabela" /></td>
+                    <td>
+                    <img 
+                        src="<?php echo BASE_URL; ?>uploads/${produto.foto_produto}" 
+                        class="img-thumbnail img-tabela" 
+                        onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>uploads/semfoto.png';" 
+                    />
+                    </td>
                     <td>${produto.nome_produto}</td>
                     <td title="${produto.descricao_produto}">
                     ${produto.descricao_produto.length > 50 ? produto.descricao_produto.substring(0, 50) + '...' : produto.descricao_produto}

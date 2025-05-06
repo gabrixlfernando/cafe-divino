@@ -511,10 +511,18 @@
                     <div class="card-body p-0">
                       <div class="list-group list-group-flush">
                         <?php foreach ($ultimosDepoimentos as $depoimento): ?>
+                          <?php
+                          $foto = 'uploads/' . ($depoimento['foto_depoimento'] ?: 'semfoto.png');
+                          if (empty($depoimento['foto_depoimento']) || !file_exists($foto)) {
+                            $foto = 'uploads/semfoto.png';
+                          }
+                          ?>
                           <div class="list-group-item">
                             <div class="d-flex align-items-start">
-                              <img src="<?= BASE_URL ?>uploads/<?= $depoimento['foto_depoimento'] ?: 'semfoto.png' ?>"
-                                class="rounded-circle me-3" width="40" height="40" alt="<?= htmlspecialchars($depoimento['nome_depoimento']) ?>">
+                              <img src="<?= BASE_URL . $foto ?>"
+                                class="rounded-circle me-3"
+                                width="40" height="40"
+                                alt="<?= htmlspecialchars($depoimento['nome_depoimento']) ?>">
                               <div>
                                 <strong><?= htmlspecialchars($depoimento['nome_depoimento']) ?></strong>
                                 <p class="mb-0 text-muted small"><?= substr(htmlspecialchars($depoimento['mens_depoimento']), 0, 50) ?>...</p>

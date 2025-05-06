@@ -363,7 +363,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
                     <td>
-                        <img src="<?php echo BASE_URL; ?>uploads/${depoimento.foto_depoimento || 'semfoto.png'}" class="img-thumbnail img-tabela" alt="${depoimento.alt_depoimento}" />
+                        <img 
+                        src="<?php echo BASE_URL; ?>uploads/${depoimento.foto_depoimento}" 
+                        class="img-thumbnail img-tabela" 
+                        alt="${depoimento.alt_depoimento}" 
+                        onerror="this.onerror=null; this.src='<?php echo BASE_URL; ?>uploads/semfoto.png';"
+                        />
                     </td>
                     <td>${depoimento.nome_depoimento}</td>
                     <td title="${depoimento.mens_depoimento}">

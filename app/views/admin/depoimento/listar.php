@@ -105,7 +105,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <table class="tabela-personalizada container-fluid">
-    <thead>
+    <!-- <thead>
         <tr>
             <th scope="col">Foto</th>
             <th scope="col">Nome</th>
@@ -120,7 +120,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <tr>
                 <td scope="col">
                     <img src="<?php echo BASE_URL ?><?php
-                                                    $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_depoimento'];
+                                                    $caminhoImg = 'uploads/' . $linha['foto_depoimento'];
                                                     if ($linha['foto_depoimento'] != "") {
                                                         if (file_exists($caminhoImg)) {
                                                             echo "uploads/" . $linha['foto_depoimento'];
@@ -155,7 +155,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 </td>
             </tr>
         <?php endforeach; ?>
-    </tbody>
+    </tbody> -->
 </table>
 
 <div class="modal fade" id="ativarModal" tabindex="-1" aria-labelledby="ativarModalLabel" aria-hidden="true">

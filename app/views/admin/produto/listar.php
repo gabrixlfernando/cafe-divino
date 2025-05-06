@@ -127,7 +127,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 </div>
 <table class="tabela-personalizada container-fluid">
-    <thead>
+    <!-- <thead>
         <tr>
             <th scope="col">Foto</th>
             <th scope="col">Nome</th>
@@ -145,26 +145,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             <tr>
                 <td scope="col">
 
-
-                    <!-- <?php
-                            $caminhoBase = "http://localhost/cafe-divino/public/uploads/";
-                            $caminhoFoto = $caminhoBase . $linha['foto_produto'];
-
-                            if ($linha['foto_produto'] != '' && file_exists($caminhoFoto)) {
-                                $urlFoto = $caminhoFoto;
-                            } else {
-                                $urlFoto = $caminhoFoto . 'semfoto.png';
-                            }
-
-                            // $urlFoto = $linha['foto_produto'] != '' && file_exists($caminhoFoto) ? $caminhoFoto : $caminhoBase . 'semfoto.png';
-
-                            ?>
-
-                    <img src="<?php echo $urlFoto; ?>" /> -->
-
                     <img src="<?php echo BASE_URL ?><?php
 
-                                                    $caminhoImg = $_SERVER['DOCUMENT_ROOT'] . '/cafe-divino/public/uploads/' . $linha['foto_produto'];
+                                                    $caminhoImg = 'uploads/' . $linha['foto_produto'];
 
                                                     if ($linha['foto_produto'] != "") {
                                                         if (file_exists($caminhoImg)) {
@@ -204,7 +187,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 </td>
             </tr>
         <?php endforeach; ?>
-    </tbody>
+    </tbody> -->
 </table>
 
 <div class="modal fade" id="desativarModal" tabindex="-1" aria-labelledby="desativarModalLabel" aria-hidden="true">

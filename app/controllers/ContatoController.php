@@ -18,7 +18,7 @@ class ContatoController extends Controller
     public function __construct()
     {
         $this->funcionarioModel = new Funcionario();
-        $this->produtoModel = new produto();
+        $this->produtoModel = new Produto();
         $this->depoimentoModel = new Depoimento();
         $this->contatoModel = new Contato();
     }

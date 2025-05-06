@@ -104,7 +104,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <table class="tabela-personalizada container-fluid">
-    <thead>
+    <!-- <thead>
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Endereço</th>
@@ -142,7 +142,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 </td>
             </tr>
         <?php endforeach; ?>
-    </tbody>
+    </tbody> -->
 </table>
 
 <!-- Modal de Ativar Funcionário -->

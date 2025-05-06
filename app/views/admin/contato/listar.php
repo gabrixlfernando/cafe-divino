@@ -87,13 +87,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 </div>
 
 <table class="tabela-personalizada container-fluid">
-    <thead>
+    <!-- <thead>
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Assunto</th>
             <th scope="col">Mensagem</th>
             <th scope="col">Status</th>
-            <th scope="col">Ação</th> <!-- Coluna unificada -->
+            <th scope="col">Ação</th> 
         </tr>
     </thead>
     <tbody>
@@ -124,7 +124,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 </td>
             </tr>
         <?php endforeach; ?>
-    </tbody>
+    </tbody> -->
+
+                    
 </table>
 
 <div class="modal fade" id="desativarModal" tabindex="-1" aria-labelledby="desativarModalLabel" aria-hidden="true">
